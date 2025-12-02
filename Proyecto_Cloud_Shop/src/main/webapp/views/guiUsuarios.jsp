@@ -83,6 +83,9 @@
 					      <td>Jacob</td>
 					      <td>Jacob</td>
 					      <td>Jacob</td>
+					   	  <td><i class="bi bi-pencil-square"></i></td>
+					      <td><i class="bi bi-trash"></i></td>
+					    </tr>
 					    </tr>
 					</table>
 				</div>
