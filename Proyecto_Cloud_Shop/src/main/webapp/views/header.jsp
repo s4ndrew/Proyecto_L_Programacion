@@ -13,7 +13,7 @@
 	          <a class="nav-link active" aria-current="page" href="#">USUARIOS</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="#">INVENTARIO</a>
+	          <a class="nav-link" href="InventarioGUI.jsp">INVENTARIO</a>
 	        </li>
 	        <li class="nav-item">
 	          <a class="nav-link" href="#">VENTAS</a>
