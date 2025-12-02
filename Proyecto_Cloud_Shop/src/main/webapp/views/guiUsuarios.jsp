@@ -75,17 +75,18 @@
 					      <th scope="col">Nombre</th>
 					      <th scope="col">Apellidos</th>
 					      <th scope="col">Rol</th>
+					      <th scope="col">Modificar</th>
+					      <th scope="col">Eliminar</th>
 					    </tr>
 					  </thead>
 					  <tbody>
-					    <tr>
+					    <tr class="text-center">
 					      <td>Mark</td>
 					      <td>Jacob</td>
 					      <td>Jacob</td>
 					      <td>Jacob</td>
-					   	  <td><i class="bi bi-pencil-square"></i></td>
-					      <td><i class="bi bi-trash"></i></td>
-					    </tr>
+					   	  <td><i class="bi bi-pencil-square text-warning"></i></td>
+					      <td><i class="bi bi-trash text-danger"></i></td>
 					    </tr>
 					</table>
 				</div>
