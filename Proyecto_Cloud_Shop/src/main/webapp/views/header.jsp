@@ -29,6 +29,7 @@
 	        </li>
 	      </ul>
 	    </div>
+	    	<button class="btn btn-danger" onclick="window.location.href='guiLogin.jsp'"><i class="bi bi-box-arrow-right"></i></button>
 	  </div>
 	</nav>
 </header>

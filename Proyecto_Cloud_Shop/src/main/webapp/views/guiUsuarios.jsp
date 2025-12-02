@@ -13,7 +13,7 @@
 			<div class="row">
 				<div class="col-6">
 					<div  class= "user-card card bordered p-5">
-						<form class="row needs-validation" novalidate>
+						<form class="row needs-validation" novalidate action="guiUsuarios.jsp">
 						
 						<div class="row g-0 align-items-center mb-4">
 						  <div class="col-3">
@@ -61,7 +61,7 @@
 						</div>
 						
 					  	<div class="text-center mt-2">
-					    	<button class="btn btn-primary" type="submit">REGISTRAR</button>
+					    	<button class="btn btn-primary" type="submit" onclick="window.location.href='guiUsuarios.jsp'">REGISTRAR</button>
 					  	</div>
 					</form>
 				</div>
