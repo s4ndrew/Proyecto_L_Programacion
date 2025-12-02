@@ -13,14 +13,14 @@
 			<div class="row">
 				<div class="col-6">
 					<div  class= "user-card card bordered p-5">
-						<form class="row needs-validation" novalidate action="guiUsuarios.jsp">
+						<form class="row needs-validation" novalidate action="guiLogin.jsp">
 						
 						<div class="row g-0 align-items-center mb-4">
 						  <div class="col-3">
 						    <label for="validationCustomUsername" class="col-form-label input-group has-validation">USUARIO</label>
 						  </div>
 						  <div class="col-9">
-						    <input type="text"  class="form-control" required>
+						    <input type="text" name="usuario" class="form-control" required>
 						    <div class="invalid-feedback">Ingrese usuario.</div>
 						  </div>
 						</div>
@@ -30,7 +30,7 @@
 						    <label for="validationCustomUsername" class="col-form-label input-group has-validation">NOMBRE</label>
 						  </div>
 						  <div class="col-9">
-						    <input type="text"  class="form-control" required>
+						    <input type="text" name="nombre"  class="form-control" required>
 						    <div class="invalid-feedback">Ingrese nombre.</div>
 						  </div>
 						</div>
@@ -40,7 +40,7 @@
 						    <label for="validationCustomUsername" class="col-form-label input-group has-validation">APELLIDOS</label>
 						  </div>
 						  <div class="col-9">
-						    <input type="text"  class="form-control" required>
+						    <input type="text"name="apellidos" class="form-control" required>
 						    <div class="invalid-feedback">Ingrese apellidos.</div>
 						  </div>
 						</div>
@@ -50,7 +50,7 @@
 						    <label for="validationCustomUsername" class="col-form-label input-group has-validation">ROL</label>
 						  </div>
 						  <div class="col-9">
-						    <select class="form-select" aria-label="Default select example" required>
+						    <select class="form-select" name="rol" aria-label="Default select example" required>
 							  <option selected>Seleccione una opcion</option>
 							  <option value="1">Vendedor</option>
 							  <option value="2">Administrador</option>
@@ -61,7 +61,7 @@
 						</div>
 						
 					  	<div class="text-center mt-2">
-					    	<button class="btn btn-primary" type="submit" onclick="window.location.href='guiUsuarios.jsp'">REGISTRAR</button>
+					    	<button class="btn btn-primary" type="submit">REGISTRAR</button>
 					  	</div>
 					</form>
 				</div>
