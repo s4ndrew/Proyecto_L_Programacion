@@ -5,7 +5,7 @@
 <jsp:include page="head.jsp"></jsp:include>
 <body>
 	<main class="">
-	<h2 class="text-center my-5">BIENVENIDO A CLOUD SHOP</h2>
+	<h2 class="text-center my-5">BIENVENIDO A CLOUD SHOP UPDATE</h2>
 		<div  class=" container login-card card bordered p-5">
 			<form class="row needs-validation" novalidate>
 			<i class="bi bi-person-circle text-center fs-1"></i>
