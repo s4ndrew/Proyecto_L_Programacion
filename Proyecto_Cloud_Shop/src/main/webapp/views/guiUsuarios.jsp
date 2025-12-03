@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <jsp:include page="head.jsp"></jsp:include>
-<body>
+<body class="container">
 	<jsp:include page="header.jsp"></jsp:include>
 
 	<main class="mt-4">
