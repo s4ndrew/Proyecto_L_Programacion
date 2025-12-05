@@ -10,21 +10,21 @@
 	    <div class="collapse navbar-collapse" id="navbarNavDropdown">
 	      <ul class="navbar-nav">
 	        <li class="nav-item">
-	          <a class="nav-link active" aria-current="page" href="#">USUARIOS</a>
+	          <a class="nav-link active" aria-current="page" href="guiUsuarios.jsp">USUARIOS</a>
 	        </li>
 	        <li class="nav-item">
 	          <a class="nav-link" href="InventarioGUI.jsp">INVENTARIO</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="#">VENTAS</a>
+	          <a class="nav-link" href="">VENTAS</a>
 	        </li>
 	        <li class="nav-item dropdown">
 	          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 	            REPORTES
 	          </a>
 	          <ul class="dropdown-menu">
-	            <li><a class="dropdown-item" href="#">STOCK</a></li>
-	            <li><a class="dropdown-item" href="#">VENTAS</a></li>
+	            <li><a class="dropdown-item" href="guiReporteStock.jsp">STOCK</a></li>
+	            <li><a class="dropdown-item" href="guiReporteVentas.jsp">VENTAS</a></li>
 	          </ul>
 	        </li>
 	      </ul>
