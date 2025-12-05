@@ -10,77 +10,90 @@
 </head>
 <jsp:include page="footer.jsp"></jsp:include>
 <body>
-	<main>
-		<section class="container">
 
-			<div class="row">
+	<main class="container py-4">
 
-				<div class="col-lg-3 col-md-6 col-sm-12 mt-2">
-					<!-- INICIO DEL FORMULARIO -->
-					<form class="needs-validation" action="ProductoController"
-						method="POST" novalidate>
+		<h1 class="text-center fw-bold mb-4">Registrar Productos Nuevos</h1>
 
-						<h1 class="text-center text-primary mb-4">Producto</h1>
+		<div class="box-outline mb-5">
 
-						<div class="form-floating mb-3">
-							<input type="text" name="txtNombre" class="form-control"
-								placeholder="" required> <label>Nombre</label>
-							<div class="invalid-feedback">Ingrese el nombre</div>
-						</div>
+			<form action="ProductoController" method="POST">
 
-						<div class="form-floating mb-3">
-							<input type="number" name="txtPrecio" min="0" step="0.01"
-								class="form-control" placeholder="" required> <label>Precio</label>
-							<div class="invalid-feedback">Ingrese el precio</div>
-						</div>
-
-						<div class="form-floating mb-3">
-							<input type="number" name="txtStock" min="0" step="1"
-								class="form-control" placeholder="" required> <label>Stock</label>
-							<div class="invalid-feedback">Ingrese el stock</div>
-						</div>
-
-						<input class="btn btn-primary w-100" type="submit"
-							value="Ingresar">
-
-					</form>
-					<!-- FIN DEL FORMULARIO -->
-				</div>
-
-				<div class="col-lg-8 col-md-6 col-sm-12 mt-2">
-					<!-- INICIO DE LA TABLA -->
-					<div class="table-responsive">
-						<table class="table table-bordered">
-							<thead>
-								<tr class="text-center">
-									<th scope="col">ID</th>
-									<th scope="col">Nombre</th>
-									<th scope="col">Precio</th>
-									<th scope="col">Stock</th>
-									<th scope="col">Editar</th>
-									<th scope="col">Eliminar</th>
-								</tr>
-							</thead>
-							<tbody>
-
-								<tr class="text-center">
-									<th scope="row">1</th>
-									<td>${objProducto.getNombre()}</td>
-									<td>${objProducto.getPrecio()}</td>
-									<td>${objProducto.getStock()}</td>
-									<td><i class="bi bi-pencil-square text-warning"></i></td>
-									<td><i class="bi bi-trash-fill text-danger"></i></td>
-								</tr>
-
-							</tbody>
-						</table>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label class="form-label fw-semibold">CATEGORIA</label> <input
+							type="text" class="form-control" name="categoria" required>
 					</div>
-					<!-- FIN DE LA TABLA -->
+					<div class="col-md-6">
+						<label class="form-label fw-semibold">CODIGO</label> <input
+							type="text" class="form-control" name="codigo" required>
+					</div>
 				</div>
 
-			</div>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label class="form-label fw-semibold">PRODUCTO</label> <input
+							type="text" class="form-control" name="producto" required>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label fw-semibold">STOCK</label> <input
+							type="number" class="form-control" name="stock" required>
+					</div>
+				</div>
 
-		</section>
+				<div class="row mb-4">
+					<div class="col-md-6">
+						<label class="form-label fw-semibold">MARCA</label> <input
+							type="text" class="form-control" name="marca" required>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label fw-semibold">PRECIO</label> <input
+							type="number" step="0.01" class="form-control" name="precio"
+							required>
+					</div>
+				</div>
+
+				<div class="text-center">
+					<button class="btn btn-wireframe px-5">REGISTRAR</button>
+				</div>
+			</form>
+
+		</div>
+
+		<div class="search-box">
+			<i class="bi bi-search"></i> <input type="text"
+				placeholder="Buscar Productos">
+		</div>
+
+		<div class="table-responsive">
+			<table class="table text-center align-middle">
+				<thead>
+					<tr>
+						<th>Categoría</th>
+						<th>Producto</th>
+						<th>Código</th>
+						<th>Stock</th>
+						<th>Precio</th>
+						<th>Eliminar</th>
+						<th>Modificar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Componentes</td>
+						<td>Procesador Intel i5 12400F</td>
+						<td>001</td>
+						<td>18</td>
+						<td>$180</td>
+						<td><i class="bi bi-trash-fill text-danger fs-5"></i></td>
+						<td><i class="bi bi-pencil-square text-primary fs-5"></i></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
 	</main>
+
 </body>
+
 </html>
