@@ -22,7 +22,11 @@
 	    }, false)
 	  })
 	})()
-	</script>
 	
-
+	
+	document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll(".dropdown-menu.show")
+            .forEach(el => el.classList.remove("show"));
+});
+	</script>
 </footer>

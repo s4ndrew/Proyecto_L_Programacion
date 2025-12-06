@@ -47,7 +47,8 @@
 				</div>
 			</form>
 			
-			<table class="table table-hover table-responsive rounded-4 overflow-hidden shadow-sm mt-3">
+			<div class="table-responsive">
+				<table class="table table-hover rounded-4 overflow-hidden shadow-sm mt-3">
 			    <thead class="table-secondary text-white">
 			        <tr class="text-center ">
 			            <th class="border-0 p-3">ID</th>
@@ -63,11 +64,15 @@
 			            <td class="border-end p-3">001</td>
 			            <td class="border-end p-3">Giacomo Guilizzoni</td>
 			            <td class="border-end p-3">Administrador</td>
-			            <td class="border-end p-3"><i class="bi bi-pencil-square text-warning"></i></td>
-					    <td class="p-3"><i class="bi bi-trash text-danger"></i></td>
-			        </tr>
+                        <td class="border-end p-3">
+                        	<i class="bi bi-pencil-square text-warning fs-5"></i>
+                        </td>
+                        <td class="p-3">
+                            <i class="bi bi-trash-fill text-danger fs-5"></i>
+                        </td>
 			    </tbody>
 			</table>
+			</div>
 
 			
 			

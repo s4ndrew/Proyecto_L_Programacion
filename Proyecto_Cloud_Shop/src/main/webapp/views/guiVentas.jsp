@@ -38,7 +38,7 @@
                 <div class="row g-4 mb-3">
                     <div class="col-6">
                         <select class="form-select form-select-lg" name="cboCategoria" required>
-                            <option value="">Seleccione una Categoría</option>
+                            <option value="">Categoría</option>
                             <option value="1">Laptop</option>
                             <option value="2">Desktop</option>
                             <option value="3">GPU</option>
@@ -48,7 +48,7 @@
 
                     <div class="col-6">
                         <select class="form-select form-select-lg" name="cboProducto" required>
-                            <option value="">Seleccione un Producto</option>
+                            <option value="">Producto</option>
                             <option value="1">HP</option>
                             <option value="2">Asus</option>
                             <option value="3">Msi</option>
@@ -80,7 +80,8 @@
             </form>
 
             <!-- TABLA -->
-            <table class="table table-hover table-responsive rounded-4 overflow-hidden shadow-sm mt-4">
+            <div class="table-responsive">
+            	<table class="table table-hover rounded-4 overflow-hidden shadow-sm mt-4">
                 <thead class="table-secondary text-white">
                     <tr class="text-center">
                         <th class="border-0 p-3">Código</th>
@@ -90,8 +91,8 @@
                         <th class="border-0 p-3">Producto</th>
                         <th class="border-0 p-3">Cantidad</th>
                         <th class="border-0 p-3">Precio</th>
-                        <th class="border-0 p-3">Eliminar</th>
                         <th class="border-0 p-3">Modificar</th>
+                        <th class="border-0 p-3">Eliminar</th>
                     </tr>
                 </thead>
 
@@ -105,14 +106,15 @@
                         <td class="border-end p-3">6</td>
                         <td class="border-end p-3">7</td>
                         <td class="border-end p-3">
-                            <i class="bi bi-trash text-danger"></i>
+                        	<i class="bi bi-pencil-square text-warning fs-5"></i>
                         </td>
                         <td class="p-3">
-                            <i class="bi bi-pencil-square text-warning"></i>
+                            <i class="bi bi-trash-fill text-danger fs-5"></i>
                         </td>
                     </tr>
                 </tbody>
             </table>
+            </div>
 
         </section>
     </main>

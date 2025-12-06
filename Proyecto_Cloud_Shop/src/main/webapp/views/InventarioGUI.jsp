@@ -17,14 +17,18 @@
             </h3>
 
             <!-- FORMULARIO -->
-            <form action="ProductoController" method="POST" class="needs-validation" novalidate>
+            <form action="" method="POST" class="needs-validation" novalidate>
 
                 <!-- FILA 1 -->
                 <div class="row g-4 mb-3">
-                    <div class="col-6">
-                        <input type="text" class="form-control form-control-lg" name="categoria" 
-                               placeholder="Categoría" required>
-                        <div class="invalid-feedback">Ingrese la categoría.</div>
+                     <div class="col-6">
+                        <select class="form-select form-select-lg" name="cboCategoria" required>
+                            <option value="">Categoría</option>
+                            <option value="1">Laptop</option>
+                            <option value="2">Desktop</option>
+                            <option value="3">GPU</option>
+                        </select>
+                        <div class="invalid-feedback">Seleccione una categoría.</div>
                     </div>
 
                     <div class="col-6">
@@ -37,11 +41,15 @@
                 <!-- FILA 2 -->
                 <div class="row g-4 mb-3">
                     <div class="col-6">
-                        <input type="text" class="form-control form-control-lg" name="producto"
-                               placeholder="Producto" required>
-                        <div class="invalid-feedback">Ingrese el nombre del producto.</div>
+                        <select class="form-select form-select-lg" name="cboProducto" required>
+                            <option value="">Producto</option>
+                            <option value="1">HP</option>
+                            <option value="2">Asus</option>
+                            <option value="3">Msi</option>
+                        </select>
+                        <div class="invalid-feedback">Seleccione un producto.</div>
                     </div>
-
+                    
                     <div class="col-6">
                         <input type="number" class="form-control form-control-lg" name="stock"
                                placeholder="Stock" required>
@@ -78,7 +86,8 @@
             </div>
 
             <!-- TABLA -->
-            <table class="table table-hover table-responsive rounded-4 overflow-hidden shadow-sm mt-2">
+            <div class="table-responsive">
+            	<table class="table table-hover rounded-4 overflow-hidden shadow-sm mt-2">
                 <thead class="table-secondary text-white">
                     <tr class="text-center">
                         <th class="border-0 p-3">Categoría</th>
@@ -86,8 +95,8 @@
                         <th class="border-0 p-3">Código</th>
                         <th class="border-0 p-3">Stock</th>
                         <th class="border-0 p-3">Precio</th>
-                        <th class="border-0 p-3">Eliminar</th>
                         <th class="border-0 p-3">Modificar</th>
+                        <th class="border-0 p-3">Eliminar</th>
                     </tr>
                 </thead>
 
@@ -99,19 +108,19 @@
                         <td class="border-end p-3">18</td>
                         <td class="border-end p-3">$180</td>
                         <td class="border-end p-3">
-                            <i class="bi bi-trash-fill text-danger fs-5"></i>
+                        	<i class="bi bi-pencil-square text-warning fs-5"></i>
                         </td>
                         <td class="p-3">
-                            <i class="bi bi-pencil-square text-primary fs-5"></i>
+                            <i class="bi bi-trash-fill text-danger fs-5"></i>
                         </td>
                     </tr>
                 </tbody>
             </table>
+            </div>
 
         </section>
 
     </main>
-
     <jsp:include page="footer.jsp"></jsp:include>
 
 </body>

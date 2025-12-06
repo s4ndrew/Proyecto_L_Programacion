@@ -18,29 +18,31 @@
             </div>
 
             <!-- TABLA -->
-            <table class="table table-hover table-responsive rounded-4 overflow-hidden shadow-sm mt-2">
-                <thead class="table-secondary text-white">
-                    <tr class="text-center">
-                        <th class="border-0 p-3">ID</th>
-                        <th class="border-0 p-3">Categoria</th>
-                        <th class="border-0 p-3">Producto</th>
-                        <th class="border-0 p-3">Cantidad</th>
-                        <th class="border-0 p-3">Precio</th>
-                        <th class="border-0 p-3">Total</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr class="text-center">
-                        <td class="border-end p-3">Componentes</td>
-                        <td class="border-end p-3">Procesador Intel i5 12400F</td>
-                        <td class="border-end p-3">001</td>
-                        <td class="border-end p-3">18</td>
-                        <td class="border-end p-3">$180</td>
-                        <td class="border-end p-3">$13330</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+            	<table class="table table-hover rounded-4 overflow-hidden shadow-sm mt-2">
+	                <thead class="table-secondary text-white">
+	                    <tr class="text-center">
+	                        <th class="border-0 p-3">ID</th>
+	                        <th class="border-0 p-3">Categoria</th>
+	                        <th class="border-0 p-3">Producto</th>
+	                        <th class="border-0 p-3">Cantidad</th>
+	                        <th class="border-0 p-3">Precio</th>
+	                        <th class="border-0 p-3">Total</th>
+	                    </tr>
+	                </thead>
+	
+	                <tbody>
+	                    <tr class="text-center">
+	                        <td class="border-end p-3">Componentes</td>
+	                        <td class="border-end p-3">Procesador Intel i5 12400F</td>
+	                        <td class="border-end p-3">001</td>
+	                        <td class="border-end p-3">18</td>
+	                        <td class="border-end p-3">$180</td>
+	                        <td class="border-end p-3">$13330</td>
+	                    </tr>
+	                </tbody>
+            	</table>
+            </div>
 		</section>
 	</main>
 </body>
