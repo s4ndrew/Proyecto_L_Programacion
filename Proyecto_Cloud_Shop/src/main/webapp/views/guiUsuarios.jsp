@@ -3,96 +3,75 @@
 <!DOCTYPE html>
 <html>
 <jsp:include page="head.jsp"></jsp:include>
-<body class="container">
+<body style="background-color: rgba(243, 244, 246, 1)">
 	<jsp:include page="header.jsp"></jsp:include>
 
-	<main class="mt-4">
-		<h1 class="text-center mb-5">Registrar Usuarios</h1>
-
-		<div class="container">
-			<div class="row">
-				<div class="col-6">
-					<div  class= "user-card card bordered p-5">
-						<form class="row needs-validation" novalidate action="guiLogin.jsp">
-						
-						<div class="row g-0 align-items-center mb-4">
-						  <div class="col-3">
-						    <label for="validationCustomUsername" class="col-form-label input-group has-validation">USUARIO</label>
-						  </div>
-						  <div class="col-9">
-						    <input type="text" name="usuario" class="form-control" required>
-						    <div class="invalid-feedback">Ingrese usuario.</div>
-						  </div>
-						</div>
-					  
-					  	<div class="row g-0 align-items-center mb-4">
-						  <div class="col-3">
-						    <label for="validationCustomUsername" class="col-form-label input-group has-validation">NOMBRE</label>
-						  </div>
-						  <div class="col-9">
-						    <input type="text" name="nombre"  class="form-control" required>
-						    <div class="invalid-feedback">Ingrese nombre.</div>
-						  </div>
-						</div>
-						
-						<div class="row g-0 align-items-center mb-4">
-						  <div class="col-3">
-						    <label for="validationCustomUsername" class="col-form-label input-group has-validation">APELLIDOS</label>
-						  </div>
-						  <div class="col-9">
-						    <input type="text"name="apellidos" class="form-control" required>
-						    <div class="invalid-feedback">Ingrese apellidos.</div>
-						  </div>
-						</div>
-						
-						<div class="row g-0 align-items-center mb-4">
-						  <div class="col-3">
-						    <label for="validationCustomUsername" class="col-form-label input-group has-validation">ROL</label>
-						  </div>
-						  <div class="col-9">
-						    <select class="form-select" name="rol" aria-label="Default select example" required>
-							  <option selected>Seleccione una opcion</option>
-							  <option value="1">Vendedor</option>
-							  <option value="2">Administrador</option>
-							  <option value="3">Gerente</option>
-							</select>
-						    <div class="invalid-feedback">Ingrese rol.</div>
-						  </div>
-						</div>
-						
-					  	<div class="text-center mt-2">
-					    	<button class="btn btn-primary" type="submit">REGISTRAR</button>
-					  	</div>
-					</form>
+	<main class="container d-flex justify-content-center">
+		<section class="card p-4 my-5 rounded-4 shadow-lg border-0" style="max-width: 1000px; width: 100%;">
+		
+			<h3 class="text-start mb-4"><i class="bi bi-people-fill me-2"></i>Usuarios</h3>
+			
+			<form class="needs-validation" novalidate action="guiLogin.jsp">
+				<div class="row g-4 mb-4">
+					<div class="col-6">
+						<input type="text" name="usuario" class="form-control form-control-lg" placeholder="Usuario" required>
+						<div class="invalid-feedback">Ingrese usuario.</div>
+					</div>
+					
+					<div class="col-6">
+						<input type="text" name="usuario" class="form-control form-control-lg" placeholder="Nombres y Apellidos" required>
+						<div class="invalid-feedback">Ingrese Nombres y Apellidos.</div>
+					</div>
 				</div>
-			</div>
 				
-			<div class="col-6">
-					<table class="table table-bordered table-hover">
-					  <thead>
-					    <tr>
-					      <th scope="col">Usuario</th>
-					      <th scope="col">Nombre</th>
-					      <th scope="col">Apellidos</th>
-					      <th scope="col">Rol</th>
-					      <th scope="col">Modificar</th>
-					      <th scope="col">Eliminar</th>
-					    </tr>
-					  </thead>
-					  <tbody>
-					    <tr class="text-center">
-					      <td>Mark</td>
-					      <td>Jacob</td>
-					      <td>Jacob</td>
-					      <td>Jacob</td>
-					   	  <td><i class="bi bi-pencil-square text-warning"></i></td>
-					      <td><i class="bi bi-trash text-danger"></i></td>
-					    </tr>
-					</table>
+				<div class="row g-4 mb-4">
+					<div class="col-6">
+						<input type="text" name="usuario" class="form-control form-control-lg" placeholder="Contraseña" required>
+						<div class="invalid-feedback">Ingrese Contraseña.</div>
+					</div>
+					
+					
+					<div class="col-6">
+						<select class="form-select form-select-lg" name="rol" aria-label="Default select example" required>
+							<option value = "" selected>Seleccione un rol</option>
+							<option value="1">Vendedor</option>
+							<option value="2">Administrador</option>
+							<option value="3">Gerente</option>
+						</select>
+						<div class="invalid-feedback">Ingrese Rol.</div>
+					</div>
 				</div>
-			</div>
-		</div>
-	
+				
+				<div class="text-start my-4">
+					<button class="btn btn-success btn-lg px-5 py-2" type="submit">REGISTRAR</button>
+				</div>
+			</form>
+			
+			<table class="table table-hover table-responsive rounded-4 overflow-hidden shadow-sm mt-3">
+			    <thead class="table-secondary text-white">
+			        <tr class="text-center ">
+			            <th class="border-0 p-3">ID</th>
+			            <th class="border-0 p-3">Nombre</th>
+			            <th class="border-0 p-3">Rol</th>
+			            <th class="border-0 p-3">Modificar</th>
+					    <th class="border-0 p3l">Eliminar</th>
+			        </tr>
+			    </thead>
+			
+			    <tbody>
+			        <tr class="text-center">
+			            <td class="border-end p-3">001</td>
+			            <td class="border-end p-3">Giacomo Guilizzoni</td>
+			            <td class="border-end p-3">Administrador</td>
+			            <td class="border-end p-3"><i class="bi bi-pencil-square text-warning"></i></td>
+					    <td class="p-3"><i class="bi bi-trash text-danger"></i></td>
+			        </tr>
+			    </tbody>
+			</table>
+
+			
+			
+		</section>	
 	</main>
 
 <jsp:include page="footer.jsp"></jsp:include>

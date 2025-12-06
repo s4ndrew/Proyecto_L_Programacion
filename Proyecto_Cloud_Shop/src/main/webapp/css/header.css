@@ -1,0 +1,43 @@
+@charset "UTF-8";
+    .navbar-custom {
+        background-color: #042b54 !important;
+    }
+
+    .navbar-custom .nav-link,
+    .navbar-custom .navbar-brand,
+    .navbar-custom .dropdown-item {
+        color: white !important;
+    }
+
+    .navbar-custom .nav-link:hover,
+    .navbar-custom .dropdown-item:hover {
+        color: #bcd8ff !important; /* un celeste suave */
+    }
+
+    /* Toggler icon blanco */
+    .navbar-custom .navbar-toggler {
+        border-color: rgba(255, 255, 255, 0.7);
+        
+    }
+
+    /* Botón rojo de cerrar sesión separado */
+    .logout-btn {
+        margin-left: 10px;
+    }
+
+        /* Fondo del menú desplegable */
+    .navbar-custom .dropdown-menu {
+        background-color: #042b54 !important;
+        border: none;
+    }
+
+    /* Items del dropdown */
+    .navbar-custom .dropdown-item {
+        color: white !important;
+    }
+
+    /* Hover en items */
+    .navbar-custom .dropdown-item:hover {
+        background-color: #063b72 !important; /* un poco más claro */
+        color: white !important;
+    }

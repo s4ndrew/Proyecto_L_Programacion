@@ -3,62 +3,45 @@
 <!DOCTYPE html>
 <html>
 <jsp:include page="head.jsp"></jsp:include>
-<body class="container">
+<body>
 	<jsp:include page="header.jsp"></jsp:include>
 
-	<div class="row mt-4">
-		<div class="col">
-			<h2 class="text-center">Reporte de Stock</h2>
-		</div>
-	</div>
+	<main class="container d-flex justify-content-center">
+		<section class="card p-4 my-5 rounded-4 shadow-lg border-0" style="max-width: 1000px; width: 100%;">
+			<h3 class="text-start mb-4">
+                <i class="bi bi-file-bar-graph-fill me-2"></i>Reporte Stock
+            </h3>
+            
+			 <div class="input-group mb-4 shadow-sm">
+                <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+                <input type="text" class="form-control form-control-lg" placeholder="Buscar productos">
+            </div>
 
-	<div class="mt-5">
-		<div class="col-lg-5 col-12 ">
-			<form class="d-flex" role="search">
-				<input class="form-control me-2" type="search" placeholder="Search"
-					aria-label="Search" />
-				<button class="btn btn-success" type="submit">Search</button>
-			</form>
-		</div>
+            <!-- TABLA -->
+            <table class="table table-hover table-responsive rounded-4 overflow-hidden shadow-sm mt-2">
+                <thead class="table-secondary text-white">
+                    <tr class="text-center">
+                        <th class="border-0 p-3">ID</th>
+                        <th class="border-0 p-3">Categoria</th>
+                        <th class="border-0 p-3">Producto</th>
+                        <th class="border-0 p-3">Cantidad</th>
+                        <th class="border-0 p-3">Precio</th>
+                        <th class="border-0 p-3">Total</th>
+                    </tr>
+                </thead>
 
-		<table class="table table-bordered mt-4">
-			<thead>
-				<tr>
-					<th scope="col">ID</th>
-					<th scope="col">Categoria</th>
-					<th scope="col">Producto</th>
-					<th scope="col">Cantidad</th>
-					<th scope="col">Precio</th>
-					<th scope="col">Total</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th scope="row">1</th>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<th scope="row">2</th>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<th scope="row">3</th>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+                <tbody>
+                    <tr class="text-center">
+                        <td class="border-end p-3">Componentes</td>
+                        <td class="border-end p-3">Procesador Intel i5 12400F</td>
+                        <td class="border-end p-3">001</td>
+                        <td class="border-end p-3">18</td>
+                        <td class="border-end p-3">$180</td>
+                        <td class="border-end p-3">$13330</td>
+                    </tr>
+                </tbody>
+            </table>
+		</section>
+	</main>
 </body>
 </html>
