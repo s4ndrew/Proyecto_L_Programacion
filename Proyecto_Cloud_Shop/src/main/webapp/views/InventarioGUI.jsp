@@ -13,7 +13,7 @@
         <section class="card p-4 my-5 rounded-4 shadow-lg border-0" style="max-width: 1000px; width: 100%;">
 
             <h3 class="text-start mb-4">
-                <i class="bi bi-box-seam-fill me-2"></i>Iventario
+                <i class="bi bi-box-seam-fill me-2"></i>Inventario
             </h3>
 
             <!-- FORMULARIO -->
