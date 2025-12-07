@@ -1,1 +1,6 @@
 @charset "UTF-8";
+	html, body {
+    height: 100%; /* Establece que html y body ocupen todo el alto de la ventana */
+    margin: 0;    /* Elimina márgenes por defecto */
+}
+	

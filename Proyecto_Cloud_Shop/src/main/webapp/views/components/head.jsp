@@ -6,4 +6,5 @@
 <link rel="stylesheet" href="../css/login.css">
 <link rel="stylesheet" href="../css/usuarios.css">
 <link rel="stylesheet" href="../css/header.css">
+<link rel="icon" href="../images/logo.jpg" type="image/x-icon">
 </head>

@@ -29,15 +29,7 @@
 	        </li>
 
 	        <li class="nav-item dropdown">
-	          <a class="nav-link dropdown-toggle" href="#" role="button" 
-	             data-bs-toggle="dropdown" aria-expanded="false" onclick="event.preventDefault()">
-	            REPORTES
-	          </a>
-
-	          <ul class="dropdown-menu">
-	            <li><a class="dropdown-item" href="guiReporteStock.jsp">STOCK</a></li>
-	            <li><a class="dropdown-item" href="guiReporteVentas.jsp">VENTAS</a></li>
-	          </ul>
+	          <a class="nav-link" href="guiReportes.jsp">REPORTE</a>
 	        </li>
 	      </ul>
 	    </div>
