@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<jsp:include page="head.jsp"></jsp:include>
+<jsp:include page="./components/head.jsp"></jsp:include>
 
 <body style="background-color: #f5f6f8;">
 
@@ -39,7 +39,7 @@
         </section>
     </main>
 
-    <jsp:include page="footer.jsp"></jsp:include>
+    <jsp:include page="./components/footer.jsp"></jsp:include>
 
 </body>
 </html>

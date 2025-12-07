@@ -2,9 +2,9 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<jsp:include page="head.jsp"></jsp:include>
+<jsp:include page="./components/head.jsp"></jsp:include>
 <body>
-	<jsp:include page="header.jsp"></jsp:include>
+	<jsp:include page="./components/header.jsp"></jsp:include>
 
 	<main class="container d-flex justify-content-center">
 		<section class="card p-4 my-5 rounded-4 shadow-lg border-0" style="max-width: 1000px; width: 100%;">
@@ -22,28 +22,30 @@
             	<table class="table table-hover rounded-4 overflow-hidden shadow-sm mt-2">
 	                <thead class="table-secondary text-white">
 	                    <tr class="text-center">
-	                        <th class="border-0 p-3">ID</th>
-	                        <th class="border-0 p-3">Categoria</th>
+	                        <th class="border-0 p-3">Código</th>
+	                        <th class="border-0 p-3">Categoría</th>
 	                        <th class="border-0 p-3">Producto</th>
-	                        <th class="border-0 p-3">Cantidad</th>
+	                        <th class="border-0 p-3">Marca</th>
 	                        <th class="border-0 p-3">Precio</th>
-	                        <th class="border-0 p-3">Total</th>
+	                        <th class="border-0 p-3">Stock</th>
 	                    </tr>
 	                </thead>
 	
 	                <tbody>
 	                    <tr class="text-center">
-	                        <td class="border-end p-3">Componentes</td>
-	                        <td class="border-end p-3">Procesador Intel i5 12400F</td>
-	                        <td class="border-end p-3">001</td>
-	                        <td class="border-end p-3">18</td>
-	                        <td class="border-end p-3">$180</td>
-	                        <td class="border-end p-3">$13330</td>
+	                        <td class="border-end p-3"></td>
+	                        <td class="border-end p-3"></td>
+	                        <td class="border-end p-3"></td>
+	                        <td class="border-end p-3"></td>
+	                        <td class="border-end p-3"></td>
+	                        <td class="border-end p-3"></td>
 	                    </tr>
 	                </tbody>
             	</table>
             </div>
 		</section>
 	</main>
+	
+	<jsp:include page="./components/footer.jsp"></jsp:include>
 </body>
 </html>
