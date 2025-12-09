@@ -12,52 +12,58 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
-			<a class="navbar-brand" href="#">
-				<img src="${pageContext.request.contextPath}/images/logo.jpg"
-				     alt="Cloud Shop" style="height: 45px;">
+			<a class="navbar-brand" href="#"> <img
+				src="${pageContext.request.contextPath}/images/logo.jpg"
+				alt="Cloud Shop" style="height: 45px;">
 			</a>
 
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
 
 				<!-- INDICADOR DE CONEXIÓN -->
 				<div class="ms-3">
+
 					<%
-					Connection con = ConexionMySQL.obtenerConexion();
+					Connection con = null;
+					try {
+						con = ConexionMySQL.obtenerConexion();
+					} catch (Exception e) {
+						con = null;
+					}
+					%>
+
+					<%
 					if (con != null) {
 					%>
-						<span class="badge rounded-pill bg-success px-3 py-2 d-flex align-items-center gap-2">
-							<i class="bi bi-wifi"></i>
-							Base de datos conectada
-						</span>
+					<span
+						class="badge rounded-pill bg-success px-3 py-2 d-flex align-items-center gap-2">
+						<i class="bi bi-wifi"></i> Base de datos conectada
+					</span>
 					<%
 					} else {
 					%>
-						<span class="badge rounded-pill bg-danger px-3 py-2 d-flex align-items-center gap-2">
-							<i class="bi bi-wifi-off"></i>
-							Sin conexión a base de datos
-						</span>
+					<span
+						class="badge rounded-pill bg-danger px-3 py-2 d-flex align-items-center gap-2">
+						<i class="bi bi-wifi-off"></i> Sin conexión a base de datos
+					</span>
 					<%
 					}
 					%>
+
 				</div>
 
 				<ul class="navbar-nav ms-auto gap-4">
 
-					<li class="nav-item">
-						<a class="nav-link active" href="guiUsuarios.jsp">USUARIOS</a>
+					<li class="nav-item"><a class="nav-link active"
+						href="guiUsuarios.jsp">USUARIOS</a></li>
+
+					<li class="nav-item"><a class="nav-link"
+						href="InventarioGUI.jsp">INVENTARIO</a></li>
+
+					<li class="nav-item"><a class="nav-link" href="guiVentas.jsp">VENTAS</a>
 					</li>
 
-					<li class="nav-item">
-						<a class="nav-link" href="InventarioGUI.jsp">INVENTARIO</a>
-					</li>
-
-					<li class="nav-item">
-						<a class="nav-link" href="guiVentas.jsp">VENTAS</a>
-					</li>
-
-					<li class="nav-item dropdown">
-						<a class="nav-link" href="guiReportes.jsp">REPORTE</a>
-					</li>
+					<li class="nav-item dropdown"><a class="nav-link"
+						href="guiReportes.jsp">REPORTE</a></li>
 
 				</ul>
 			</div>
