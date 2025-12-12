@@ -6,6 +6,7 @@
 <%@page import="connection.ConexionMySQL"%>
 <!DOCTYPE html>
 <html>
+
 <jsp:include page="./components/head.jsp"></jsp:include>
 
 <body style="background-color: rgba(243, 244, 246, 1)">
@@ -99,12 +100,15 @@
 			Statement stmt = null;
 			ResultSet rs = null;
 
-			con = ConexionMySQL.obtenerConexion();
-			stmt = con.createStatement();
+			try {
+				con = ConexionMySQL.obtenerConexion();
 
-			String sql = "select * from inventario";
-			rs = stmt.executeQuery(sql);
+				if (con != null) {
+					stmt = con.createStatement();
+					String sql = "SELECT * FROM inventario";
+					rs = stmt.executeQuery(sql);
 			%>
+
 			<div class="table-responsive">
 				<table
 					class="table table-hover rounded-4 overflow-hidden shadow-sm mt-2">
@@ -134,8 +138,7 @@
 							<td><%=rs.getInt("stock")%></td>
 							<td class="border-end p-3"><i
 								class="bi bi-pencil-square text-warning fs-5"></i></td>
-							<td class="p-3"><i class="bi bi-trash-fill text-danger fs-5"></i>
-							</td>
+							<td class="p-3"><i class="bi bi-trash-fill text-danger fs-5"></i></td>
 						</tr>
 						<%
 						}
@@ -144,9 +147,43 @@
 				</table>
 			</div>
 
+			<%
+			} else {
+			%>
+			<div class="alert alert-danger text-center mt-4">❌ No se pudo
+				conectar a la base de datos.</div>
+			<%
+			}
+			} catch (Exception e) {
+			%>
+			<div class="alert alert-danger text-center mt-4">
+				Error al consultar la base de datos:
+				<%=e.getMessage()%>
+			</div>
+			<%
+			} finally {
+			try {
+				if (rs != null)
+					rs.close();
+			} catch (Exception e) {
+			}
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (Exception e) {
+			}
+			try {
+				if (con != null)
+					con.close();
+			} catch (Exception e) {
+			}
+			}
+			%>
+
 		</section>
 
 	</main>
+
 	<jsp:include page="./components/footer.jsp"></jsp:include>
 
 </body>
