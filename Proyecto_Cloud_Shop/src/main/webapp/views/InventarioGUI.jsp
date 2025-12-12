@@ -22,12 +22,10 @@
 				<i class="bi bi-box-seam-fill me-2"></i>Inventario
 			</h3>
 
-			<!-- FORMULARIO -->
 			<form
 				action="${pageContext.request.contextPath}/InventarioContollers"
 				method="POST" class="needs-validation" novalidate>
 
-				<!-- FILA 1 -->
 				<div class="row g-4 mb-3">
 					<div class="col-6">
 						<input type="text" class="form-control form-control-lg"
@@ -57,7 +55,6 @@
 					</div>
 				</div>
 
-				<!-- FILA 2 -->
 				<div class="row g-4 mb-3">
 					<div class="col-6">
 						<input type="text" class="form-control form-control-lg"
@@ -72,7 +69,6 @@
 					</div>
 				</div>
 
-				<!-- FILA 3 -->
 				<div class="row g-4 mb-4">
 					<div class="col-6">
 						<input type="text" class="form-control form-control-lg"
@@ -88,7 +84,6 @@
 					</div>
 				</div>
 
-				<!-- BOTÓN -->
 				<div class="text-start my-4">
 					<button class="btn btn-success btn-lg px-5 py-2">REGISTRAR</button>
 				</div>
@@ -101,19 +96,19 @@
 					class="form-control form-control-lg" placeholder="Buscar productos">
 			</div>
 
-			<!-- TABLA -->
 			<%
 			Connection con = null;
 			Statement stmt = null;
 			ResultSet rs = null;
 
 			try {
+
 				con = ConexionMySQL.obtenerConexion();
 
 				if (con != null) {
+
 					stmt = con.createStatement();
-					String sql = "SELECT * FROM inventario";
-					rs = stmt.executeQuery(sql);
+					rs = stmt.executeQuery("SELECT * FROM inventario");
 			%>
 
 			<div class="table-responsive">
@@ -153,6 +148,7 @@
 						}
 						%>
 					</tbody>
+
 				</table>
 			</div>
 
@@ -163,31 +159,19 @@
 				conectar a la base de datos.</div>
 			<%
 			}
+
 			} catch (Exception e) {
 			%>
+
 			<div class="alert alert-danger text-center mt-4">
 				Error al consultar la base de datos:
 				<%=e.getMessage()%>
 			</div>
+
 			<%
-			} finally {
-			try {
-				if (rs != null)
-					rs.close();
-			} catch (Exception e) {
-			}
-			try {
-				if (stmt != null)
-					stmt.close();
-			} catch (Exception e) {
-			}
-			try {
-				if (con != null)
-					con.close();
-			} catch (Exception e) {
-			}
 			}
 			%>
+
 
 		</section>
 

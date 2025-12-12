@@ -21,7 +21,6 @@ public class InventarioContollers extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// 1. Recibir datos del formulario
 		String codigo = request.getParameter("txtCodigo");
 		String categoria = request.getParameter("cboCategoria");
 		String producto = request.getParameter("txtProducto");
@@ -30,18 +29,15 @@ public class InventarioContollers extends HttpServlet {
 		String precio = request.getParameter("txtPrecio");
 
 		try {
-			// 2. Obtener conexión
 			Connection con = ConexionMySQL.obtenerConexion();
 			Statement stmt = con.createStatement();
 
-			// 3. Crear la consulta estilo JSP que diste de ejemplo
 			String sql = "INSERT INTO inventario (codigo, categoria, producto, marca, precio_unitario, stock) "
 					+ "VALUES ('" + codigo + "', '" + categoria + "', '" + producto + "', '" + marca + "', " + precio
 					+ ", " + stock + ")";
 
 			int filas = stmt.executeUpdate(sql);
 
-			// 4. Validación simple
 			if (filas > 0) {
 				response.sendRedirect("inventario.jsp?msg=success");
 			} else {
