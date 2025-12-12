@@ -23,7 +23,9 @@
 			</h3>
 
 			<!-- FORMULARIO -->
-			<form action="" method="POST" class="needs-validation" novalidate>
+			<form
+				action="${pageContext.request.contextPath}/InventarioContollers"
+				method="POST" class="needs-validation" novalidate>
 
 				<!-- FILA 1 -->
 				<div class="row g-4 mb-3">
@@ -37,9 +39,19 @@
 						<select class="form-select form-select-lg" name="cboCategoria"
 							required>
 							<option value="">Categoría</option>
-							<option value="1">Laptop</option>
-							<option value="2">Desktop</option>
-							<option value="3">GPU</option>
+							<option value="Laptop">Laptop</option>
+							<option value="Desktop">Desktop</option>
+							<option value="GPU">GPU</option>
+							<option value="Monitor">Monitor</option>
+							<option value="Impresora">Impresora</option>
+							<option value="Teclado">Teclado</option>
+							<option value="Mouse">Mouse</option>
+							<option value="Accesorios">Accesorios</option>
+							<option value="Redes">Redes</option>
+							<option value="Servidores">Servidores</option>
+							<option value="Almacenamiento">Almacenamiento</option>
+							<option value="Software">Software</option>
+
 						</select>
 						<div class="invalid-feedback">Seleccione una categoría.</div>
 					</div>
@@ -48,19 +60,14 @@
 				<!-- FILA 2 -->
 				<div class="row g-4 mb-3">
 					<div class="col-6">
-						<select class="form-select form-select-lg" name="cboProducto"
-							required>
-							<option value="">Producto</option>
-							<option value="1">HP</option>
-							<option value="2">Asus</option>
-							<option value="3">Msi</option>
-						</select>
-						<div class="invalid-feedback">Seleccione un producto.</div>
+						<input type="text" class="form-control form-control-lg"
+							name="txtProducto" placeholder="Producto" required>
+						<div class="invalid-feedback">Ingrese el producto.</div>
 					</div>
 
 					<div class="col-6">
-						<input type="text" class="form-control form-control-lg"
-							name="txtMarca" placeholder="Marca" required>
+						<input type="number" step="1" class="form-control form-control-lg"
+							name="txtStock" placeholder="Stock" required>
 						<div class="invalid-feedback">Ingrese el stock.</div>
 					</div>
 				</div>
@@ -69,14 +76,14 @@
 				<div class="row g-4 mb-4">
 					<div class="col-6">
 						<input type="text" class="form-control form-control-lg"
-							name="txtPrecio" placeholder="Precio" required>
+							name="txtMarca" placeholder="Marca" required>
 						<div class="invalid-feedback">Ingrese la marca.</div>
 					</div>
 
 					<div class="col-6">
 						<input type="number" step="0.01"
-							class="form-control form-control-lg" name="txtStock"
-							placeholder="Stock" required>
+							class="form-control form-control-lg" name="txtPrecio"
+							placeholder="Precio" required>
 						<div class="invalid-feedback">Ingrese el precio.</div>
 					</div>
 				</div>
@@ -114,11 +121,12 @@
 					class="table table-hover rounded-4 overflow-hidden shadow-sm mt-2">
 					<thead class="table-secondary text-white">
 						<tr class="text-center">
+							<th class="border-0 p-3">ID</th>
 							<th class="border-0 p-3">Código</th>
 							<th class="border-0 p-3">Categoría</th>
 							<th class="border-0 p-3">Producto</th>
 							<th class="border-0 p-3">Marca</th>
-							<th class="border-0 p-3">Precio</th>
+							<th class="border-0 p-3">Precio u</th>
 							<th class="border-0 p-3">Stock</th>
 							<th class="border-0 p-3">Modificar</th>
 							<th class="border-0 p-3">Eliminar</th>
@@ -131,10 +139,11 @@
 						%>
 						<tr class="text-center">
 							<th scope="row"><%=rs.getInt("id_inventario")%></th>
+							<td><%=rs.getInt("codigo")%></td>
 							<td><%=rs.getString("categoria")%></td>
 							<td><%=rs.getString("producto")%></td>
 							<td><%=rs.getString("marca")%></td>
-							<td><%=rs.getDouble("precio")%></td>
+							<td><%=rs.getDouble("precio_unitario")%></td>
 							<td><%=rs.getInt("stock")%></td>
 							<td class="border-end p-3"><i
 								class="bi bi-pencil-square text-warning fs-5"></i></td>
