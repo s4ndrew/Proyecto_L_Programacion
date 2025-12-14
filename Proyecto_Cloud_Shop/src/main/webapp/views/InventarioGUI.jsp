@@ -4,6 +4,13 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="connection.ConexionMySQL"%>
+<link
+	href="https://cdn.datatables.net/2.3.4/css/dataTables.dataTables.min.css"
+	rel="stylesheet" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
+
 <!DOCTYPE html>
 <html>
 
@@ -90,12 +97,6 @@
 
 			</form>
 
-			<div class="input-group mb-4 shadow-sm">
-				<span class="input-group-text bg-white"><i
-					class="bi bi-search"></i></span> <input type="text"
-					class="form-control form-control-lg" placeholder="Buscar productos">
-			</div>
-
 			<%
 			Connection con = null;
 			Statement stmt = null;
@@ -112,9 +113,10 @@
 			%>
 
 			<div class="table-responsive">
-				<table
-					class="table table-hover rounded-4 overflow-hidden shadow-sm mt-2">
-					<thead class="table-secondary text-white">
+				<table id="tblInventario" class="table table-bordered">
+
+					<thead class="table-dark">
+
 						<tr class="text-center">
 							<th class="border-0 p-3">ID</th>
 							<th class="border-0 p-3">Código</th>
@@ -127,7 +129,6 @@
 							<th class="border-0 p-3">Eliminar</th>
 						</tr>
 					</thead>
-
 					<tbody>
 						<%
 						while (rs.next()) {
@@ -180,4 +181,26 @@
 	<jsp:include page="./components/footer.jsp"></jsp:include>
 
 </body>
+<script>
+	$(document)
+			.ready(
+					function() {
+
+						if ($('#tblInventario').length) {
+							new DataTable(
+									'#tblInventario',
+									{
+										language : {
+											url : 'https://cdn.datatables.net/plug-ins/2.3.4/i18n/es-ES.json'
+										},
+										pageLength : 10,
+										lengthMenu : [ 5, 10, 25, 50 ],
+										ordering : true
+									});
+						}
+
+					});
+</script>
+
 </html>
+
