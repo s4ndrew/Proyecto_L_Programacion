@@ -28,10 +28,10 @@
 			<h3 class="text-start mb-4">
 				<i class="bi bi-box-seam-fill me-2"></i>Inventario
 			</h3>
-
-			<form
+			<form class="needs-validation"
 				action="${pageContext.request.contextPath}/InventarioContollers"
-				method="POST" class="needs-validation" novalidate>
+				method="POST" novalidate>
+
 
 				<div class="row g-4 mb-3">
 					<div class="col-6">
@@ -203,4 +203,3 @@
 </script>
 
 </html>
-

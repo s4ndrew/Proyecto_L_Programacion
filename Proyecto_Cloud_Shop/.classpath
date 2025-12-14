@@ -13,6 +13,6 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Yan/eclipse/WORKSPACE/Proyecto_L_Programacion/Proyecto_Cloud_Shop/jdbc/mysql-connector-j-9.5.0.jar"/>
+	<classpathentry kind="lib" path="D:/eclipse/WORKSPACE/Proyecto_L_Programacion/Proyecto_Cloud_Shop/jdbc/mysql-connector-j-9.5.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

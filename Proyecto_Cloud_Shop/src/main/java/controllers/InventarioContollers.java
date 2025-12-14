@@ -1,60 +1,46 @@
 package controllers;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.Statement;
+import java.sql.SQLException;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import connection.ConexionMySQL;
+import model.Inventario;
 
 @WebServlet("/InventarioContollers")
 public class InventarioContollers extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-		String codigo = request.getParameter("txtCodigo");
-		String categoria = request.getParameter("cboCategoria");
-		String producto = request.getParameter("txtProducto");
-		String marca = request.getParameter("txtMarca");
-		String stock = request.getParameter("txtStock");
-		String precio = request.getParameter("txtPrecio");
+        int codigo = Integer.parseInt(request.getParameter("txtCodigo"));
+        String categoria = request.getParameter("cboCategoria");
+        String producto = request.getParameter("txtProducto");
+        String marca = request.getParameter("txtMarca");
+        double precio = Double.parseDouble(request.getParameter("txtPrecio"));
+        int stock = Integer.parseInt(request.getParameter("txtStock"));
 
-		try {
-			Connection con = ConexionMySQL.obtenerConexion();
-			Statement stmt = con.createStatement();
+        Inventario objInv = new Inventario();
+        objInv.setCodigo(codigo);
+        objInv.setCategoria(categoria);
+        objInv.setProducto(producto);
+        objInv.setMarca(marca);
+        objInv.setPrecio(precio);
+        objInv.setStock(stock);
 
-			String sql = "INSERT INTO inventario (codigo, categoria, producto, marca, precio_unitario, stock) "
-					+ "VALUES ('" + codigo + "', '" + categoria + "', '" + producto + "', '" + marca + "', " + precio
-					+ ", " + stock + ")";
+        try {
+            objInv.insertarProducto();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-			int filas = stmt.executeUpdate(sql);
-
-			if (filas > 0) {
-				response.sendRedirect("inventario.jsp?msg=success");
-			} else {
-				response.sendRedirect("inventario.jsp?msg=fail");
-			}
-
-			stmt.close();
-			con.close();
-
-		} catch (Exception e) {
-			response.sendRedirect("inventario.jsp?msg=error");
-		}
-	}
-
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		response.sendRedirect("inventario.jsp");
-	}
+        // 🔥 Redirect correcto (no rompe CSS ni header)
+        response.sendRedirect(request.getContextPath() + "/views/InventarioGUI.jsp");
+    }
 }

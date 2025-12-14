@@ -1,13 +1,28 @@
 package model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import connection.ConexionMySQL;
+
 public class Inventario {
 	private int codigo;
 	private String categoria, producto, marca;
 	private double precio;
 	private int stock;
-	
-	public Inventario() {
-		//super();
+
+	public void insertarProducto() throws SQLException {
+	    Connection con = ConexionMySQL.obtenerConexion();
+	    String sql = "INSERT INTO inventario (codigo, categoria, producto, marca, precio_unitario, stock) VALUES (?,?,?,?,?,?)";
+	    PreparedStatement pstmt = con.prepareStatement(sql);
+	    pstmt.setInt(1, codigo);
+	    pstmt.setString(2, categoria);
+	    pstmt.setString(3, producto);
+	    pstmt.setString(4, marca);
+	    pstmt.setDouble(5, precio);  // Ahora va a precio_unitario
+	    pstmt.setInt(6, stock);
+	    pstmt.executeUpdate();
 	}
 
 	public int getCodigo() {
