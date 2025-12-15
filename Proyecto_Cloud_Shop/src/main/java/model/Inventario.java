@@ -13,16 +13,16 @@ public class Inventario {
 	private int stock;
 
 	public void insertarProducto() throws SQLException {
-	    Connection con = ConexionMySQL.obtenerConexion();
-	    String sql = "INSERT INTO inventario (codigo, categoria, producto, marca, precio_unitario, stock) VALUES (?,?,?,?,?,?)";
-	    PreparedStatement pstmt = con.prepareStatement(sql);
-	    pstmt.setInt(1, codigo);
-	    pstmt.setString(2, categoria);
-	    pstmt.setString(3, producto);
-	    pstmt.setString(4, marca);
-	    pstmt.setDouble(5, precio);  // Ahora va a precio_unitario
-	    pstmt.setInt(6, stock);
-	    pstmt.executeUpdate();
+		Connection con = ConexionMySQL.obtenerConexion();
+		String sql = "INSERT INTO inventario (codigo, categoria, producto, marca, precio_unitario, stock) VALUES (?,?,?,?,?,?)";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, codigo);
+		pstmt.setString(2, categoria);
+		pstmt.setString(3, producto);
+		pstmt.setString(4, marca);
+		pstmt.setDouble(5, precio);
+		pstmt.setInt(6, stock);
+		pstmt.executeUpdate();
 	}
 
 	public int getCodigo() {
