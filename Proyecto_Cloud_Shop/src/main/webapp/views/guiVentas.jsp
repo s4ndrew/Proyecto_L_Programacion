@@ -111,8 +111,7 @@
 	                        <th class="border-0 p-3">Cantidad</th>
 	                        <th class="border-0 p-3">Precio</th>
 	                        <th class="border-0 p-3">Total</th>
-	                        <th class="border-0 p-3">Modificar</th>
-	                        <th class="border-0 p-3">Eliminar</th>
+	                        <th class="border-0 p-3">Acciones</th>
 	                    </tr>
 	                </thead>
 	
@@ -126,11 +125,16 @@
 	                        <td class="border-end p-3"></td>
 	                        <td class="border-end p-3"></td>
 	                        <td class="border-end p-3"></td>
-	                        <td class="border-end p-3">
-	                        	<i class="bi bi-pencil-square text-warning fs-5"></i>
-	                        </td>
-	                        <td class="p-3">
-	                            <i class="bi bi-trash-fill text-danger fs-5"></i>
+	                        <td class="border-end me-3">
+	                        	<input type="hidden" name="accion" value="editar">
+	                        	<button class="border-0 btn btn-warning">
+	                        		<i class="bi bi-pencil-square fs-5"></i>
+	                        	</button>
+	                        	
+	                        	<input type="hidden" name="accion" value="eliminar">
+	                            <button class="border-0 btn btn-danger">
+	                            	<i class="bi bi-trash-fill fs-5"></i>
+	                            </button>
 	                        </td>
 	                    </tr>
 	                </tbody>

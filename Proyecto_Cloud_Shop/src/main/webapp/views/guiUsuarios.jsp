@@ -1,5 +1,12 @@
+<%@page import="model.Usuarios"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="DAO.UsuariosDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% 
+	UsuariosDAO dao = new UsuariosDAO();
+	ArrayList<Usuarios> lista = dao.listarUsuarios();
+%>
 <!DOCTYPE html>
 <html>
 <jsp:include page="./components/head.jsp"></jsp:include>
@@ -11,7 +18,8 @@
 		
 			<h3 class="text-start mb-4"><i class="bi bi-people-fill me-2"></i>Usuarios</h3>
 			
-			<form class="needs-validation" novalidate action="guiLogin.jsp">
+			<form class="needs-validation" novalidate action="${pageContext.request.contextPath}/UsuariosControllers" method="post">
+				
 				<div class="row g-4 mb-4">
 					<div class="col-3">
 						<input type="text" name="txtUsuario" class="form-control form-control-lg" placeholder="Usuario" required>
@@ -39,9 +47,9 @@
 					<div class="col-6">
 						<select class="form-select form-select-lg" name="cboRol" aria-label="Default select example" required>
 							<option value = "" selected>Seleccione un rol</option>
-							<option value="1">Vendedor</option>
-							<option value="2">Administrador</option>
-							<option value="3">Gerente</option>
+							<option value="Vendedor">Vendedor</option>
+							<option value="Administrador">Administrador</option>
+							<option value="Gerente">Gerente</option>
 						</select>
 						<div class="invalid-feedback">Ingrese Rol.</div>
 					</div>
@@ -60,6 +68,7 @@
 				</div>
 				
 				<div class="text-start my-4">
+					<input type="hidden" name="accion" value="registrar">
 					<button class="btn btn-success btn-lg px-5 py-2" type="submit">REGISTRAR</button>
 				</div>
 			</form>
@@ -75,26 +84,33 @@
 				            <th class="border-0 p-3">Rol</th>
 				            <th class="border-0 p-3">Correo</th>
 				            <th class="border-0 p-3">Contraseña</th>
-				            <th class="border-0 p-3">Modificar</th>
-						    <th class="border-0 p3l">Eliminar</th>
+				            <th class="border-0 p-3">Acciones</th>
 				        </tr>
 				    </thead>
 				
 				    <tbody>
+				    	<% for ( Usuarios u : lista) { %>
 				        <tr class="text-center">
-				            <td class="border-end p-3"></td>
-				            <td class="border-end p-3"></td>
-				            <td class="border-end p-3"></td>
-				            <td class="border-end p-3"></td>
-				            <td class="border-end p-3"></td>
-				            <td class="border-end p-3"></td>
-				            <td class="border-end p-3"></td>
-	                        <td class="border-end p-3">
-	                        	<i class="bi bi-pencil-square text-warning fs-5"></i>
+				            <td class="border-end p-3"><%= u.getUsuario() %></td>
+				            <td class="border-end p-3"><%= u.getDni()  %></td>
+				            <td class="border-end p-3"><%= u.getNombre() %></td>
+				            <td class="border-end p-3"><%= u.getApellidos() %></td>
+				            <td class="border-end p-3"><%= u.getRol() %></td>
+				            <td class="border-end p-3"><%= u.getCorreo() %></td>
+				            <td class="border-end p-3"><%= u.getContraseña() %></td>
+	                        <td class="border-end me-3">
+	                        	<input type="hidden" name="accion" value="editar">
+	                        	<button class="border-0 btn btn-warning">
+	                        		<i class="bi bi-pencil-square fs-5"></i>
+	                        	</button>
+	                        	
+	                        	<input type="hidden" name="accion" value="eliminar">
+	                            <button class="border-0 btn btn-danger">
+	                            	<i class="bi bi-trash-fill fs-5"></i>
+	                            </button>
 	                        </td>
-	                        <td class="p-3">
-	                            <i class="bi bi-trash-fill text-danger fs-5"></i>
-	                        </td>
+	                    </tr>
+	                    <% } %>
 				    </tbody>
 				</table>
 			</div>

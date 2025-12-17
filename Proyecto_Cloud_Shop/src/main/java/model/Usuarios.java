@@ -1,12 +1,18 @@
 package model;
 
 public class Usuarios {
+	private int id_usuarios;
 	private String usuario;
 	private int dni;
 	private String nombre, apellidos, rol, correo, contraseña;
 	
-	public Usuarios() {
-		//super();
+	
+	public int getId_usuarios() {
+		return id_usuarios;
+	}
+
+	public void setId_usuarios(int id_usuarios) {
+		this.id_usuarios = id_usuarios;
 	}
 
 	public String getUsuario() {
