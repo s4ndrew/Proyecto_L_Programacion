@@ -83,8 +83,8 @@
 					stmt = con.createStatement();
 					rs = stmt.executeQuery("SELECT * FROM inventario");
 			%>
-			<div class="table-responsive">
-				<table id="tblBuscador" class="table table-bordered">
+			<div class="table-responsive rounded-4">
+				<table id="tblBuscador" class="table table-hover rounded-4 overflow-hidden shadow-sm mt-3">
 					<thead class="table-dark">
 						<tr class="text-center">
 							<th class="border-0 p-3">N°</th>
