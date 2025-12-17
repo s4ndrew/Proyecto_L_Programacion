@@ -84,7 +84,7 @@
 					rs = stmt.executeQuery("SELECT * FROM inventario");
 			%>
 			<div class="table-responsive">
-				<table id="tblInventario" class="table table-bordered">
+				<table id="tblBuscador" class="table table-bordered">
 					<thead class="table-dark">
 						<tr class="text-center">
 							<th class="border-0 p-3">N°</th>
@@ -147,23 +147,4 @@
 	</main>
 	<jsp:include page="./components/footer.jsp"></jsp:include>
 </body>
-<script>
-	$(document)
-			.ready(
-					function() {
-
-						if ($('#tblInventario').length) {
-							new DataTable(
-									'#tblInventario',
-									{
-										language : {
-											url : 'https://cdn.datatables.net/plug-ins/2.3.4/i18n/es-ES.json'
-										},
-										pageLength : 10,
-										lengthMenu : [ 5, 10, 25, 50 ],
-										ordering : true
-									});
-						}
-					});
-</script>
 </html>

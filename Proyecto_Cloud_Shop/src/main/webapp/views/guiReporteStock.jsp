@@ -21,14 +21,14 @@
             	</div>
 			</div>
             
-			 <div class="input-group mb-4 shadow-sm">
+			<!-- <div class="input-group mb-4 shadow-sm">
                 <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
                 <input type="text" class="form-control form-control-lg" placeholder="Buscar productos">
-            </div>
+            </div> --> 
 
             <!-- TABLA -->
             <div class="table-responsive">
-            	<table class="table table-hover rounded-4 overflow-hidden shadow-sm mt-2">
+            	<table id="tblBuscador" class="table table-hover rounded-4 overflow-hidden shadow-sm mt-2">
 	                <thead class="table-secondary text-white">
 	                    <tr class="text-center">
 	                        <th class="border-0 p-3">Código</th>

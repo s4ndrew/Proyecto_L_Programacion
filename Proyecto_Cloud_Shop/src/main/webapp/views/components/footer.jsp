@@ -2,6 +2,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	
+	
+	<!-- VALIDACION FORMULARIO -->
+	
 	<script>
 	// Example starter JavaScript for disabling form submissions if there are invalid fields
 	(() => {
@@ -29,4 +32,27 @@
             .forEach(el => el.classList.remove("show"));
 });
 	</script>
+	
+	
+	<!-- TABLA BUSCADOR -->
+	<script>
+	$(document)
+			.ready(
+					function() {
+
+						if ($('#tblBuscador').length) {
+							new DataTable(
+									'#tblBuscador',
+									{
+										language : {
+											url : 'https://cdn.datatables.net/plug-ins/2.3.4/i18n/es-ES.json'
+										},
+										pageLength : 10,
+										lengthMenu : [ 5, 10, 25, 50 ],
+										ordering : true
+									});
+						}
+					});
+</script>
+	
 </footer>

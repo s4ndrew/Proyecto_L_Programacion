@@ -100,7 +100,7 @@
 			
             <!-- TABLA -->
             <div class="table-responsive">
-            	<table class="table table-hover rounded-4 overflow-hidden shadow-sm mt-4">
+            	<table id="tblBuscador" class="table table-hover rounded-4 overflow-hidden shadow-sm mt-4">
 	                <thead class="table-secondary text-white">
 	                    <tr class="text-center">
 	                        <th class="border-0 p-3">DNI</th>

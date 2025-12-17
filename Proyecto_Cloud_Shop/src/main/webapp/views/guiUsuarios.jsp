@@ -65,41 +65,39 @@
 			</form>
 			
 			<div class="table-responsive">
-				<table class="table table-hover rounded-4 overflow-hidden shadow-sm mt-3">
-			    <thead class="table-secondary text-white">
-			        <tr class="text-center ">
-			            <th class="border-0 p-3">Usuario</th>
-			            <th class="border-0 p-3">DNI</th>
-			            <th class="border-0 p-3">Nombre</th>
-			            <th class="border-0 p-3">Apellidos</th>
-			            <th class="border-0 p-3">Rol</th>
-			            <th class="border-0 p-3">Correo</th>
-			            <th class="border-0 p-3">Contraseña</th>
-			            <th class="border-0 p-3">Modificar</th>
-					    <th class="border-0 p3l">Eliminar</th>
-			        </tr>
-			    </thead>
-			
-			    <tbody>
-			        <tr class="text-center">
-			            <td class="border-end p-3"></td>
-			            <td class="border-end p-3"></td>
-			            <td class="border-end p-3"></td>
-			            <td class="border-end p-3"></td>
-			            <td class="border-end p-3"></td>
-			            <td class="border-end p-3"></td>
-			            <td class="border-end p-3"></td>
-                        <td class="border-end p-3">
-                        	<i class="bi bi-pencil-square text-warning fs-5"></i>
-                        </td>
-                        <td class="p-3">
-                            <i class="bi bi-trash-fill text-danger fs-5"></i>
-                        </td>
-			    </tbody>
-			</table>
+				<table id="tblBuscador" class="table table-hover rounded-4 overflow-hidden shadow-sm mt-3">
+				    <thead class="table-secondary text-white">
+				        <tr class="text-center ">
+				            <th class="border-0 p-3">Usuario</th>
+				            <th class="border-0 p-3">DNI</th>
+				            <th class="border-0 p-3">Nombre</th>
+				            <th class="border-0 p-3">Apellidos</th>
+				            <th class="border-0 p-3">Rol</th>
+				            <th class="border-0 p-3">Correo</th>
+				            <th class="border-0 p-3">Contraseña</th>
+				            <th class="border-0 p-3">Modificar</th>
+						    <th class="border-0 p3l">Eliminar</th>
+				        </tr>
+				    </thead>
+				
+				    <tbody>
+				        <tr class="text-center">
+				            <td class="border-end p-3"></td>
+				            <td class="border-end p-3"></td>
+				            <td class="border-end p-3"></td>
+				            <td class="border-end p-3"></td>
+				            <td class="border-end p-3"></td>
+				            <td class="border-end p-3"></td>
+				            <td class="border-end p-3"></td>
+	                        <td class="border-end p-3">
+	                        	<i class="bi bi-pencil-square text-warning fs-5"></i>
+	                        </td>
+	                        <td class="p-3">
+	                            <i class="bi bi-trash-fill text-danger fs-5"></i>
+	                        </td>
+				    </tbody>
+				</table>
 			</div>
-
-			
 			
 		</section>	
 	</main>
