@@ -23,11 +23,16 @@ public class UsuariosControllers extends HttpServlet {
 	Usuarios u = new Usuarios();
 	
 	
-	public void listarUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Usuarios> listaUsuarios = dao.listarUsuarios();
-		request.setAttribute("listaUsuarios", listaUsuarios);
-		request.getRequestDispatcher("guiUsuarios.jsp").forward(request, response);
+	public void listarUser(HttpServletRequest request, HttpServletResponse response)
+	        throws ServletException, IOException {
+
+	    ArrayList<Usuarios> listaUsuarios = dao.listarUsuarios();
+	    request.setAttribute("listaUsuarios", listaUsuarios);
+
+	    request.getRequestDispatcher("/views/guiUsuarios.jsp")
+	           .forward(request, response);
 	}
+
 	
 	public void registrarUser(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
 		u.setUsuario(request.getParameter("txtUsuario"));

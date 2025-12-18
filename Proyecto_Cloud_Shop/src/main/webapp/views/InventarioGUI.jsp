@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="model.Inventario"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="java.sql.Connection"%>
@@ -69,22 +71,16 @@
 						<div class="invalid-feedback">Ingrese el precio.</div>
 					</div>
 				</div>
+				<input class="btn btn-primary w-100" type="submit"
+							value="Ingresar">
 				<div class="text-start my-4">
 					<button class="btn btn-success btn-lg px-5 py-2">REGISTRAR</button>
 				</div>
 			</form>
-			<%
-			Connection con = null;
-			Statement stmt = null;
-			ResultSet rs = null;
-			try {
-				con = ConexionMySQL.obtenerConexion();
-				if (con != null) {
-					stmt = con.createStatement();
-					rs = stmt.executeQuery("SELECT * FROM inventario");
-			%>
+
 			<div class="table-responsive rounded-4">
-				<table id="tblBuscador" class="table table-hover rounded-4 overflow-hidden shadow-sm mt-3">
+				<table id="tblBuscador"
+					class="table table-hover rounded-4 overflow-hidden shadow-sm mt-3">
 					<thead class="table-dark">
 						<tr class="text-center">
 							<th class="border-0 p-3">N°</th>
@@ -99,16 +95,16 @@
 					</thead>
 					<tbody>
 						<%
-						while (rs.next()) {
+						for (Inventario I : (List<Inventario>) request.getAttribute("listaProductos")) {
 						%>
 						<tr class="text-center">
-							<th scope="row"><%=rs.getInt("id_inventario")%></th>
-							<td><%=rs.getInt("codigo")%></td>
-							<td><%=rs.getString("categoria")%></td>
-							<td><%=rs.getString("producto")%></td>
-							<td><%=rs.getString("marca")%></td>
-							<td><%=rs.getDouble("precio_unitario")%></td>
-							<td><%=rs.getInt("stock")%></td>
+							<th scope="row"><%=I.getId_inventario()%></th>
+							<td><%=I.getCodigo()%></td>
+							<td><%=I.getCategoria()%></td>
+							<td><%=I.getProducto()%></td>
+							<td><%=I.getMarca()%></td>
+							<td><%=I.getPrecio()%></td>
+							<td><%=I.getStock()%></td>
 							<td>
 								<div class="d-flex justify-content-center gap-2">
 									<a href="" class="btn btn-warning btn-sm"> <i
@@ -126,23 +122,6 @@
 					</tbody>
 				</table>
 			</div>
-			<%
-			} else {
-			%>
-			<div class="alert alert-danger text-center mt-4">❌ No se pudo
-				conectar a la base de datos.</div>
-			<%
-			}
-
-			} catch (Exception e) {
-			%>
-			<div class="alert alert-danger text-center mt-4">
-				Error al consultar la base de datos:
-				<%=e.getMessage()%>
-			</div>
-			<%
-			}
-			%>
 		</section>
 	</main>
 	<jsp:include page="./components/footer.jsp"></jsp:include>

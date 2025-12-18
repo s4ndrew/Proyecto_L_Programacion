@@ -54,18 +54,23 @@
 				<ul class="navbar-nav ms-auto gap-4">
 
 					<li class="nav-item"><a class="nav-link active"
-						href="<% request.getContextPath(); %>/UsuariosControllers?accion=listar">USUARIOS</a></li>
+						href="${pageContext.request.contextPath}/UsuariosControllers?accion=listar">
+							USUARIOS </a></li>
 
 					<li class="nav-item"><a class="nav-link"
-						href="InventarioGUI.jsp">INVENTARIO</a></li>
+						href="${pageContext.request.contextPath}/InventarioController?accion=listar">
+							INVENTARIO </a></li>
 
-					<li class="nav-item"><a class="nav-link" href="guiVentas.jsp">VENTAS</a>
-					</li>
+					<li class="nav-item"><a class="nav-link"
+						href="${pageContext.request.contextPath}/guiVentas.jsp">
+							VENTAS </a></li>
 
-					<li class="nav-item dropdown"><a class="nav-link"
-						href="guiReportes.jsp">REPORTE</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="${pageContext.request.contextPath}/guiReportes.jsp">
+							REPORTE </a></li>
 
 				</ul>
+
 			</div>
 
 			<button class="btn btn-danger logout-btn ms-4"
