@@ -45,19 +45,55 @@ public class InventarioController extends HttpServlet {
 		case "listar":
 			listarProductos(request, response);
 			break;
+		case "guardar":
+			guardarProducto(request, response);
+			break;
+		case "eliminar":
+			eliminarProducto(request, response);
+			break;
 		}
+
 	}
 
 	private void listarProductos(HttpServletRequest request, HttpServletResponse response)
 			throws ClassNotFoundException, SQLException, ServletException, IOException {
 
-		// 1. Llamar al MODELO para obtener los datos
 		List<Inventario> listaProductos = I.obtenerTodosLosProductos();
 
-		// 2. Guardar los datos en el request para vista
 		request.setAttribute("listaProductos", listaProductos);
 
-		// 3. Redireccionar a la VISTA
 		request.getRequestDispatcher("/views/InventarioGUI.jsp").forward(request, response);
+	}
+
+	private void guardarProducto(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, ClassNotFoundException {
+
+		int codigo = Integer.parseInt(request.getParameter("txtCodigo"));
+		String categoria = request.getParameter("cboCategoria");
+		String producto = request.getParameter("txtProducto");
+		String marca = request.getParameter("txtMarca");
+		double precio = Double.parseDouble(request.getParameter("txtPrecio"));
+		int stock = Integer.parseInt(request.getParameter("txtStock"));
+		I.setCodigo(codigo);
+		I.setCategoria(categoria);
+		I.setProducto(producto);
+		I.setMarca(marca);
+		I.setPrecio(precio);
+		I.setStock(stock);
+
+		try {
+			I.insertarProducto();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		request.getRequestDispatcher("InventarioController?accion=listar").forward(request, response);
+	}
+
+	private void eliminarProducto(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ClassNotFoundException, ServletException {
+
+		int id = Integer.parseInt(request.getParameter("id"));
+		I.eliminarProducto(id);
+		request.getRequestDispatcher("InventarioController?accion=listar").forward(request, response);
 	}
 }

@@ -16,7 +16,7 @@ public class Inventario {
 	private double precio;
 	private int stock;
 
-	public void insertarProducto() throws SQLException {
+	public void insertarProducto() throws ClassNotFoundException, SQLException {
 		Connection con = ConexionMySQL.obtenerConexion();
 
 		String sql = "INSERT INTO inventario (codigo, categoria, producto, marca, precio_unitario, stock) VALUES (?,?,?,?,?,?)";
@@ -60,6 +60,15 @@ public class Inventario {
 
 	}
 
+	public void eliminarProducto(int id) throws ClassNotFoundException, SQLException {
+		
+		Connection con = ConexionMySQL.obtenerConexion();
+		String sql = "DELETE FROM inventario WHERE id_inventario = ?";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1,id);
+		pstmt.executeUpdate();
+		
+	}
 	public int getCodigo() {
 		return codigo;
 	}

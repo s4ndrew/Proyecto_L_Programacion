@@ -21,6 +21,7 @@
 			<form class="needs-validation"
 				action="${pageContext.request.contextPath}/InventarioController"
 				method="POST" novalidate>
+				<input type="hidden" name="accion" value="guardar">
 				<div class="row g-4 mb-3">
 					<div class="col-6">
 						<label class="form-label fw-semibold">Código de producto</label><input
@@ -71,8 +72,7 @@
 						<div class="invalid-feedback">Ingrese el precio.</div>
 					</div>
 				</div>
-				<input class="btn btn-primary w-100" type="submit"
-							value="Ingresar">
+				<input class="btn btn-primary w-100" type="submit" value="Ingresar">
 				<div class="text-start my-4">
 					<button class="btn btn-success btn-lg px-5 py-2">REGISTRAR</button>
 				</div>
@@ -109,10 +109,13 @@
 								<div class="d-flex justify-content-center gap-2">
 									<a href="" class="btn btn-warning btn-sm"> <i
 										class="bi bi-pencil-square"></i>
-									</a> <a href="" class="btn btn-danger btn-sm"
+									</a> <a
+										href="${pageContext.request.contextPath}/InventarioController?accion=eliminar&id=<%= I.getId_inventario() %>"
+										class="btn btn-danger btn-sm"
 										onclick="return confirm('¿Seguro que desea eliminar este registro?');">
 										<i class="bi bi-trash-fill"></i>
 									</a>
+
 								</div>
 							</td>
 						</tr>
