@@ -62,7 +62,7 @@ public class UsuariosDAO {
 	}
 	
 	//ELIMINAR
-	public void eliminarProducto(int id) throws SQLException {
+	public void eliminarUsuarios(int id) throws SQLException {
 		Connection con = ConexionMySQL.obtenerConexion();
 		String sql= "DELETE FROM usuarios WHERE id_usuarios=?";
 		PreparedStatement pstmt = con.prepareStatement(sql);

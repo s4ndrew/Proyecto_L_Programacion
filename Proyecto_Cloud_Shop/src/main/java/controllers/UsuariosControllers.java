@@ -19,8 +19,51 @@ import DAO.UsuariosDAO;
 public class UsuariosControllers extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	private UsuariosDAO dao = new UsuariosDAO();
+	UsuariosDAO dao = new UsuariosDAO();
+	Usuarios u = new Usuarios();
 	
+	
+	public void listarUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ArrayList<Usuarios> listaUsuarios = dao.listarUsuarios();
+		request.setAttribute("listaUsuarios", listaUsuarios);
+		request.getRequestDispatcher("guiUsuarios.jsp").forward(request, response);
+	}
+	
+	public void registrarUser(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+		u.setUsuario(request.getParameter("txtUsuario"));
+		u.setDni(Integer.parseInt(request.getParameter("txtDNI")));
+		u.setNombre(request.getParameter("txtNombre"));
+		u.setApellidos(request.getParameter("txtApellidos"));
+		u.setRol(request.getParameter("cboRol"));
+		u.setCorreo(request.getParameter("txtCorreo"));
+		u.setContraseña(request.getParameter("txtContraseña"));
+		
+		dao.registrarUsuarios(u);
+		//request.setAttribute("msj", "create");
+	    response.sendRedirect(request.getContextPath() + "/UsuariosControllers?accion=listar");
+	}
+	
+	//PROCEES REEQUEST
+	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+		String accion = request.getParameter("accion");
+		
+
+		switch (accion) {
+			case "listar":
+				listarUser(request, response);
+				break;
+				
+			case "guardar":
+				registrarUser(request, response);
+				break;
+				
+			case "eliminar":
+				
+				break;
+		}
+	}
+	
+	//GET Y POST
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			processRequest(request, response);
@@ -37,41 +80,6 @@ public class UsuariosControllers extends HttpServlet {
 		} catch (SQLException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-	}
-	
-	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
-		String accion = request.getParameter("accion");
-		
-        if (accion == null) {
-            accion = "listar";
-        }
-        
-		switch (accion) {
-			case "listar":
-				ArrayList<Usuarios> listaUsuarios = dao.listarUsuarios();
-				request.setAttribute("listaUsuarios", listaUsuarios);
-				request.getRequestDispatcher("guiUsuarios.jsp").forward(request, response);
-				break;
-				
-			case "guardar":
-				Usuarios u = new Usuarios();
-				u.setUsuario(request.getParameter("txtUsuario"));
-				u.setDni(Integer.parseInt(request.getParameter("txtDNI")));
-				u.setNombre(request.getParameter("txtNombre"));
-				u.setApellidos(request.getParameter("txtApellidos"));
-				u.setRol(request.getParameter("cboRol"));
-				u.setCorreo(request.getParameter("txtCorreo"));
-				u.setContraseña(request.getParameter("txtContraseña"));
-				
-				dao.registrarUsuarios(u);
-				//request.setAttribute("msj", "create");
-			    response.sendRedirect(request.getContextPath() + "/UsuariosControllers?accion=listar");
-				break;
-				
-			case "eliminar":
-				
-				break;
 		}
 	}
 }
