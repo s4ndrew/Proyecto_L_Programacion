@@ -54,5 +54,18 @@
 						}
 					});
 </script>
+
+	<!-- SWEET ALERT -->
+	<script>
+	var mensaje = "${msj}"
+	if (mensaje == "create") {
+		Swal.fire({
+			  title: "Se insertó correctamente!",
+			  icon: "success",
+			  draggable: true
+			});
+	}
+	
+	</script>
 	
 </footer>

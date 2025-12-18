@@ -8,6 +8,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.Usuarios;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 
 import DAO.UsuariosDAO;
 
@@ -16,19 +19,42 @@ import DAO.UsuariosDAO;
 public class UsuariosControllers extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-       
-
+	private UsuariosDAO dao = new UsuariosDAO();
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			processRequest(request, response);
+		} catch (SQLException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UsuariosDAO dao = new UsuariosDAO();
-		
+		try {
+			processRequest(request, response);
+		} catch (SQLException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
 		String accion = request.getParameter("accion");
 		
-		try {
-			if("registrar".equals(accion)) {
+        if (accion == null) {
+            accion = "listar";
+        }
+        
+		switch (accion) {
+			case "listar":
+				ArrayList<Usuarios> listaUsuarios = dao.listarUsuarios();
+				request.setAttribute("listaUsuarios", listaUsuarios);
+				request.getRequestDispatcher("guiUsuarios.jsp").forward(request, response);
+				break;
+				
+			case "guardar":
 				Usuarios u = new Usuarios();
 				u.setUsuario(request.getParameter("txtUsuario"));
 				u.setDni(Integer.parseInt(request.getParameter("txtDNI")));
@@ -39,12 +65,13 @@ public class UsuariosControllers extends HttpServlet {
 				u.setContraseña(request.getParameter("txtContraseña"));
 				
 				dao.registrarUsuarios(u);
-				System.out.println("Usuario registrado: " + u.getUsuario()); // Para debug
-			    response.sendRedirect(request.getContextPath() + "/views/guiUsuarios.jsp");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+				//request.setAttribute("msj", "create");
+			    response.sendRedirect(request.getContextPath() + "/UsuariosControllers?accion=listar");
+				break;
+				
+			case "eliminar":
+				
+				break;
 		}
 	}
-
 }

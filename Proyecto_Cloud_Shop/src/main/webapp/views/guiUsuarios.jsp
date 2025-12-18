@@ -1,12 +1,8 @@
+<%@page import="java.util.List"%>
 <%@page import="model.Usuarios"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="DAO.UsuariosDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% 
-	UsuariosDAO dao = new UsuariosDAO();
-	ArrayList<Usuarios> lista = dao.listarUsuarios();
-%>
 <!DOCTYPE html>
 <html>
 <jsp:include page="./components/head.jsp"></jsp:include>
@@ -18,7 +14,7 @@
 		
 			<h3 class="text-start mb-4"><i class="bi bi-people-fill me-2"></i>Usuarios</h3>
 			
-			<form class="needs-validation" novalidate action="${pageContext.request.contextPath}/UsuariosControllers" method="post">
+			<form class="needs-validation" novalidate action="UsuariosControllers" method="post">
 				
 				<div class="row g-4 mb-4">
 					<div class="col-3">
@@ -68,7 +64,7 @@
 				</div>
 				
 				<div class="text-start my-4">
-					<input type="hidden" name="accion" value="registrar">
+					<input type="hidden" name="accion" value="guardar">
 					<button class="btn btn-success btn-lg px-5 py-2" type="submit">REGISTRAR</button>
 				</div>
 			</form>
@@ -89,7 +85,11 @@
 				    </thead>
 				
 				    <tbody>
-				    	<% for ( Usuarios u : lista) { %>
+				    	<% List<Usuarios> lista = (List<Usuarios>) request.getAttribute("listaUsuarios"); 
+				    	
+				    	if (lista != null) {
+				    		for (Usuarios u : lista) {
+				    	%>
 				        <tr class="text-center">
 				            <td class="border-end p-3"><%= u.getUsuario() %></td>
 				            <td class="border-end p-3"><%= u.getDni()  %></td>
@@ -110,7 +110,9 @@
 	                            </button>
 	                        </td>
 	                    </tr>
-	                    <% } %>
+	                    <% } 
+				    	}
+	                    %>
 				    </tbody>
 				</table>
 			</div>

@@ -3,6 +3,7 @@ package DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import connection.ConexionMySQL;
@@ -42,26 +43,33 @@ public class UsuariosDAO {
 	}
 	
 	//REGISTRAR
-	public void registrarUsuarios(Usuarios u) {
-		try {
-			Connection con = ConexionMySQL.obtenerConexion();
-			String sql= "INSERT INTO usuarios (usuario, dni, nombre, apellidos, rol, correo, contraseña) VALUES(?,?,?,?,?,?,?)";
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			
-			pstmt.setString(1, u.getUsuario());
-			pstmt.setInt(2, u.getDni());
-			pstmt.setString(3, u.getNombre());
-			pstmt.setString(4, u.getApellidos());
-			pstmt.setString(5, u.getRol());
-			pstmt.setString(6, u.getCorreo());
-			pstmt.setString(7, u.getContraseña());
-			
-			pstmt.executeUpdate();
-			pstmt.close();
-			con.close();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void registrarUsuarios(Usuarios u) throws SQLException {
+		Connection con = ConexionMySQL.obtenerConexion();
+		String sql= "INSERT INTO usuarios (usuario, dni, nombre, apellidos, rol, correo, contraseña) VALUES(?,?,?,?,?,?,?)";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		
+		pstmt.setString(1, u.getUsuario());
+		pstmt.setInt(2, u.getDni());
+		pstmt.setString(3, u.getNombre());
+		pstmt.setString(4, u.getApellidos());
+		pstmt.setString(5, u.getRol());
+		pstmt.setString(6, u.getCorreo());
+		pstmt.setString(7, u.getContraseña());
+		
+		pstmt.executeUpdate();
+		//pstmt.close();
+		//con.close();	
+	}
+	
+	//ELIMINAR
+	public void eliminarProducto(int id) throws SQLException {
+		Connection con = ConexionMySQL.obtenerConexion();
+		String sql= "DELETE FROM usuarios WHERE id_usuarios=?";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		
+        pstmt.setInt(1, id);
+        pstmt.executeUpdate();
+		//pstmt.close();
+		//con.close();	
 	}
 }
