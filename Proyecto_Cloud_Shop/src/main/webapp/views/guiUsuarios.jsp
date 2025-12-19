@@ -15,7 +15,7 @@
 		
 			<h3 class="text-start mb-4"><i class="bi bi-people-fill me-2"></i>Usuarios</h3>
 			
-			<form class="needs-validation" novalidate action="/UsuariosControllers?accion=listar" method="post">
+			<form class="needs-validation" novalidate action="${pageContext.request.contextPath}/UsuariosControllers" method="post">
 				
 				<div class="row g-4 mb-4">
 					<div class="col-3">
@@ -80,7 +80,7 @@
 				            <th class="border-0 p-3">Apellidos</th>
 				            <th class="border-0 p-3">Rol</th>
 				            <th class="border-0 p-3">Correo</th>
-				            <th class="border-0 p-3">Contraseña</th>
+				            <!--<th class="border-0 p-3">Contraseña</th>-->
 				            <th class="border-0 p-3">Acciones</th>
 				        </tr>
 				    </thead>
@@ -98,7 +98,7 @@
 				            <td class="border-end p-3"><%= u.getApellidos() %></td>
 				            <td class="border-end p-3"><%= u.getRol() %></td>
 				            <td class="border-end p-3"><%= u.getCorreo() %></td>
-				            <td class="border-end p-3"><%= u.getContraseña() %></td>
+				            <!-- <td class="border-end p-3"><%= u.getContraseña() %></td> -->
 	                        <td class="border-end me-3">
 	                        	<!-- FORMULARIO PARA EDITAR -->
 					            <form action="${pageContext.request.contextPath}/UsuariosControllers" method="get" style="display: inline;">
@@ -110,7 +110,7 @@
 					            </form>
 					            
 					            <!-- FORMULARIO PARA ELIMINAR -->
-					            <form action="${pageContext.request.contextPath}/UsuariosControllers" method="post" style="display: inline;" onsubmit="return confirm('¿Está seguro de eliminar este usuario?');">
+					            <form action="${pageContext.request.contextPath}/UsuariosControllers" method="post" style="display: inline;">
 					                <input type="hidden" name="accion" value="eliminar">
 					                <input type="hidden" name="id" value="<%= u.getId_usuarios() %>">
 					                <button type="submit" class="border-0 btn btn-danger">

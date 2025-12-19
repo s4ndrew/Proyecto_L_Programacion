@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.Usuarios;
 
 import java.io.IOException;
@@ -56,7 +57,6 @@ public class UsuariosControllers extends HttpServlet {
 	    request.getRequestDispatcher("views/guiUsuarios.jsp").forward(request, response);
 	}
 
-	
 	private void registrarUser(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
 		u.setUsuario(request.getParameter("txtUsuario"));
 		u.setDni(Integer.parseInt(request.getParameter("txtDNI")));
@@ -67,15 +67,21 @@ public class UsuariosControllers extends HttpServlet {
 		u.setContraseña(request.getParameter("txtContraseña"));
 		
 		dao.registrarUsuarios(u);
-		//request.setAttribute("msj", "create");
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("msj", "create");
 	    response.sendRedirect(request.getContextPath() + "/UsuariosControllers?accion=listar");
 	}
 	
 	private void eliminarUser(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
 	    int id = Integer.parseInt(request.getParameter("id"));
 	    dao.eliminarUsuarios(id);
+	    
+		HttpSession session = request.getSession();
+		session.setAttribute("msj", "delete");
 	    response.sendRedirect(request.getContextPath() + "/UsuariosControllers?accion=listar");
 	}
+	
 	
 	//PROCEES REEQUEST
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
