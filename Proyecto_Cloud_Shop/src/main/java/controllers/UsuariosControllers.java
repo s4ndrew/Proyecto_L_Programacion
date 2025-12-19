@@ -22,51 +22,6 @@ public class UsuariosControllers extends HttpServlet {
 	UsuariosDAO dao = new UsuariosDAO();
 	Usuarios u = new Usuarios();
 	
-	
-	public void listarUser(HttpServletRequest request, HttpServletResponse response)
-	        throws ServletException, IOException {
-
-	    ArrayList<Usuarios> listaUsuarios = dao.listarUsuarios();
-	    request.setAttribute("listaUsuarios", listaUsuarios);
-
-	    request.getRequestDispatcher("/guiUsuarios.jsp").forward(request, response);
-	}
-
-	
-	public void registrarUser(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
-		u.setUsuario(request.getParameter("txtUsuario"));
-		u.setDni(Integer.parseInt(request.getParameter("txtDNI")));
-		u.setNombre(request.getParameter("txtNombre"));
-		u.setApellidos(request.getParameter("txtApellidos"));
-		u.setRol(request.getParameter("cboRol"));
-		u.setCorreo(request.getParameter("txtCorreo"));
-		u.setContraseña(request.getParameter("txtContraseña"));
-		
-		dao.registrarUsuarios(u);
-		//request.setAttribute("msj", "create");
-	    response.sendRedirect(request.getContextPath() + "/UsuariosControllers?accion=listar");
-	}
-	
-	//PROCEES REEQUEST
-	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
-		String accion = request.getParameter("accion");
-		System.out.println(accion + "acion");
-
-		switch (accion) {
-			case "listar":
-				listarUser(request, response);
-				break;
-				
-			case "guardar":
-				registrarUser(request, response);
-				break;
-				
-			case "eliminar":
-				
-				break;
-		}
-	}
-	
 	//GET Y POST
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
@@ -88,5 +43,61 @@ public class UsuariosControllers extends HttpServlet {
 		}
 		
 		System.out.println("controlador usuarios");
+	}
+	
+	
+	//METODOS DEL CRUD
+	private void listarUser(HttpServletRequest request, HttpServletResponse response)
+	        throws ServletException, IOException {
+
+	    ArrayList<Usuarios> listaUsuarios = dao.listarUsuarios();
+	    request.setAttribute("listaUsuarios", listaUsuarios);
+
+	    request.getRequestDispatcher("views/guiUsuarios.jsp").forward(request, response);
+	}
+
+	
+	private void registrarUser(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+		u.setUsuario(request.getParameter("txtUsuario"));
+		u.setDni(Integer.parseInt(request.getParameter("txtDNI")));
+		u.setNombre(request.getParameter("txtNombre"));
+		u.setApellidos(request.getParameter("txtApellidos"));
+		u.setRol(request.getParameter("cboRol"));
+		u.setCorreo(request.getParameter("txtCorreo"));
+		u.setContraseña(request.getParameter("txtContraseña"));
+		
+		dao.registrarUsuarios(u);
+		//request.setAttribute("msj", "create");
+	    response.sendRedirect(request.getContextPath() + "/UsuariosControllers?accion=listar");
+	}
+	
+	private void eliminarUser(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+	    int id = Integer.parseInt(request.getParameter("id"));
+	    dao.eliminarUsuarios(id);
+	    response.sendRedirect(request.getContextPath() + "/UsuariosControllers?accion=listar");
+	}
+	
+	//PROCEES REEQUEST
+	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+		String accion = request.getParameter("accion");
+		System.out.println(accion + "accion");
+		
+	    if (accion == null || accion.isEmpty()) {
+	        accion = "listar";
+	    }
+	    
+		switch (accion) {
+			case "listar":
+				listarUser(request, response);
+				break;
+				
+			case "guardar":
+				registrarUser(request, response);
+				break;
+				
+			case "eliminar":
+				eliminarUser(request, response);
+				break;
+		}
 	}
 }

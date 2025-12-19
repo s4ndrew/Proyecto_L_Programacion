@@ -1,6 +1,7 @@
-<%@page import="java.util.List"%>
-<%@page import="model.Usuarios"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="model.Usuarios"%>
+<%@page import="java.util.List"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,7 +15,7 @@
 		
 			<h3 class="text-start mb-4"><i class="bi bi-people-fill me-2"></i>Usuarios</h3>
 			
-			<form class="needs-validation" novalidate action="${pageContext.request.contextPath}/UsuariosControllers" method="post">
+			<form class="needs-validation" novalidate action="/UsuariosControllers?accion=listar" method="post">
 				
 				<div class="row g-4 mb-4">
 					<div class="col-3">
@@ -85,7 +86,7 @@
 				    </thead>
 				
 				    <tbody>
-				    	<% List<Usuarios> lista = (List<Usuarios>) request.getAttribute("listaUsuarios"); 
+				    	<% List<Usuarios> lista = (ArrayList<Usuarios>) request.getAttribute("listaUsuarios"); 
 				    	
 				    	if (lista != null) {
 				    		for (Usuarios u : lista) {
@@ -99,15 +100,23 @@
 				            <td class="border-end p-3"><%= u.getCorreo() %></td>
 				            <td class="border-end p-3"><%= u.getContraseña() %></td>
 	                        <td class="border-end me-3">
-	                        	<input type="hidden" name="accion" value="editar">
-	                        	<button class="border-0 btn btn-warning">
-	                        		<i class="bi bi-pencil-square fs-5"></i>
-	                        	</button>
-	                        	
-	                        	<input type="hidden" name="accion" value="eliminar">
-	                            <button class="border-0 btn btn-danger">
-	                            	<i class="bi bi-trash-fill fs-5"></i>
-	                            </button>
+	                        	<!-- FORMULARIO PARA EDITAR -->
+					            <form action="${pageContext.request.contextPath}/UsuariosControllers" method="get" style="display: inline;">
+					                <input type="hidden" name="accion" value="editar">
+					                <input type="hidden" name="id" value="<%= u.getId_usuarios() %>">
+					                <button type="submit" class="border-0 btn btn-warning">
+					                    <i class="bi bi-pencil-square fs-5"></i>
+					                </button>
+					            </form>
+					            
+					            <!-- FORMULARIO PARA ELIMINAR -->
+					            <form action="${pageContext.request.contextPath}/UsuariosControllers" method="post" style="display: inline;" onsubmit="return confirm('¿Está seguro de eliminar este usuario?');">
+					                <input type="hidden" name="accion" value="eliminar">
+					                <input type="hidden" name="id" value="<%= u.getId_usuarios() %>">
+					                <button type="submit" class="border-0 btn btn-danger">
+					                    <i class="bi bi-trash-fill fs-5"></i>
+					                </button>
+					            </form>
 	                        </td>
 	                    </tr>
 	                    <% } 
