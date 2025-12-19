@@ -14,7 +14,7 @@
 		
 			<h3 class="text-start mb-4"><i class="bi bi-people-fill me-2"></i>Usuarios</h3>
 			
-			<form class="needs-validation" novalidate action="UsuariosControllers" method="post">
+			<form class="needs-validation" novalidate action="${pageContext.request.contextPath}/UsuariosControllers" method="post">
 				
 				<div class="row g-4 mb-4">
 					<div class="col-3">

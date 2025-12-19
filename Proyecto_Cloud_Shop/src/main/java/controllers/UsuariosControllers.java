@@ -29,8 +29,7 @@ public class UsuariosControllers extends HttpServlet {
 	    ArrayList<Usuarios> listaUsuarios = dao.listarUsuarios();
 	    request.setAttribute("listaUsuarios", listaUsuarios);
 
-	    request.getRequestDispatcher("/views/guiUsuarios.jsp")
-	           .forward(request, response);
+	    request.getRequestDispatcher("/guiUsuarios.jsp").forward(request, response);
 	}
 
 	
@@ -51,7 +50,7 @@ public class UsuariosControllers extends HttpServlet {
 	//PROCEES REEQUEST
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
 		String accion = request.getParameter("accion");
-		
+		System.out.println(accion + "acion");
 
 		switch (accion) {
 			case "listar":
@@ -76,6 +75,7 @@ public class UsuariosControllers extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("controlador usuarios");
 	}
 	
 	
@@ -86,5 +86,7 @@ public class UsuariosControllers extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		System.out.println("controlador usuarios");
 	}
 }
