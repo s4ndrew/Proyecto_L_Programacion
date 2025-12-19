@@ -9,7 +9,7 @@
 <jsp:include page="./components/head.jsp"></jsp:include>
 <body style="background-color: rgba(243, 244, 246, 1)">
 	<jsp:include page="./components/header.jsp"></jsp:include>
-
+	
 	<main class="container d-flex justify-content-center">
 		<section class="card p-4 my-5 rounded-4 shadow-lg border-0" style="max-width: 1000px; width: 100%;">
 		

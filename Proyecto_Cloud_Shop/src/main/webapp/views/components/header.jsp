@@ -1,6 +1,3 @@
-<%@ page import="java.sql.Connection"%>
-<%@ page import="connection.ConexionMySQL"%>
-
 <header>
 	<nav class="navbar navbar-expand-lg navbar-custom">
 		<div class="container-fluid">
@@ -19,42 +16,10 @@
 
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
 
-				<!-- INDICADOR DE CONEXIÓN -->
-				<div class="ms-3">
-
-					<%
-					Connection con = null;
-					try {
-						con = ConexionMySQL.obtenerConexion();
-					} catch (Exception e) {
-						con = null;
-					}
-					%>
-
-					<%
-					if (con != null) {
-					%>
-					<span
-						class="badge rounded-pill bg-success px-3 py-2 d-flex align-items-center gap-2">
-						<i class="bi bi-wifi"></i> Base de datos conectada
-					</span>
-					<%
-					} else {
-					%>
-					<span
-						class="badge rounded-pill bg-danger px-3 py-2 d-flex align-items-center gap-2">
-						<i class="bi bi-wifi-off"></i> Sin conexión a base de datos
-					</span>
-					<%
-					}
-					%>
-
-				</div>
-
 				<ul class="navbar-nav ms-auto gap-4">
 
 					<li class="nav-item"><a class="nav-link active"
-						href="${pageContext.request.contextPath}/UsuariosControllers?accion=listar">
+						href="${pageContext.request.contextPath}/UsuariosControllers">
 							USUARIOS </a></li>
 
 					<li class="nav-item"><a class="nav-link"

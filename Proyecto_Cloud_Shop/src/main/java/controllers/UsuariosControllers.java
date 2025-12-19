@@ -21,7 +21,6 @@ public class UsuariosControllers extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	UsuariosDAO dao = new UsuariosDAO();
-	Usuarios u = new Usuarios();
 	
 	//GET Y POST
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -50,14 +49,17 @@ public class UsuariosControllers extends HttpServlet {
 	//METODOS DEL CRUD
 	private void listarUser(HttpServletRequest request, HttpServletResponse response)
 	        throws ServletException, IOException {
-
+		
 	    ArrayList<Usuarios> listaUsuarios = dao.listarUsuarios();
 	    request.setAttribute("listaUsuarios", listaUsuarios);
-
+	    
+	    System.out.println("TOTAL USUARIOS: " + listaUsuarios.size()); 
+	    
 	    request.getRequestDispatcher("views/guiUsuarios.jsp").forward(request, response);
 	}
 
 	private void registrarUser(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+		Usuarios u = new Usuarios();
 		u.setUsuario(request.getParameter("txtUsuario"));
 		u.setDni(Integer.parseInt(request.getParameter("txtDNI")));
 		u.setNombre(request.getParameter("txtNombre"));
