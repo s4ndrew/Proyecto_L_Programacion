@@ -11,7 +11,7 @@ import model.Usuarios;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+import java.util.List;
 
 import DAO.UsuariosDAO;
 
@@ -50,7 +50,7 @@ public class UsuariosControllers extends HttpServlet {
 	private void listarUser(HttpServletRequest request, HttpServletResponse response)
 	        throws ServletException, IOException {
 		
-	    ArrayList<Usuarios> listaUsuarios = dao.listarUsuarios();
+	    List<Usuarios> listaUsuarios = dao.listarUsuarios();
 	    request.setAttribute("listaUsuarios", listaUsuarios);
 	    
 	    System.out.println("TOTAL USUARIOS: " + listaUsuarios.size()); 

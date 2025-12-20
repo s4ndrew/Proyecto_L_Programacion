@@ -17,8 +17,8 @@
             </h3>
 
             <!-- FORMULARIO -->
-            <form class="needs-validation" action="VentasController" method="POST" novalidate>
-
+            <form action="${pageContext.request.contextPath}/VentasControllers" method="POST" novalidate>
+				<input type="hidden" name="accionarVenta" value="registrar">
                 <!-- FILA 1 -->
                 <div class="row g-4 mb-3">
                 	<div class="col-6">
@@ -33,7 +33,7 @@
                         <div class="invalid-feedback">Ingrese Nombre.</div>
                     </div>
                 </div>
-
+			
                 <!-- FILA 2 -->
                 <div class="row g-4 mb-3">
                 	<div class="col-6">
@@ -86,6 +86,8 @@
                         <div class="invalid-feedback">Falta Total.</div>
                     </div>
                 </div>
+                
+           
 
                 <!-- BOTÓN REGISTRAR -->
                 <div class="text-start my-4">
