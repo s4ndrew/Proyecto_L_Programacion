@@ -8,21 +8,18 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.Inventario;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet("/InventarioController")
 public class InventarioController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	Inventario I = new Inventario();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
 			processRequest(request, response);
-		} catch (ClassNotFoundException | ServletException | IOException | SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -31,15 +28,19 @@ public class InventarioController extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			processRequest(request, response);
-		} catch (ClassNotFoundException | ServletException | IOException | SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void processRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, ClassNotFoundException, SQLException {
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+
 		String accion = request.getParameter("accion");
+
+		if (accion == null) {
+			accion = "listar";
+		}
 
 		switch (accion) {
 		case "listar":
@@ -51,49 +52,81 @@ public class InventarioController extends HttpServlet {
 		case "eliminar":
 			eliminarProducto(request, response);
 			break;
+		case "editar":
+			mostrarFormularioEditar(request, response);
+			break;
+		case "actualizar":
+			actualizarProducto(request, response);
+			break;
+		default:
+			listarProductos(request, response);
 		}
-
 	}
 
 	private void listarProductos(HttpServletRequest request, HttpServletResponse response)
-			throws ClassNotFoundException, SQLException, ServletException, IOException {
+			throws Exception {
 
-		List<Inventario> listaProductos = I.obtenerTodosLosProductos();
+		Inventario inv = new Inventario();
+		List<Inventario> listaProductos = inv.obtenerTodosLosProductos();
 
 		request.setAttribute("listaProductos", listaProductos);
-
 		request.getRequestDispatcher("/views/InventarioGUI.jsp").forward(request, response);
 	}
 
 	private void guardarProducto(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, ClassNotFoundException {
+			throws Exception {
 
-		int codigo = Integer.parseInt(request.getParameter("txtCodigo"));
-		String categoria = request.getParameter("cboCategoria");
-		String producto = request.getParameter("txtProducto");
-		String marca = request.getParameter("txtMarca");
-		double precio = Double.parseDouble(request.getParameter("txtPrecio"));
-		int stock = Integer.parseInt(request.getParameter("txtStock"));
-		I.setCodigo(codigo);
-		I.setCategoria(categoria);
-		I.setProducto(producto);
-		I.setMarca(marca);
-		I.setPrecio(precio);
-		I.setStock(stock);
+		Inventario inv = new Inventario();
 
-		try {
-			I.insertarProducto();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		request.getRequestDispatcher("InventarioController?accion=listar").forward(request, response);
+		inv.setCodigo(Integer.parseInt(request.getParameter("txtCodigo")));
+		inv.setCategoria(request.getParameter("cboCategoria"));
+		inv.setProducto(request.getParameter("txtProducto"));
+		inv.setMarca(request.getParameter("txtMarca"));
+		inv.setPrecio(Double.parseDouble(request.getParameter("txtPrecio")));
+		inv.setStock(Integer.parseInt(request.getParameter("txtStock")));
+
+		inv.insertarProducto();
+
+		response.sendRedirect("InventarioController?accion=listar");
 	}
 
 	private void eliminarProducto(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException, ClassNotFoundException, ServletException {
+			throws Exception {
 
 		int id = Integer.parseInt(request.getParameter("id"));
-		I.eliminarProducto(id);
-		request.getRequestDispatcher("InventarioController?accion=listar").forward(request, response);
+		Inventario inv = new Inventario();
+		inv.eliminarProducto(id);
+
+		response.sendRedirect("InventarioController?accion=listar");
+	}
+
+	private void mostrarFormularioEditar(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+
+		int id = Integer.parseInt(request.getParameter("id"));
+
+		Inventario inv = new Inventario();
+		Inventario productoEditar = inv.obtenerProductoPorId(id);
+
+		request.setAttribute("producto", productoEditar);
+		request.getRequestDispatcher("/views/InventarioGUI.jsp").forward(request, response);
+	}
+
+	private void actualizarProducto(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+
+		Inventario inv = new Inventario();
+
+		inv.setId_inventario(Integer.parseInt(request.getParameter("idProducto")));
+		inv.setCodigo(Integer.parseInt(request.getParameter("txtCodigo")));
+		inv.setCategoria(request.getParameter("cboCategoria"));
+		inv.setProducto(request.getParameter("txtProducto"));
+		inv.setMarca(request.getParameter("txtMarca"));
+		inv.setPrecio(Double.parseDouble(request.getParameter("txtPrecio")));
+		inv.setStock(Integer.parseInt(request.getParameter("txtStock")));
+
+		inv.actualizarProducto();
+
+		response.sendRedirect("InventarioController?accion=listar");
 	}
 }
