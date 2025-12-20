@@ -63,35 +63,4 @@ public class Ventas {
 	}
 	
 	
-	public void insertarVentas() throws SQLException {
-		
-		Connection con = ConexionMySQL.obtenerConexion();
-		
-		String sql = "INSERT INTO ventas(dni_cliente,nombre,apellidos,categoria,producto,cantidad,precio,total) VALUES (?,?,?,?,?,?,?,?)";
-		
-		PreparedStatement pstmt = con.prepareStatement(sql);
-		
-		pstmt.setInt(1, dni_cliente);
-		pstmt.setString(2, nombre);
-		pstmt.setString(3, apellidos);
-		pstmt.setInt(4, cantidad); //categoria
-		pstmt.setDouble(5, precio); //producto
-		pstmt.setInt(6, cantidad); //cantidad
-		pstmt.setDouble(7, precio); //precio
-		pstmt.setDouble(8, totalVenta()); //total
-		
-		pstmt.executeUpdate();
-		
-		
-		/*
-		private int dni_cliente;
-		private String nombre, apellidos;
-		private int cantidad;
-		private double total;*/
-		
-		
-	}
-	
-	
-	
 }

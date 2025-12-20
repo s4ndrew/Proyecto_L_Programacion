@@ -1,22 +1,26 @@
 package controllers;
 
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Ventas;
-
+import DAO.*;
 import java.io.IOException;
-import java.lang.module.ModuleDescriptor.Requires;
+import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet("/VentasControllers")
 public class VentasControllers extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-
+	
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Contolador ventas");
+		listarCategorias(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,25 +31,19 @@ public class VentasControllers extends HttpServlet {
 
 	    if (accion == null) {
 	    	response.sendRedirect("/guiVentas");
-	        return; // Salir si no hay acción
+	        return; // 
 	    }
-
-	    try {
-	        processRequest(request, response);
-	    } catch (Exception e) {
-	        e.printStackTrace(); // Para obtener detalles de errores
-	    }}
 	}
 
 	
-	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
 		
 		 String accion = request.getParameter("accionarVenta");
 
 		    if (accion == null) {
 		        System.out.println("Acción no proporcionada");
 		        response.getWriter().append("Acción no proporcionada");
-		        return; // Salir si no hay acción
+		        return; 
 		    }
 
 		    System.out.println("Acción recibida: " + accion);
@@ -56,18 +54,18 @@ public class VentasControllers extends HttpServlet {
 		            break;
 
 		        case "listar":
-		            // Aquí agregarás la lógica para listar las ventas si lo necesitas
+		            
 		            break;
 
 		        default:
 		            response.getWriter().append("Acción no válida");
-		            break;;
+		            break;
 		}
 		
 	}
 	
 	Ventas objVentas = new Ventas();
-	private void agregarVenta(HttpServletRequest request, HttpServletResponse response) {
+	private void agregarVenta(HttpServletRequest request, HttpServletResponse response) throws SQLException {
 		
 		int dni = Integer.parseInt(request.getParameter("txtDNI"));
 		String nombre = request.getParameter("txtNombre");
@@ -81,14 +79,20 @@ public class VentasControllers extends HttpServlet {
 		int cantidad = Integer.parseInt(request.getParameter("txtCantidad"));
 		double precio = Double.parseDouble(request.getParameter("txtPrecio"));
 		
-		objVentas.setDni_cliente(dni);
-		objVentas.setNombre(nombre);
-		objVentas.setApellidos(apellido);
-		objVentas.setCantidad(cantidad);
-		//falta categoria 
-		// falta producto
-		
-		objVentas.setPrecio(precio);
-		objVentas.totalVenta();
+		//VentasDAO.insertarVentas(objVentas);
+	}
+	
+	public void listarCategorias(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    List<String> categorias = VentasDAO.listarCategorias();
+	    
+	    
+	    System.out.println("Categorías recuperadas: " + categorias);
+	    
+	    if (categorias == null || categorias.isEmpty()) {
+	         System.out.println("No hay categorías disponibles.");
+	    }
+	    
+	    request.setAttribute("categorias", categorias);
+	    request.getRequestDispatcher("views/guiVentas.jsp").forward(request, response);
 	}
 }
