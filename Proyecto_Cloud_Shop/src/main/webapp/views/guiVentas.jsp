@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <%@ page import="java.util.List"%>
+<%@ page import="model.Inventario"%>
+
 <!DOCTYPE html>
 <html>
 <jsp:include page="./components/head.jsp"></jsp:include>
@@ -8,6 +11,11 @@
 <body style="background-color: rgba(243, 244, 246, 1)">
 
 	<jsp:include page="./components/header.jsp"></jsp:include>
+
+	<%
+	List<String> categorias = (List<String>) request.getAttribute("categorias");
+	List<Inventario> listaProductos = (List<Inventario>) request.getAttribute("listaProductos");
+	%>
 
 	<main class="container d-flex justify-content-center">
 
@@ -18,151 +26,111 @@
 				<i class="bi bi-cart-fill me-2"></i>Ventas
 			</h3>
 
-			<!-- FORMULARIO -->
 			<form action="${pageContext.request.contextPath}/VentasControllers"
 				method="POST" novalidate>
+
 				<input type="hidden" name="accionarVenta" value="registrar">
-				<!-- FILA 1 -->
+
 				<div class="row g-4 mb-3">
 					<div class="col-6">
 						<input type="text" name="txtDNI"
 							class="form-control form-control-lg" placeholder="DNI" required>
-						<div class="invalid-feedback">Ingrese DNI.</div>
 					</div>
 
 					<div class="col-6">
-						<input type="text" name="txtNombre"
-							class="form-control form-control-lg" placeholder="Nombre"
+						<input type="text" name="txtNombres"
+							class="form-control form-control-lg" placeholder="Nombres"
 							required>
-						<div class="invalid-feedback">Ingrese Nombre.</div>
 					</div>
 				</div>
-
-				<!-- FILA 2 -->
 				<div class="row g-4 mb-3">
 					<div class="col-6">
 						<input type="text" name="txtApellidos"
 							class="form-control form-control-lg" placeholder="Apellidos"
 							required>
-						<div class="invalid-feedback">Ingrese Apellidos.</div>
 					</div>
 
 					<div class="col-6">
-						<select class="form-select form-select-lg" name="cboCategoria"
-							required>
-							<option value="">Categoría</option>
-							<%
-							
-							List<String> categorias = (List<String>) request.getAttribute("categorias");
-
-							
-							if (categorias != null && !categorias.isEmpty()) {
-								for (String categoria : categorias) {
-							%>
-							<option value="<%=categoria%>"><%=categoria%></option>
-							<%
-							}
-							} else {
-							%>
-							<option value="">No hay categorías disponiblessss</option>
-							<%
-							}
-							%>
-						</select>
-						<div class="invalid-feedback">Seleccione una categoría.</div>
+						<input type="text" name="txtTelefono"
+							class="form-control form-control-lg"
+							placeholder="Teléfono (opcional)">
 					</div>
 				</div>
-
-				<!-- FILA 3 -->
 				<div class="row g-4 mb-4">
 					<div class="col-6">
-						<select class="form-select form-select-lg" name="cboProducto"
-							required>
-							<option value="">Producto</option>
-							<option value="1">HP</option>
-							<option value="2">Asus</option>
-							<option value="3">Msi</option>
-						</select>
-						<div class="invalid-feedback">Seleccione un producto.</div>
+						<input type="text" name="txtDireccion"
+							class="form-control form-control-lg"
+							placeholder="Dirección (opcional)">
 					</div>
 
 					<div class="col-6">
-						<input type="number" name="txtCantidad"
-							class="form-control form-control-lg" placeholder="Cantidad"
-							required>
-						<div class="invalid-feedback">Ingrese la cantidad.</div>
+						<input type="email" name="txtCorreo"
+							class="form-control form-control-lg"
+							placeholder="Correo (opcional)">
 					</div>
 				</div>
-
-				<!-- FILA 4 -->
-				<div class="row g-4 mb-3">
+				<div class="row g-4 mb-4">
 					<div class="col-6">
-						<input type="text" name="txtPrecio"
-							class="form-control form-control-lg" placeholder="Precio"
-							required>
-						<div class="invalid-feedback">Falta Precio.</div>
-					</div>
-
-					<div class="col-6">
-						<input type="text" name="txtTotal"
-							class="form-control form-control-lg" placeholder="Total" required>
-						<div class="invalid-feedback">Falta Total.</div>
+						<input type="number" id="txtTotal" name="txtTotal"
+							class="form-control form-control-lg" placeholder="Total"
+							value="0" readonly>
 					</div>
 				</div>
-
-
-
-				<!-- BOTÓN REGISTRAR -->
 				<div class="text-start my-4">
-					<button class="btn btn-success btn-lg px-5 py-2" type="submit">AGREGAR</button>
+					<button class="btn btn-success btn-lg px-5 py-2" type="submit">
+						AGREGAR</button>
 				</div>
 			</form>
-
-			<div class="input-group mb-3 shadow-sm">
-				<span class="input-group-text bg-white"><i
-					class="bi bi-search"></i></span> <input type="text"
-					class="form-control form-control-lg" placeholder="Buscar Venta">
-			</div>
-
-			<!-- TABLA -->
 			<div class="table-responsive">
 				<table id="tblBuscador"
-					class="table table-hover rounded-4 overflow-hidden shadow-sm mt-4">
-					<thead class="table-secondary text-white">
+					class="table table-hover rounded-4 overflow-hidden shadow-sm mt-3">
+					<thead class="table-secondary">
 						<tr class="text-center">
-							<th class="border-0 p-3">DNI</th>
-							<th class="border-0 p-3">Nombre</th>
-							<th class="border-0 p-3">Apellidos</th>
-							<th class="border-0 p-3">Categoría</th>
-							<th class="border-0 p-3">Producto</th>
-							<th class="border-0 p-3">Cantidad</th>
-							<th class="border-0 p-3">Precio</th>
-							<th class="border-0 p-3">Total</th>
-							<th class="border-0 p-3">Acciones</th>
+							<th>ID</th>
+							<th>Categoría</th>
+							<th>Producto</th>
+							<th>Marca</th>
+							<th>Precio</th>
+							<th>Stock</th>
+							<th>Cantidad</th>
+							<th>Seleccionar</th>
 						</tr>
 					</thead>
 
 					<tbody>
+						<%
+						List<Inventario> lista = (List<Inventario>) request.getAttribute("listaProductos");
+
+						if (lista != null) {
+							for (Inventario inv : lista) {
+						%>
 						<tr class="text-center">
-							<td class="border-end p-3"></td>
-							<td class="border-end p-3"></td>
-							<td class="border-end p-3"></td>
-							<td class="border-end p-3"></td>
-							<td class="border-end p-3"></td>
-							<td class="border-end p-3"></td>
-							<td class="border-end p-3"></td>
-							<td class="border-end p-3"></td>
-							<td class="border-end me-3"><input type="hidden"
-								name="accion" value="editar">
-								<button class="border-0 btn btn-warning">
-									<i class="bi bi-pencil-square fs-5"></i>
-								</button> <input type="hidden" name="accion" value="eliminar">
-								<button class="border-0 btn btn-danger">
-									<i class="bi bi-trash-fill fs-5"></i>
-								</button></td>
+							<td><%=inv.getId_inventario()%></td>
+							<td><%=inv.getCategoria()%></td>
+							<td><%=inv.getProducto()%></td>
+							<td><%=inv.getMarca()%></td>
+							<td><%=inv.getPrecio()%></td>
+							<td><%=inv.getStock()%></td>
+							<td><input type="number" min="0" value="0"
+								class="form-control form-control-sm cantidad-input"
+								style="width: 80px; margin: 0 auto;"></td>
+							<td><input type="checkbox"
+								class="form-check-input seleccionar-checkbox"></td>
 						</tr>
+						<%
+						}
+						} else {
+						%>
+						<tr>
+							<td colspan="8" class="text-center p-3">No hay productos en
+								inventario</td>
+						</tr>
+						<%
+						}
+						%>
 					</tbody>
 				</table>
+
 			</div>
 
 		</section>

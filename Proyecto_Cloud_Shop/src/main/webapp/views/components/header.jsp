@@ -27,8 +27,8 @@
 							INVENTARIO </a></li>
 
 					<li class="nav-item"><a class="nav-link"
-						href="${pageContext.request.contextPath}/views/guiVentas.jsp">
-							VENTAS </a></li>
+						href="${pageContext.request.contextPath}/VentasControllers">VENTAS</a>
+					</li>
 
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/guiReportes.jsp">
