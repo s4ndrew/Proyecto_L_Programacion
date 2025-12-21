@@ -10,7 +10,6 @@ import model.Usuarios;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import DAO.UsuariosDAO;
@@ -84,6 +83,32 @@ public class UsuariosControllers extends HttpServlet {
 	    response.sendRedirect(request.getContextPath() + "/UsuariosControllers?accion=listar");
 	}
 	
+	private void mostrarFomrularioUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+		int id = Integer.parseInt(request.getParameter("id"));
+		
+	    Usuarios user = dao.buscarPorId(id);
+
+	    request.setAttribute("user", user);
+	    request.setAttribute("esEdicion", true);
+	    request.getRequestDispatcher("views/guiUsuarios.jsp").forward(request, response);
+	}
+	
+	private void editarUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+		Usuarios u = new Usuarios();
+		u.setId_usuarios(Integer.parseInt(request.getParameter("id")));
+		u.setUsuario(request.getParameter("txtUsuario"));
+		u.setDni(Integer.parseInt(request.getParameter("txtDNI")));
+		u.setNombre(request.getParameter("txtNombre"));
+		u.setApellidos(request.getParameter("txtApellidos"));
+		u.setRol(request.getParameter("cboRol"));
+		u.setCorreo(request.getParameter("txtCorreo"));
+		
+		dao.editarUsuarios(u);;
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("msj", "edit");
+	    response.sendRedirect(request.getContextPath() + "/UsuariosControllers?accion=listar");
+	}
 	
 	//PROCEES REEQUEST
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
@@ -105,6 +130,12 @@ public class UsuariosControllers extends HttpServlet {
 				
 			case "eliminar":
 				eliminarUser(request, response);
+				break;
+			case "mostrar":
+				mostrarFomrularioUser(request, response);
+				break;
+			case "editar" :
+				editarUser(request, response);
 				break;
 		}
 	}

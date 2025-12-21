@@ -57,8 +57,8 @@ public class UsuariosDAO {
 		pstmt.setString(7, u.getContraseña());
 		
 		pstmt.executeUpdate();
-		//pstmt.close();
-		//con.close();	
+		pstmt.close();
+		con.close();	
 	}
 	
 	//ELIMINAR
@@ -69,7 +69,53 @@ public class UsuariosDAO {
 		
         pstmt.setInt(1, id);
         pstmt.executeUpdate();
-		//pstmt.close();
-		//con.close();	
+		pstmt.close();
+		con.close();	
+	}
+	
+	//BUSCAR POR ID
+	public Usuarios buscarPorId(int id) throws SQLException {
+		Connection con = ConexionMySQL.obtenerConexion();
+		String sql= "SELECT * FROM usuarios WHERE id_usuarios=?";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, id);
+		
+		ResultSet rs = pstmt.executeQuery();
+		Usuarios u = null;
+		
+		if (rs.next()) {
+			u = new Usuarios();
+			u.setId_usuarios(rs.getInt("id_usuarios"));
+			u.setUsuario(rs.getString("usuario"));
+			u.setDni(rs.getInt("dni"));
+			u.setNombre(rs.getString("nombre"));
+			u.setApellidos(rs.getString("apellidos"));
+			u.setRol(rs.getString("rol"));
+			u.setCorreo(rs.getString("correo"));
+			u.setContraseña(rs.getString("contraseña"));
+		}
+		rs.close();
+		pstmt.close();
+		con.close();
+		return u;
+	}
+	
+	//EDITAR
+	public void editarUsuarios(Usuarios u) throws SQLException {
+		Connection con = ConexionMySQL.obtenerConexion();
+		String sql= "UPDATE usuarios SET usuario=?, dni=?, nombre=?, apellidos=?, rol=?, correo=? WHERE id_usuarios=?";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		
+		pstmt.setString(1, u.getUsuario());
+		pstmt.setInt(2, u.getDni());
+		pstmt.setString(3, u.getNombre());
+		pstmt.setString(4, u.getApellidos());
+		pstmt.setString(5, u.getRol());
+		pstmt.setString(6, u.getCorreo());
+		pstmt.setInt(7, u.getId_usuarios());
+		
+		pstmt.executeUpdate();
+		pstmt.close();
+		con.close();
 	}
 }

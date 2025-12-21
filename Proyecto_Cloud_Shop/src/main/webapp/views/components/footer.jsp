@@ -95,6 +95,40 @@
 				    });
 				  }
 				});
+		}else if (mensaje === "edit") {
+			const swalWithBootstrapButtons = Swal.mixin({
+				  customClass: {
+				    confirmButton: "btn btn-success mx-2",
+				    cancelButton: "btn btn-danger mx-2"
+				  },
+				  buttonsStyling: false
+				});
+				swalWithBootstrapButtons.fire({
+				  title: "Estas seguro?",
+				  text: "No podrás revertir esto!",
+				  icon: "warning",
+				  showCancelButton: true,
+				  confirmButtonText: "Si, actualizar!",
+				  cancelButtonText: "No, cancelar!",
+				  reverseButtons: true
+				}).then((result) => {
+				  if (result.isConfirmed) {
+				    swalWithBootstrapButtons.fire({
+				      title: "Actualizar!",
+				      text: "El usuario seleccionado ha sido actualizado.",
+				      icon: "success"
+				    });
+				  } else if (
+				    /* Read more about handling dismissals below */
+				    result.dismiss === Swal.DismissReason.cancel
+				  ) {
+				    swalWithBootstrapButtons.fire({
+				      title: "Cancelado",
+				      text: "El usuario no se ha actualizado",
+				      icon: "error"
+				    });
+				  }
+				});
 		}
 	</script>
 	<script>

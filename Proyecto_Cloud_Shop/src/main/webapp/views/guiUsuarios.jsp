@@ -4,6 +4,12 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	Usuarios usuarios = (Usuarios) request.getAttribute("user");
+	Boolean esEdicion = (Boolean) request.getAttribute("esEdicion");
+	if (esEdicion == null) esEdicion = false;
+%>
+
 <!DOCTYPE html>
 <html>
 <jsp:include page="./components/head.jsp"></jsp:include>
@@ -19,34 +25,35 @@
 				
 				<div class="row g-4 mb-4">
 					<div class="col-3">
-						<input type="text" name="txtUsuario" class="form-control form-control-lg" placeholder="Usuario" required>
+						<input type="text" name="txtUsuario" class="form-control form-control-lg" placeholder="Usuario" required value = "<%= (usuarios != null) ? usuarios.getUsuario() : "" %>">
 						<div class="invalid-feedback">Ingrese Usuario.</div>
 					</div>
 					
 					<div class="col-3">
-						<input type="text" name="txtDNI" class="form-control form-control-lg" placeholder="DNI" required>
+						<input type="text" name="txtDNI" class="form-control form-control-lg" placeholder="DNI" required value ="<%= (usuarios != null) ? usuarios.getDni() : "" %>">
 						<div class="invalid-feedback">Ingrese DNI.</div>
 					</div>
 					
 					<div class="col-6">
-						<input type="text" name="txtNombre" class="form-control form-control-lg" placeholder="Nombre" required>
+						<input type="text" name="txtNombre" class="form-control form-control-lg" placeholder="Nombre" required value = "<%= (usuarios != null) ? usuarios.getNombre() : "" %>">
 						<div class="invalid-feedback">Ingrese Nombre.</div>
 					</div>
 				</div>
 				
 				<div class="row g-4 mb-4">
 					<div class="col-6">
-						<input type="text" name="txtApellidos" class="form-control form-control-lg" placeholder="Apellidos" required>
+						<input type="text" name="txtApellidos" class="form-control form-control-lg" placeholder="Apellidos" required value = "<%= (usuarios != null) ? usuarios.getApellidos() : "" %>">
 						<div class="invalid-feedback">Ingrese Apellidos.</div>
 					</div>
 					
 					
 					<div class="col-6">
 						<select class="form-select form-select-lg" name="cboRol" aria-label="Default select example" required>
-							<option value = "" selected>Seleccione un rol</option>
-							<option value="Vendedor">Vendedor</option>
-							<option value="Administrador">Administrador</option>
-							<option value="Gerente">Gerente</option>
+							<option value="">Seleccione un rol</option>
+							<option value="Vendedor" <%= (usuarios != null && "Vendedor".equals(usuarios.getRol())) ? "selected" : "" %>>Vendedor</option>
+							<option value="Administrador" <%= (usuarios != null && "Administrador".equals(usuarios.getRol())) ? "selected" : "" %>>Administrador</option>
+							<option value="Gerente" <%= (usuarios != null && "Gerente".equals(usuarios.getRol())) ? "selected" : "" %>>Gerente</option>
+							
 						</select>
 						<div class="invalid-feedback">Ingrese Rol.</div>
 					</div>
@@ -54,19 +61,24 @@
 				
 				<div class="row g-4 mb-4">
 					<div class="col-6">
-						<input type="text" name="txtCorreo" class="form-control form-control-lg" placeholder="Correo" required>
+						<input type="text" name="txtCorreo" class="form-control form-control-lg" placeholder="Correo" required value = "<%= (usuarios != null) ? usuarios.getCorreo() : "" %>">
 						<div class="invalid-feedback">Ingrese Correo.</div>
 					</div>
 					
 					<div class="col-6">
-						<input type="password" name="txtContraseña" class="form-control form-control-lg" placeholder="Contraseña" required>
+						<input type="text" name="txtContraseña" class="form-control form-control-lg" placeholder="Contraseña" <%= esEdicion ? "readonly" : "required" %>>
 						<div class="invalid-feedback">Ingrese Contraseña.</div>
 					</div>
 				</div>
 				
 				<div class="text-start my-4">
+					<% if(esEdicion && usuarios != null) {%>
+					<input type="hidden" name="id" value="<%= usuarios.getId_usuarios() %>">
+					<input type="hidden" name="accion" value="editar">
+					<% }else { %>
 					<input type="hidden" name="accion" value="guardar">
-					<button class="btn btn-success btn-lg px-5 py-2" type="submit">REGISTRAR</button>
+					<% } %>
+					<button class="btn btn-success btn-lg px-5 py-2" type="submit"><%= esEdicion ? "ACTUALIZAR" : "REGISTRAR" %></button>
 				</div>
 			</form>
 			
@@ -102,7 +114,7 @@
 	                        <td class="border-end me-3">
 	                        	<!-- FORMULARIO PARA EDITAR -->
 					            <form action="${pageContext.request.contextPath}/UsuariosControllers" method="get" style="display: inline;">
-					                <input type="hidden" name="accion" value="editar">
+					                <input type="hidden" name="accion" value="mostrar">
 					                <input type="hidden" name="id" value="<%= u.getId_usuarios() %>">
 					                <button type="submit" class="border-0 btn btn-warning">
 					                    <i class="bi bi-pencil-square fs-5"></i>
