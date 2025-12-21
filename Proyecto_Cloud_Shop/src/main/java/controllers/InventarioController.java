@@ -5,7 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import jakarta.servlet.http.HttpSession;
 import DAO.InventarioDAO;
 import model.Inventario;
 
@@ -88,7 +88,9 @@ public class InventarioController extends HttpServlet {
 		inv.setStock(Integer.parseInt(request.getParameter("txtStock")));
 
 		dao.insertarProducto(inv);
-
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("msj", "create");
 		response.sendRedirect(request.getContextPath() + "/InventarioController?accion=listar");
 	}
 
@@ -97,7 +99,9 @@ public class InventarioController extends HttpServlet {
 
 		int id = Integer.parseInt(request.getParameter("id"));
 		dao.eliminarProducto(id);
-
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("msj", "delete");
 		response.sendRedirect(request.getContextPath() + "/InventarioController?accion=listar");
 	}
 
@@ -106,7 +110,7 @@ public class InventarioController extends HttpServlet {
 
 		int id = Integer.parseInt(request.getParameter("id"));
 		Inventario productoEditar = dao.obtenerProductoPorId(id);
-
+		
 		request.setAttribute("producto", productoEditar);
 		request.getRequestDispatcher("/views/InventarioGUI.jsp").forward(request, response);
 	}
@@ -124,7 +128,9 @@ public class InventarioController extends HttpServlet {
 		inv.setStock(Integer.parseInt(request.getParameter("txtStock")));
 
 		dao.actualizarProducto(inv);
-
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("msj", "edit");
 		response.sendRedirect(request.getContextPath() + "/InventarioController?accion=listar");
 	}
 }

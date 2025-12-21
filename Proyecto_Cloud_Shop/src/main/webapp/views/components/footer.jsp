@@ -58,7 +58,7 @@
 		var mensaje = "${sessionScope.msj}";
 		if (mensaje === "create") {
 			Swal.fire({
-				title: "Se insertó correctamente",
+				title: "Se resgitro correctamente",
 				icon: "success"
 			});
 		}else if (mensaje === "delete"){
@@ -81,7 +81,7 @@
 				  if (result.isConfirmed) {
 				    swalWithBootstrapButtons.fire({
 				      title: "Eliminar!",
-				      text: "El usuario seleccionado ha sido eliminado.",
+				      text: "Se ha eliminado correctamente.",
 				      icon: "success"
 				    });
 				  } else if (
@@ -90,7 +90,7 @@
 				  ) {
 				    swalWithBootstrapButtons.fire({
 				      title: "Cancelado",
-				      text: "El usuario no se ha eliminado",
+				      text: "No se ha eliminado",
 				      icon: "error"
 				    });
 				  }
@@ -115,7 +115,7 @@
 				  if (result.isConfirmed) {
 				    swalWithBootstrapButtons.fire({
 				      title: "Actualizar!",
-				      text: "El usuario seleccionado ha sido actualizado.",
+				      text: "Se ha actualizado correctamente.",
 				      icon: "success"
 				    });
 				  } else if (
@@ -124,7 +124,7 @@
 				  ) {
 				    swalWithBootstrapButtons.fire({
 				      title: "Cancelado",
-				      text: "El usuario no se ha actualizado",
+				      text: "No se ha actualizado",
 				      icon: "error"
 				    });
 				  }

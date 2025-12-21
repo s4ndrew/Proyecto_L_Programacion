@@ -198,9 +198,8 @@
 								href="InventarioController?accion=editar&id=<%=inv.getId_inventario()%>">
 									<i class="bi bi-pencil-square"></i>
 							</a> <a class="btn btn-danger btn-sm"
-								href="InventarioController?accion=eliminar&id=<%=inv.getId_inventario()%>"
-								onclick="return confirm('¿Eliminar?');"> <i
-									class="bi bi-trash-fill"></i>
+								href="InventarioController?accion=eliminar&id=<%=inv.getId_inventario()%>"> 
+								<i class="bi bi-trash-fill"></i>
 							</a></td>
 						</tr>
 						<%
