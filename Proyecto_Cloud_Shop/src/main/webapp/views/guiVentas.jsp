@@ -72,8 +72,7 @@
 				<div class="row g-4 mb-4">
 					<div class="col-6">
 						<input type="number" id="txtTotal" name="txtTotal"
-							class="form-control form-control-lg" placeholder="Total"
-							value="0" readonly>
+							class="form-control form-control-lg" placeholder="Total" readonly>
 					</div>
 				</div>
 				<div class="text-start my-4">
@@ -112,7 +111,7 @@
 							<td><%=inv.getPrecio()%></td>
 							<td><%=inv.getStock()%></td>
 							<td><input type="number" min="0" value="0"
-								class="form-control form-control-sm cantidad-input"
+								class="form-control form-control-sm cantidad-input" name = "txtCantidad"
 								style="width: 80px; margin: 0 auto;"></td>
 							<td><input type="checkbox"
 								class="form-check-input seleccionar-checkbox"></td>
