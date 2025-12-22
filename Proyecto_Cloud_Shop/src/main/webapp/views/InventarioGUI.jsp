@@ -169,7 +169,7 @@
 				<table id="tblBuscador" class="table table-hover rounded-4 overflow-hidden shadow-sm mt-3">
 					<thead class="table-secondary">
 						<tr class="text-center">
-							<th>ID</th>
+							<th>N°</th>
 							<th>Código</th>
 							<th>Categoría</th>
 							<th>Producto</th>
@@ -216,6 +216,7 @@
 		</section>
 	</main>
 
+	<jsp:include page="./components/tabla-script.jsp"></jsp:include>
 	<jsp:include page="./components/footer.jsp"></jsp:include>
 </body>
 </html>

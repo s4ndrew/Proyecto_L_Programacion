@@ -29,7 +29,8 @@
 			<form action="${pageContext.request.contextPath}/VentasControllers"
 				method="POST" novalidate>
 
-				<input type="hidden" name="accionarVenta" value="registrar">
+				<input type="hidden" name="accion" value="registrar"> <input
+					type="hidden" name="txtIdInventario" id="txtIdInventario">
 
 				<div class="row g-4 mb-3">
 					<div class="col-6">
@@ -95,11 +96,9 @@
 							<th>Seleccionar</th>
 						</tr>
 					</thead>
-
 					<tbody>
 						<%
 						List<Inventario> lista = (List<Inventario>) request.getAttribute("listaProductos");
-
 						if (lista != null) {
 							for (Inventario inv : lista) {
 						%>
@@ -111,23 +110,19 @@
 							<td><%=inv.getPrecio()%></td>
 							<td><%=inv.getStock()%></td>
 							<td><input type="number" min="0" value="0"
-								class="form-control form-control-sm cantidad-input" name = "txtCantidad"
-								style="width: 80px; margin: 0 auto;"></td>
+								class="form-control form-control-sm cantidad-input"
+								style="width: 80px; margin: auto"></td>
 							<td><input type="checkbox"
-								class="form-check-input seleccionar-checkbox"></td>
+								class="form-check-input seleccionar-checkbox"
+								data-id="<%=inv.getId_inventario()%>"
+								data-precio="<%=inv.getPrecio()%>"></td>
 						</tr>
 						<%
 						}
-						} else {
-						%>
-						<tr>
-							<td colspan="8" class="text-center p-3">No hay productos en
-								inventario</td>
-						</tr>
-						<%
 						}
 						%>
 					</tbody>
+
 				</table>
 
 			</div>
@@ -136,6 +131,6 @@
 	</main>
 
 	<jsp:include page="./components/footer.jsp"></jsp:include>
-
+	<jsp:include page="./components/tabla-script.jsp"></jsp:include>
 </body>
 </html>

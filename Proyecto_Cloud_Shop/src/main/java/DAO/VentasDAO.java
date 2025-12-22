@@ -1,28 +1,31 @@
 package DAO;
 
-public class VentasDAO {
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
-	/*
-	 * public static void insertarVentas(Ventas v) throws SQLException {
-	 * 
-	 * Connection con = ConexionMySQL.obtenerConexion();
-	 * 
-	 * String sql =
-	 * "INSERT INTO ventas(dni_cliente,nombre,apellidos,categoria,producto,cantidad,precio,total) VALUES (?,?,?,?,?,?,?,?)"
-	 * ;
-	 * 
-	 * PreparedStatement pstmt = con.prepareStatement(sql);
-	 * 
-	 * pstmt.setInt(1, v.getDni_cliente()); pstmt.setString(2, v.getNombre());
-	 * pstmt.setString(3, v.getApellidos()); //pstmt.setInt(4, v.ge); //categoria
-	 * pstmt.setDouble(5, v.getPrecio()); //producto pstmt.setInt(6,
-	 * v.getCantidad()); //cantidad pstmt.setDouble(7, v.getPrecio()); //precio
-	 * pstmt.setDouble(8, v.totalVenta()); //total
-	 * 
-	 * pstmt.executeUpdate();
-	 * 
-	 * 
-	 * 
-	 * }
-	 */
+import connection.ConexionMySQL;
+import model.Ventas;
+
+public class VentasDAO {
+	public void insertarVenta(Ventas v) throws SQLException {
+
+		String sql = "INSERT INTO venta (dni, nombres, apellidos, telefono, direccion, correo, total, id_inventario) "
+				+ "VALUES (?,?,?,?,?,?,?,?)";
+
+		try (Connection con = ConexionMySQL.obtenerConexion(); PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+			pstmt.setInt(1, v.getDni());
+			pstmt.setString(2, v.getNombres());
+			pstmt.setString(3, v.getApellidos());
+			pstmt.setInt(4, v.getTelefono());
+			pstmt.setString(5, v.getDireccion());
+			pstmt.setString(6, v.getCorreo());
+			pstmt.setDouble(7, v.getTotal());
+			pstmt.setInt(8, v.getId_inventario());
+
+			pstmt.executeUpdate();
+		}
+	}
+
 }

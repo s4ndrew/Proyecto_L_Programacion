@@ -141,6 +141,7 @@
 		</section>	
 	</main>
 
+	<jsp:include page="./components/tabla-script.jsp"></jsp:include>
 <jsp:include page="./components/footer.jsp"></jsp:include>
 </body>
 </html>

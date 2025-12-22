@@ -5,8 +5,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import jakarta.servlet.http.HttpSession;
 import DAO.InventarioDAO;
+import DAO.VentasDAO;
 import model.Inventario;
 import model.Ventas;
 
@@ -17,70 +18,77 @@ import java.util.List;
 @WebServlet("/VentasControllers")
 public class VentasControllers extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
-    private InventarioDAO inventarioDAO = new InventarioDAO();
-    
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+	private static final long serialVersionUID = 1L;
+	private InventarioDAO inventarioDAO = new InventarioDAO();
+	private VentasDAO ventasDAO = new VentasDAO();
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
+			processRequest(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
+			processRequest(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-        String accion = request.getParameter("accion");
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, SQLException {
 
-        if (accion == null) {
-            accion = "listar";
-        }
+		String accion = request.getParameter("accion");
 
-        switch (accion) {
-            case "listar":
-                listarInventario(request, response);
-                break;
+		if (accion == null) {
+			accion = "listar";
+		}
 
-            case "registrar":
-                registrarVenta(request, response);
-                break;
+		switch (accion) {
+		case "listar":
+			listarInventario(request, response);
+			break;
 
-            default:
-                listarInventario(request, response);
-                break;
-        }
-    }
-    
-    private void listarInventario(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+		case "registrar":
+			registrarVenta(request, response);
+			break;
 
-        List<Inventario> listaProductos = inventarioDAO.listarInventario();
-        request.setAttribute("listaProductos", listaProductos);
+		default:
+			listarInventario(request, response);
+			break;
+		}
+	}
 
-        request.getRequestDispatcher("views/guiVentas.jsp")
-               .forward(request, response);
-    }
+	private void listarInventario(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, SQLException {
 
-    private void registrarVenta(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException {
+		List<Inventario> listaProductos = inventarioDAO.listarInventario();
+		request.setAttribute("listaProductos", listaProductos);
 
-        Ventas venta = new Ventas();
+		request.getRequestDispatcher("views/guiVentas.jsp").forward(request, response);
+	}
 
-        venta.setNombre(request.getParameter("txtNombre"));
-        venta.setApellidos(request.getParameter("txtApellidos"));
-        venta.setCantidad(Integer.parseInt(request.getParameter("txtCantidad")));
-        venta.setPrecio(Double.parseDouble(request.getParameter("txtPrecio")));
-        response.sendRedirect("VentasControllers?accion=listar");
-    }
+	private void registrarVenta(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
+
+		Ventas ven = new Ventas();
+		ven.setDni(Integer.parseInt(request.getParameter("txtDNI")));
+		ven.setNombres(request.getParameter("txtNombres"));
+		ven.setApellidos(request.getParameter("txtApellidos"));
+		ven.setTelefono(Integer.parseInt(request.getParameter("txtTelefono")));
+		ven.setDireccion(request.getParameter("txtDireccion"));
+		ven.setCorreo(request.getParameter("txtCorreo"));
+		ven.setTotal(Double.parseDouble(request.getParameter("txtTotal")));
+		ven.setId_inventario(Integer.parseInt(request.getParameter("txtIdInventario")));
+
+		ventasDAO.insertarVenta(ven);
+
+		request.getRequestDispatcher("views/guiVentas.jsp").forward(request, response);
+
+	}
 }

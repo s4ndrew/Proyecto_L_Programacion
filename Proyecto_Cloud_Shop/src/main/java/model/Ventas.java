@@ -1,36 +1,36 @@
 package model;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
-import connection.ConexionMySQL;
-
 public class Ventas {
-	private int dni_cliente;
-	private String nombre, apellidos;
-	private double precio;
-	private int cantidad;
-	//private double total;
-	
-	public Ventas() {
-		//super();
+	private int id_venta;
+	private int dni;
+	private String nombres, apellidos;
+	private int telefono;
+	private String direccion, correo;
+	private double total;
+	private int id_inventario;
+
+	public int getId_venta() {
+		return id_venta;
 	}
 
-	public int getDni_cliente() {
-		return dni_cliente;
+	public void setId_venta(int id_venta) {
+		this.id_venta = id_venta;
 	}
 
-	public void setDni_cliente(int dni_cliente) {
-		this.dni_cliente = dni_cliente;
+	public int getDni() {
+		return dni;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public void setDni(int dni) {
+		this.dni = dni;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public String getNombres() {
+		return nombres;
+	}
+
+	public void setNombres(String nombres) {
+		this.nombres = nombres;
 	}
 
 	public String getApellidos() {
@@ -41,26 +41,44 @@ public class Ventas {
 		this.apellidos = apellidos;
 	}
 
-	public int getCantidad() {
-		return cantidad;
+	public int getTelefono() {
+		return telefono;
 	}
 
-	public void setCantidad(int cantidad) {
-		this.cantidad = cantidad;
+	public void setTelefono(int telefono) {
+		this.telefono = telefono;
 	}
 
-	
-	public double getPrecio() {
-		return precio;
+	public String getDireccion() {
+		return direccion;
 	}
 
-	public void setPrecio(double precio) {
-		this.precio = precio;
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 
-	public double totalVenta() {
-		return cantidad * precio;
+	public String getCorreo() {
+		return correo;
 	}
-	
-	
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
+
+	public int getId_inventario() {
+		return id_inventario;
+	}
+
+	public void setId_inventario(int id_inventario) {
+		this.id_inventario = id_inventario;
+	}
+
 }
