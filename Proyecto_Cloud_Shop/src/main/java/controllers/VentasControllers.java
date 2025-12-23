@@ -5,7 +5,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import DAO.InventarioDAO;
 import DAO.VentasDAO;
 import model.Inventario;
@@ -13,15 +12,20 @@ import model.Ventas;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/VentasControllers")
 public class VentasControllers extends HttpServlet {
-
+	
 	private static final long serialVersionUID = 1L;
+	
+	//DAO GLOBALES
 	private InventarioDAO inventarioDAO = new InventarioDAO();
 	private VentasDAO ventasDAO = new VentasDAO();
-
+	
+	
+	//GET Y POST
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
@@ -40,6 +44,8 @@ public class VentasControllers extends HttpServlet {
 		}
 	}
 
+	
+	//PROCEES REQUEST
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 
@@ -57,13 +63,14 @@ public class VentasControllers extends HttpServlet {
 		case "registrar":
 			registrarVenta(request, response);
 			break;
-
-		default:
-			listarInventario(request, response);
+		case "listarVentasDetalle":
+			listVent(request, response);
 			break;
 		}
 	}
 
+	
+	//METODOS DEL CRUD
 	private void listarInventario(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 
@@ -73,8 +80,8 @@ public class VentasControllers extends HttpServlet {
 		request.getRequestDispatcher("views/guiVentas.jsp").forward(request, response);
 	}
 
-	private void registrarVenta(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException, ServletException {
+
+	private void registrarVenta(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException, ServletException {
 
 		Ventas ven = new Ventas();
 		ven.setDni(Integer.parseInt(request.getParameter("txtDNI")));
@@ -88,7 +95,13 @@ public class VentasControllers extends HttpServlet {
 
 		ventasDAO.insertarVenta(ven);
 
-		request.getRequestDispatcher("views/guiVentas.jsp").forward(request, response);
-
+		response.sendRedirect(request.getContextPath() + "/VentasControllers?accion=listarVentasDetalle");
+	}
+	
+	private void listVent(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+		ArrayList<Ventas> lista= ventasDAO.listarVentas();
+		request.setAttribute("listaVentas", lista);
+		
+		request.getRequestDispatcher("views/guiVentaDetalle.jsp").forward(request, response);
 	}
 }

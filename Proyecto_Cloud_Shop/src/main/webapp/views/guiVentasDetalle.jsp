@@ -1,8 +1,8 @@
+<%@page import="model.Ventas"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ page import="java.util.List"%>
-<%@ page import="model.Inventario"%>
 
 <!DOCTYPE html>
 <html>
@@ -13,8 +13,8 @@
 	<jsp:include page="./components/header.jsp"></jsp:include>
 
 	<%
-	List<String> categorias = (List<String>) request.getAttribute("categorias");
-	List<Inventario> listaProductos = (List<Inventario>) request.getAttribute("listaProductos");
+	//List<String> categorias = //(List<String>) request.getAttribute("categorias");
+	//List<Inventario> listaProductos = //(List<Inventario>) request.getAttribute("listaProductos");
 	%>
 
 	<main class="container d-flex justify-content-center">
@@ -26,36 +26,44 @@
 				<i class="bi bi-cart-fill me-2"></i>Detalle de venta
 			</h3>
 
-			<form action="${pageContext.request.contextPath}/VentasControllers"
-				method="POST" novalidate>
-
-				<input type="hidden" name="accionarVenta" value="registrar">
-
-				<div class="row">
-					<div class="col-12">
-						<h4>DNI</h4>
-						<h5></h5>
-						
-						<h4>Nombres</h4>
-						<h5></h5>
-						
-						<h4>Apellidos</h4>
-						<h5></h5>
-						
-						<h4>Telefono</h4>
-						<h5></h5>
-						
-						<h4>Direcion</h4>
-						<h5></h5>
-						
-						<h4>Correo</h4>
-						<h5></h5>
-					</div>
-				</div>
+				<%
+				ArrayList<Ventas> listaVen = (ArrayList<Ventas>) request.getAttribute("listaVentas");
+				
+				if (listaVen != null) {
+					for (Ventas v : listaVen) {
+				%>
+				
+				<h4>DNI</h4>
+				<h5><%= v.getDni() %></h5>
+				
+				<h4>Nombres</h4>
+				<h5><%= v.getNombres() %></h5>
+				
+				<h4>Apellidos</h4>
+				<h5><%= v.getApellidos() %></h5>
+				
+				<h4>Teléfono</h4>
+				<h5><%= v.getTelefono() %></h5>
+				
+				<h4>Dirección</h4>
+				<h5><%= v.getDireccion() %></h5>
+				
+				<h4>Correo</h4>
+				<h5><%= v.getCorreo() %></h5>
+				
+				<h4>Total</h4>
+				<h5><%= v.getTotal() %></h5>
 				
 				<hr>
 				
-								<div class="row">
+				<%
+					}
+				}
+				%>
+				
+				<hr>
+				
+				<div class="row">
 					<div class="col-12">
 						<h4>Producto</h4>
 						<h5></h5>
@@ -69,20 +77,12 @@
 						<h4>Subtotal</h4>
 						<h5></h5>
 						
-						<h4>Total</h4>
-						<h5></h5>
 					</div>
 				</div>
-				
-				<div class="text-start my-4">
-					<button class="btn btn-success btn-lg px-5 py-2" type="submit">
-						GENERAR COMPROBANTE</button>
-				</div>
-			</form>
 		</section>
 	</main>
 
-	<jsp:include page="./components/footer.jsp"></jsp:include>
+	<jsp:include page="./components/footer.jsp">
 
 </body>
 </html>

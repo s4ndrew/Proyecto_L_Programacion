@@ -11,7 +11,7 @@
 %>
 
 <!DOCTYPE html>
-<html>
+<html>s
 <jsp:include page="./components/head.jsp"></jsp:include>
 <body style="background-color: rgba(243, 244, 246, 1)">
 	<jsp:include page="./components/header.jsp"></jsp:include>
