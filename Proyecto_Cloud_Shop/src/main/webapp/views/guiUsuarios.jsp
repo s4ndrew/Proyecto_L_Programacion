@@ -78,10 +78,13 @@
 					<% }else { %>
 					<input type="hidden" name="accion" value="guardar">
 					<% } %>
-					<button class="btn btn-success btn-lg px-5 py-2" type="submit"><%= esEdicion ? "ACTUALIZAR" : "REGISTRAR" %></button>
+					<button class="btn btn-success btn-lg px-5 py-2 me-2" type="submit"><%= esEdicion ? "ACTUALIZAR" : "REGISTRAR" %></button>
+					<!-- Botón Cancelar solo aparece en edición -->
+    				<%= esEdicion ? "<a href='UsuariosControllers?accion=listar' class='btn btn-secondary btn-lg px-5 py-2'>CANCELAR</a>" : "" %>
 				</div>
 			</form>
 			
+			<% if (!esEdicion) { %>
 			<div class="table-responsive">
 				<table id="tblBuscador" class="table table-hover rounded-4 overflow-hidden shadow-sm mt-3">
 				    <thead class="table-secondary text-white">
@@ -122,13 +125,20 @@
 					            </form>
 					            
 					            <!-- FORMULARIO PARA ELIMINAR -->
-					            <form action="${pageContext.request.contextPath}/UsuariosControllers" method="post" style="display: inline;">
-					                <input type="hidden" name="accion" value="eliminar">
-					                <input type="hidden" name="id" value="<%= u.getId_usuarios() %>">
-					                <button type="submit" class="border-0 btn btn-danger">
-					                    <i class="bi bi-trash-fill fs-5"></i>
-					                </button>
-					            </form>
+								<form id="formEliminar<%= u.getId_usuarios() %>"
+								      action="${pageContext.request.contextPath}/UsuariosControllers"
+								      method="post"
+								      style="display:inline;">
+								
+								    <input type="hidden" name="accion" value="eliminar">
+								    <input type="hidden" name="id" value="<%= u.getId_usuarios() %>">
+								
+								    <button type="button"
+								            class="btn btn-danger"
+								            onclick="confirmarEliminacion(<%= u.getId_usuarios() %>)">
+								        <i class="bi bi-trash-fill fs-5"></i>
+								    </button>
+								</form>
 	                        </td>
 	                    </tr>
 	                    <% } 
@@ -137,7 +147,7 @@
 				    </tbody>
 				</table>
 			</div>
-			
+			<% } %>
 		</section>	
 	</main>
 

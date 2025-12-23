@@ -79,6 +79,9 @@ public class VentasControllers extends HttpServlet {
 
 	
 	//METODOS DEL CRUD
+	
+	
+	//LISTAR INVENTARIO
 	private void listarInventario(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 
@@ -87,17 +90,9 @@ public class VentasControllers extends HttpServlet {
 		
 		request.getRequestDispatcher("/views/guiVentas.jsp").forward(request, response);
 	}
+
 	
-	/*private void listVent(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
-		ArrayList<Ventas> listaVentas= ventasDAO.listarVentas();
-		request.setAttribute("listaVentas", listaVentas);
-		
-		System.out.println("TOTAL VENTAS: " + listaVentas.size()); 
-		
-		request.getRequestDispatcher("/views/guiVentasDetalle.jsp").forward(request, response);
-	} */
-
-
+	//REGISTRAR VENTA
 	private void registrarVenta(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException, ServletException {
 		
 		Ventas ven = new Ventas();
@@ -112,15 +107,11 @@ public class VentasControllers extends HttpServlet {
 		
 		int idVenta = ventasDAO.insertarVenta(ven);
 		
-		/*System.out.println("ENTRANDO A registrarVenta");
-		System.out.println("ID INSERTADO = " + idVenta);*/
-		
-		response.sendRedirect(
-			    request.getContextPath() +
-			    "/VentasControllers?accion=verDetalle&idVenta=" + idVenta
+		response.sendRedirect(request.getContextPath() + "/VentasControllers?accion=verDetalle&idVenta=" + idVenta
 			);
 	}
 	
+	//VER DETALLE VENTA
     private void verDetalleVenta(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
 
@@ -129,10 +120,6 @@ public class VentasControllers extends HttpServlet {
         Ventas venta = ventasDAO.buscarPorId(idVenta);
 
         request.setAttribute("venta", venta);
-        request.getRequestDispatcher("/views/guiVentasDetalle.jsp")
-               .forward(request, response);
-        
-        /*System.out.println("ID VENTA = " + idVenta);
-        System.out.println("VENTA = " + venta);*/
+        request.getRequestDispatcher("/views/guiVentasDetalle.jsp").forward(request, response);
     }
 }

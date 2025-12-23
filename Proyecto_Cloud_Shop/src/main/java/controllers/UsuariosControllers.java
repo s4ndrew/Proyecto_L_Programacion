@@ -12,20 +12,20 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import DAO.UsuariosDAO;
+import DAO.UsuariosDAOimpl;
 
 
 @WebServlet("/UsuariosControllers")
 public class UsuariosControllers extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	UsuariosDAO dao = new UsuariosDAO();
+	interfaces.UsuariosDAO dao = new UsuariosDAOimpl();
 	
 	//GET Y POST
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			processRequest(request, response);
-		} catch (SQLException | IOException e) {
+		} catch (ClassNotFoundException | SQLException | IOException | ServletException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -35,7 +35,7 @@ public class UsuariosControllers extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			processRequest(request, response);
-		} catch (SQLException | IOException e) {
+		} catch (ClassNotFoundException | SQLException | IOException | ServletException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -52,7 +52,7 @@ public class UsuariosControllers extends HttpServlet {
 	    request.getRequestDispatcher("views/guiUsuarios.jsp").forward(request, response);
 	}
 
-	private void registrarUser(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+	private boolean registrarUser(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
 		Usuarios u = new Usuarios();
 		u.setUsuario(request.getParameter("txtUsuario"));
 		u.setDni(Integer.parseInt(request.getParameter("txtDNI")));
@@ -62,15 +62,18 @@ public class UsuariosControllers extends HttpServlet {
 		u.setCorreo(request.getParameter("txtCorreo"));
 		u.setContraseña(request.getParameter("txtContraseña"));
 		
-		dao.registrarUsuarios(u);
+	    dao.registrarUsuarios(u);
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("msj", "create");
 	    response.sendRedirect(request.getContextPath() + "/UsuariosControllers?accion=listar");
+		
+	    return false;
 	}
 	
 	private void eliminarUser(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
 	    int id = Integer.parseInt(request.getParameter("id"));
+	    
 	    dao.eliminarUsuarios(id);
 	    
 		HttpSession session = request.getSession();
@@ -78,9 +81,9 @@ public class UsuariosControllers extends HttpServlet {
 	    response.sendRedirect(request.getContextPath() + "/UsuariosControllers?accion=listar");
 	}
 	
-	private void mostrarFomrularioUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+	private void mostrarFomrularioUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException, ClassNotFoundException {
 		int id = Integer.parseInt(request.getParameter("id"));
-		
+	
 	    Usuarios user = dao.buscarPorId(id);
 
 	    request.setAttribute("user", user);
@@ -88,7 +91,7 @@ public class UsuariosControllers extends HttpServlet {
 	    request.getRequestDispatcher("views/guiUsuarios.jsp").forward(request, response);
 	}
 	
-	private void editarUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+	private void editarUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ClassNotFoundException {
 		Usuarios u = new Usuarios();
 		u.setId_usuarios(Integer.parseInt(request.getParameter("id")));
 		u.setUsuario(request.getParameter("txtUsuario"));
@@ -106,7 +109,7 @@ public class UsuariosControllers extends HttpServlet {
 	}
 	
 	//PROCEES REEQUEST
-	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException, ClassNotFoundException {
 		String accion = request.getParameter("accion");
 		
 	    if (accion == null || accion.isEmpty()) {
