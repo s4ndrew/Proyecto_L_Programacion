@@ -1,3 +1,5 @@
+<%@page import="model.Inventario"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -31,8 +33,7 @@
             	<table id="tblBuscador" class="table table-hover rounded-4 overflow-hidden shadow-sm mt-2">
 	                <thead class="table-secondary text-white">
 	                    <tr class="text-center">
-	                        <th class="border-0 p-3">Código</th>
-	                        <th class="border-0 p-3">Categoría</th>
+	                    	<th class="border-0 p-3">Id</th>
 	                        <th class="border-0 p-3">Producto</th>
 	                        <th class="border-0 p-3">Marca</th>
 	                        <th class="border-0 p-3">Precio</th>
@@ -41,15 +42,32 @@
 	                </thead>
 	
 	                <tbody>
+	                <%
+	                	List<Inventario> lista = (List<Inventario>) request.getAttribute("listadeReporteStock");
+	                	
+	                	if(lista != null && !lista.isEmpty()){
+	                	for(Inventario stock : lista){
+	                
+	                %>
+	                
+	                
 	                    <tr class="text-center">
-	                        <td class="border-end p-3"></td>
-	                        <td class="border-end p-3"></td>
-	                        <td class="border-end p-3"></td>
-	                        <td class="border-end p-3"></td>
-	                        <td class="border-end p-3"></td>
-	                        <td class="border-end p-3"></td>
+	                    	<td class="border-end p-3"><%= stock.getId_inventario()%></td>
+	                        <td class="border-end p-3"><%= stock.getProducto()%></td>
+	                        <td class="border-end p-3"><%= stock.getMarca()%></td>
+	                        <td class="border-end p-3"><%= stock.getPrecio()%></td>
+	                        <td class="border-end p-3"><%= stock.getStock()%></td>
 	                    </tr>
 	                </tbody>
+	                
+	                <%
+	                	}
+	                	} else{
+	                		%>
+	                		<p>Lista vacia</p>
+	                		<%
+	                	}
+	                %>
             	</table>
             </div>
 		</section>

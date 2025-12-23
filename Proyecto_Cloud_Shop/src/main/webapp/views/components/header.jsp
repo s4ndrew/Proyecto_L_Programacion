@@ -31,7 +31,7 @@
 					</li>
 
 					<li class="nav-item"><a class="nav-link"
-						href="${pageContext.request.contextPath}/guiReportes.jsp">
+						href="${pageContext.request.contextPath}/views/guiReportes.jsp">
 							REPORTE </a></li>
 
 				</ul>
