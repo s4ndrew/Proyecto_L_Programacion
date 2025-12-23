@@ -1,5 +1,4 @@
 <%@page import="model.Ventas"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -25,12 +24,11 @@
 			<h3 class="text-start mb-4">
 				<i class="bi bi-cart-fill me-2"></i>Detalle de Venta
 			</h3>
-				<%
-				ArrayList<Ventas> listaVen = (ArrayList<Ventas>) request.getAttribute("listaVentas");
-				
-				if (listaVen != null) {
-					for (Ventas v : listaVen) {
-				%>
+			   <%
+			   	Ventas v = (Ventas) request.getAttribute("venta");
+			
+			    	if (v != null) {
+			    %>
 				
 				<h4>DNI</h4>
 				<h5><%= v.getDni() %></h5>
@@ -50,38 +48,28 @@
 				<h4>Correo</h4>
 				<h5><%= v.getCorreo() %></h5>
 				
+				<hr>
+				
+				<h4>Producto</h4>
+				<h5></h5>
+						
+				<h4>Precio</h4>
+				<h5></h5>
+						
+				<h4>Cantidad</h4>
+				<h5></h5>
+						
+				<h4>Subtotal</h4>
+				
 				<h4>Total</h4>
 				<h5><%= v.getTotal() %></h5>
-				
-				<hr>
-				
 				<%
 					}
-				}
 				%>
-				
-				<hr>
-				
-				<div class="row">
-					<div class="col-12">
-						<h4>Producto</h4>
-						<h5></h5>
-						
-						<h4>Precio</h4>
-						<h5></h5>
-						
-						<h4>Cantidad</h4>
-						<h5></h5>
-						
-						<h4>Subtotal</h4>
-						<h5></h5>
-						
-					</div>
-				</div>
 		</section>
 	</main>
 
-	<jsp:include page="./components/footer.jsp">
+	<jsp:include page="./components/footer.jsp"/>
 
 </body>
 </html>

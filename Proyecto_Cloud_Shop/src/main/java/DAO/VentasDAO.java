@@ -11,7 +11,7 @@ import model.Ventas;
 
 public class VentasDAO {
 	
-	//LISTAR
+	//LISTAR INPUTS VENTAS
 	public ArrayList<Ventas> listarVentas() {
 		ArrayList<Ventas> listaVentas = new ArrayList<>();
 		
@@ -41,22 +41,58 @@ public class VentasDAO {
 	}
 	
 	//REGISTRAR
-	public void insertarVenta(Ventas v) throws SQLException {
+	public int insertarVenta(Ventas v) throws SQLException {
 
 		String sql = "INSERT INTO venta (dni, nombres, apellidos, telefono, direccion, correo, total, id_inventario) VALUES (?,?,?,?,?,?,?,?)";
 
-		Connection con = ConexionMySQL.obtenerConexion(); 
-			PreparedStatement pstmt = con.prepareStatement(sql);
+	    Connection con = ConexionMySQL.obtenerConexion();
+	    PreparedStatement pstmt = con.prepareStatement(
+	        sql, PreparedStatement.RETURN_GENERATED_KEYS
+	    );
 
-			pstmt.setInt(1, v.getDni());
-			pstmt.setString(2, v.getNombres());
-			pstmt.setString(3, v.getApellidos());
-			pstmt.setInt(4, v.getTelefono());
-			pstmt.setString(5, v.getDireccion());
-			pstmt.setString(6, v.getCorreo());
-			pstmt.setDouble(7, v.getTotal());
-			pstmt.setInt(8, v.getId_inventario()); 
+	    pstmt.setInt(1, v.getDni());
+	    pstmt.setString(2, v.getNombres());
+	    pstmt.setString(3, v.getApellidos());
+	    pstmt.setInt(4, v.getTelefono());
+	    pstmt.setString(5, v.getDireccion());
+	    pstmt.setString(6, v.getCorreo());
+	    pstmt.setDouble(7, v.getTotal());
+	    pstmt.setInt(8, v.getId_inventario());
 
-			pstmt.executeUpdate();	
+	    pstmt.executeUpdate();
+
+	    ResultSet rs = pstmt.getGeneratedKeys();
+	    if (rs.next()) {
+	        return rs.getInt(1);
+	    }
+	    return 0;
+	    
+	}
+	
+	//BUSCAR POR ID
+	public Ventas buscarPorId(int id) throws SQLException {
+		Connection con = ConexionMySQL.obtenerConexion();
+		String sql= "SELECT * FROM venta WHERE id_venta=?";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, id);
+		
+		ResultSet rs = pstmt.executeQuery();
+		
+		Ventas v = null;
+		if(rs.next()) {
+			v = new Ventas();
+			v.setId_venta(rs.getInt("id_venta"));
+			v.setDni(rs.getInt("dni"));
+			v.setNombres(rs.getString("nombres"));
+			v.setApellidos(rs.getString("apellidos"));
+			v.setTelefono(rs.getInt("telefono"));
+			v.setDireccion(rs.getString("direccion"));
+			v.setCorreo(rs.getString("correo"));
+			v.setTotal(rs.getDouble("total"));
+		}
+		rs.close();
+		pstmt.close();
+		con.close();
+		return v;
 	}
 }
