@@ -12,11 +12,6 @@
 
 	<jsp:include page="./components/header.jsp"></jsp:include>
 
-	<%
-	List<String> categorias = (List<String>) request.getAttribute("categorias");
-	List<Inventario> listaProductos = (List<Inventario>) request.getAttribute("listaProductos");
-	%>
-
 	<main class="container d-flex justify-content-center">
 
 		<section class="card p-4 my-5 rounded-4 shadow-lg border-0"
@@ -29,8 +24,8 @@
 			<form action="${pageContext.request.contextPath}/VentasControllers"
 				method="POST" novalidate>
 
-				<input type="hidden" name="accion" value="registrar"> <input
-					type="hidden" name="txtIdInventario" id="txtIdInventario">
+				<input type="hidden" name="accion" value="registrar"> 
+				<input type="hidden" name="txtIdInventario" id="txtIdInventario">
 
 				<div class="row g-4 mb-3">
 					<div class="col-6">

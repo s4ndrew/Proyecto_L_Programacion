@@ -23,9 +23,8 @@
 			style="max-width: 1000px; width: 100%;">
 
 			<h3 class="text-start mb-4">
-				<i class="bi bi-cart-fill me-2"></i>Detalle de venta
+				<i class="bi bi-cart-fill me-2"></i>Detalle de Venta
 			</h3>
-
 				<%
 				ArrayList<Ventas> listaVen = (ArrayList<Ventas>) request.getAttribute("listaVentas");
 				

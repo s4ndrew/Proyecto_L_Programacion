@@ -33,6 +33,7 @@ public class VentasControllers extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println("controlador ventas");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -42,6 +43,7 @@ public class VentasControllers extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println("controlador ventas");
 	}
 
 	
@@ -50,7 +52,9 @@ public class VentasControllers extends HttpServlet {
 			throws ServletException, IOException, SQLException {
 
 		String accion = request.getParameter("accion");
-
+		
+		System.out.println(accion + " accion");
+		
 		if (accion == null) {
 			accion = "listar";
 		}
@@ -76,8 +80,17 @@ public class VentasControllers extends HttpServlet {
 
 		List<Inventario> listaProductos = inventarioDAO.listarInventario();
 		request.setAttribute("listaProductos", listaProductos);
-
+		
 		request.getRequestDispatcher("views/guiVentas.jsp").forward(request, response);
+	}
+	
+	private void listVent(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+		ArrayList<Ventas> listaVentas= ventasDAO.listarVentas();
+		request.setAttribute("listaVentas", listaVentas);
+		
+		System.out.println("TOTAL VENTAS: " + listaVentas.size()); 
+		
+		request.getRequestDispatcher("/views/guiVentaDetalle.jsp").forward(request, response);
 	}
 
 
@@ -92,16 +105,10 @@ public class VentasControllers extends HttpServlet {
 		ven.setCorreo(request.getParameter("txtCorreo"));
 		ven.setTotal(Double.parseDouble(request.getParameter("txtTotal")));
 		ven.setId_inventario(Integer.parseInt(request.getParameter("txtIdInventario")));
-
+		//ven.setId_inventario(0);
+		
 		ventasDAO.insertarVenta(ven);
 
 		response.sendRedirect(request.getContextPath() + "/VentasControllers?accion=listarVentasDetalle");
-	}
-	
-	private void listVent(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
-		ArrayList<Ventas> lista= ventasDAO.listarVentas();
-		request.setAttribute("listaVentas", lista);
-		
-		request.getRequestDispatcher("views/guiVentaDetalle.jsp").forward(request, response);
 	}
 }
