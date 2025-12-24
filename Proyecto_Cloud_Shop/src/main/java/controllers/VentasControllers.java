@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import DAO.InventarioDAO;
 import DAO.VentasDAO;
+import DAO.VentasDAOimpl;
 import model.Inventario;
 import model.Ventas;
 
@@ -22,7 +23,7 @@ public class VentasControllers extends HttpServlet {
 	
 	//DAO GLOBALES
 	private InventarioDAO inventarioDAO = new InventarioDAO();
-	private VentasDAO ventasDAO = new VentasDAO();
+	interfaces.VentasDAO ventasDAO = new VentasDAOimpl();
 	
 	
 	//GET Y POST
@@ -33,7 +34,6 @@ public class VentasControllers extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		/*System.out.println("controlador ventas get");*/
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -43,7 +43,6 @@ public class VentasControllers extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		/*System.out.println("controlador ventas post");*/
 	}
 
 	
@@ -71,9 +70,6 @@ public class VentasControllers extends HttpServlet {
 		case "verDetalle":
 			verDetalleVenta(request, response);
 			break;
-		/*case "listarVentasDetalle":
-			listVent(request, response);
-			break;*/
 		}
 	}
 
@@ -105,7 +101,8 @@ public class VentasControllers extends HttpServlet {
 		ven.setTotal(Double.parseDouble(request.getParameter("txtTotal")));
 		ven.setId_inventario(Integer.parseInt(request.getParameter("txtIdInventario")));
 		
-		int idVenta = ventasDAO.insertarVenta(ven);
+	
+		boolean idVenta = ventasDAO.insertarVenta(ven);
 		
 		response.sendRedirect(request.getContextPath() + "/VentasControllers?accion=verDetalle&idVenta=" + idVenta
 			);
