@@ -19,7 +19,7 @@
 				<ul class="navbar-nav ms-auto gap-4">
 
 					<li class="nav-item"><a class="nav-link active"
-						href="${pageContext.request.contextPath}/UsuariosControllers">
+						href="${pageContext.request.contextPath}/UsuariosControllers?accion=listar">
 							USUARIOS </a></li>
 
 					<li class="nav-item"><a class="nav-link"

@@ -61,7 +61,7 @@ public class InventarioDAOimpl implements InventarioDAO{
 	public boolean eliminarProducto(int id) throws SQLException {
 		String sql = "DELETE FROM inventario WHERE id_inventario = ?";
 		Connection con = ConexionMySQL.obtenerConexion(); 
-		PreparedStatement pstmt = con.prepareStatement(sql);\
+		PreparedStatement pstmt = con.prepareStatement(sql);
 		
 		pstmt.setInt(1, id);
 		pstmt.executeUpdate();
@@ -73,13 +73,15 @@ public class InventarioDAOimpl implements InventarioDAO{
 	public Inventario obtenerProductoPorId(int id) throws SQLException {
 		String sql = "SELECT * FROM inventario WHERE id_inventario = ?";
 
-		try (Connection con = ConexionMySQL.obtenerConexion(); PreparedStatement pstmt = con.prepareStatement(sql)) {
+		Connection con = ConexionMySQL.obtenerConexion(); 
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, id);
 
-			pstmt.setInt(1, id);
-
-			try (ResultSet rs = pstmt.executeQuery()) {
+		ResultSet rs = pstmt.executeQuery();
+		Inventario i = null;
+		
 				if (rs.next()) {
-					Inventario i = new Inventario();
+					i = new Inventario();
 					i.setId_inventario(rs.getInt("id_inventario"));
 					i.setCodigo(rs.getInt("codigo"));
 					i.setCategoria(rs.getString("categoria"));
@@ -87,11 +89,8 @@ public class InventarioDAOimpl implements InventarioDAO{
 					i.setMarca(rs.getString("marca"));
 					i.setPrecio(rs.getDouble("precio_unitario"));
 					i.setStock(rs.getInt("stock"));
-					return i;
 				}
-			}
-		}
-		return null;
+				return i;
 	}
 	
 	public boolean actualizarProducto(Inventario i) throws SQLException {
@@ -109,6 +108,10 @@ public class InventarioDAOimpl implements InventarioDAO{
 			pstmt.setInt(7, i.getId_inventario());
 
 			return pstmt.executeUpdate() > 0;
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+			return false;
 		}
 	}
 	

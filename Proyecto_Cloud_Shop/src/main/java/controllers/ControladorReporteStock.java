@@ -11,84 +11,39 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import DAO.ReporteStockDAO;
+import DAO.InventarioDAOimpl;
+import interfaces.InventarioDAO;
 
-/**
- * Servlet implementation class ContoladorReporteStock
- */
 @WebServlet("/ControladorReporteStock")
 public class ControladorReporteStock extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
-	public ControladorReporteStock() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	ReporteStockDAO reporte = new ReporteStockDAO();
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		System.out.println("SERVER");
-		try {
-			processRequest(request, response);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-	}
+    private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		try {
-			processRequest(request, response);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-	}
+    InventarioDAO dao = new InventarioDAOimpl();
 
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, SQLException {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            listarReporteStock(request, response);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
-		String accionar = request.getParameter("accionar");
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //doGet(request, response);}
+    }
 
-		if (accionar == null) {
-			System.out.println("El accionar es nulo");
-			return;
-		}
+    // LISTAR REPORTE STOCK
+    private void listarReporteStock(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, SQLException {
+    	System.out.println("LISTANDO INVENTARIO");
 
-		switch (accionar) {
-		case "mostrarReporteStock":
-			listaReporteStock(request, response);
-			System.out.println("se esta solicitado la " + accionar);
-			break;
+        List<Inventario> listaProductos = dao.listarInventario();
+        request.setAttribute("listaProductos", listaProductos);
 
-		case "mostrarReporteVentas":
-			listarReporteVentas(request, response);
-			System.out.println("se esta solicitado la " + accionar);
-			break;
-			
-		default:
-			System.out.println("Acción no reconocida");
-			break;
-		}
-
-	}
-
-	public void listaReporteStock(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, SQLException {
-		try {
-		    List<Inventario> listadeReporteStock = reporte.listarReporteStock();
-		    System.out.println("Lista de Reporte Stock: " + listadeReporteStock.size());
-		    request.setAttribute("listarProductos", listadeReporteStock);
-		    request.getRequestDispatcher("/views/guiReporteStock.jsp").forward(request, response);
-		} catch (SQLException e) {
-		    System.err.println("Error al obtener el reporte: " + e.getMessage());
-		    e.printStackTrace(); // Para ver detalles en el servidor
-		}
-	}
-
-	public void listarReporteVentas(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		request.getRequestDispatcher("/views/guiReporteVentas.jsp").forward(request, response);
-	}
+        request.getRequestDispatcher("/views/guiReporteStock.jsp")
+               .forward(request, response);
+    }
 }

@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import DAO.InventarioDAO;
+import DAO.InventarioDAOimpl;
 import DAO.VentasDAO;
 import DAO.VentasDAOimpl;
 import model.Inventario;
@@ -22,7 +23,7 @@ public class VentasControllers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	//DAO GLOBALES
-	private InventarioDAO inventarioDAO = new InventarioDAO();
+	interfaces.InventarioDAO inventarioDAO = new InventarioDAOimpl();
 	interfaces.VentasDAO ventasDAO = new VentasDAOimpl();
 	
 	
@@ -52,8 +53,7 @@ public class VentasControllers extends HttpServlet {
 
 		String accion = request.getParameter("accion");
 		
-		System.out.println(accion + " accion");
-		
+
 		if (accion == null) {
 			accion = "listar";
 		}

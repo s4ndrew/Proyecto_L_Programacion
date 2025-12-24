@@ -22,57 +22,48 @@
 						</a>
             	</div>
 			</div>
-            
-			<!-- <div class="input-group mb-4 shadow-sm">
-                <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
-                <input type="text" class="form-control form-control-lg" placeholder="Buscar productos">
-            </div> --> 
 
             <!-- TABLA -->
-            <div class="table-responsive">
-            	<table id="tblBuscador" class="table table-hover rounded-4 overflow-hidden shadow-sm mt-2">
-	                <thead class="table-secondary text-white">
-	                    <tr class="text-center">
-	                    	<th class="border-0 p-3">Id</th>
-	                        <th class="border-0 p-3">Producto</th>
-	                        <th class="border-0 p-3">Marca</th>
-	                        <th class="border-0 p-3">Precio</th>
-	                        <th class="border-0 p-3">Stock</th>
-	                    </tr>
-	                </thead>
-	
-	                <tbody>
-	                <%
-	                	List<Inventario> lista = (List<Inventario>) request.getAttribute("listadeReporteStock");
-	                	
-	                	if(lista != null && !lista.isEmpty()){
-	                	for(Inventario stock : lista){
-	                
-	                %>
-	                
-	                
-	                    <tr class="text-center">
-	                    	<td class="border-end p-3"><%= stock.getId_inventario()%></td>
-	                        <td class="border-end p-3"><%= stock.getProducto()%></td>
-	                        <td class="border-end p-3"><%= stock.getMarca()%></td>
-	                        <td class="border-end p-3"><%= stock.getPrecio()%></td>
-	                        <td class="border-end p-3"><%= stock.getStock()%></td>
-	                    </tr>
-	                </tbody>
-	                
-	                <%
-	                	}
-	                	} else{
-	                		%>
-	                		<p>Lista vacia</p>
-	                		<%
-	                	}
-	                %>
-            	</table>
-            </div>
+            	<div class="table-responsive mt-4">
+				<table id="tblBuscador" class="table table-hover rounded-4 overflow-hidden shadow-sm mt-3">
+					<thead class="table-secondary">
+						<tr class="text-center">
+							<th>N°</th>
+							<th>Código</th>
+							<th>Categoría</th>
+							<th>Producto</th>
+							<th>Marca</th>
+							<th>Precio</th>
+							<th>Stock</th>
+						</tr>
+					</thead>
+					<tbody>
+						<%
+						List<Inventario> lista = (List<Inventario>) request.getAttribute("listaProductos");
+
+						if (lista != null) {
+							for (Inventario inv : lista) {
+						%>
+						<tr class="text-center">
+							<td><%=inv.getId_inventario()%></td>
+							<td><%=inv.getCodigo()%></td>
+							<td><%=inv.getCategoria()%></td>
+							<td><%=inv.getProducto()%></td>
+							<td><%=inv.getMarca()%></td>
+							<td><%=inv.getPrecio()%></td>
+							<td><%=inv.getStock()%></td>
+						</tr>
+						<%
+							}
+						}
+						%>
+					</tbody>
+				</table>
+			</div>
 		</section>
 	</main>
 	
 	<jsp:include page="./components/footer.jsp"></jsp:include>
+	<jsp:include page="./components/tabla-script.jsp"></jsp:include>
 </body>
 </html>

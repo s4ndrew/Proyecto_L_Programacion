@@ -33,8 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	<!-- SWEET ALERT -->
 	
-	</script>
-	
 	<script>
 		var mensaje = "${sessionScope.msj}";
 		
@@ -92,5 +90,5 @@ document.addEventListener("DOMContentLoaded", function () {
 		        }
 		    });
 		}
-	Z</script>
+	</script>
 </footer>
