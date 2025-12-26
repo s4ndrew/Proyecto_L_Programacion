@@ -15,81 +15,98 @@
 	<jsp:include page="./components/header.jsp"></jsp:include>
 
 	<%
+
 	%>
 
 	<main class="container d-flex justify-content-center">
 
 		<section class="card p-4 my-5 rounded-4 shadow-lg border-0"
-			style="max-width: 1000px; width: 100%;">
+			style="max-width: 900px; width: 100%;">
 
-			<h3 class="text-start mb-4">
-				<i class="bi bi-cart-fill me-2"></i>Detalle de Venta
-			</h3>
-			   <%
-			   	Ventas v = (Ventas) request.getAttribute("venta");
-			
-			    	if (v != null) {
-			    %>
-				
-				<div class="row">
-					<div class="col-12"> 
-						<h4>DNI</h4>
-						<h5><%= v.getDni() %></h5>
-						
-						<h4>Nombres</h4>
-						<h5><%= v.getNombres() %></h5>
-						
-						<h4>Apellidos</h4>
-						<h5><%= v.getApellidos() %></h5>
-						
-						<h4>Teléfono</h4>
-						<h5><%= v.getTelefono() %></h5>
-						
-						<h4>Dirección</h4>
-						<h5><%= v.getDireccion() %></h5>
-						
-						<h4>Correo</h4>
-						<h5><%= v.getCorreo() %></h5>
-					</div>
+			<%
+			Ventas v = (Ventas) request.getAttribute("venta");
+			if (v != null) {
+			%>
+
+			<div class="d-flex justify-content-between align-items-center mb-4">
+				<div>
+					<h4 class="fw-bold mb-0">CLOUD SHOP</h4>
+					<small class="text-muted">Proforma / Boleta de Venta</small>
 				</div>
-				
-				<hr>
+				<div class="text-end">
+					<span class="badge bg-primary fs-6">N° <%=v.getId_venta()%></span>
+				</div>
+			</div>
 
-                <div class="row">
-                	<div class="col-3">
-                		<h4>Producto</h4>
-						<h5></h5>
-                	</div>
-                	
-                	<div class="col-3">
-                		<h4>Precio</h4>
-						<h5></h5>
-                	</div>
-                	
-                	<div class="col-3">
-                		<h4>Cantidad</h4>
-						<h5></h5>
-                	</div>
-                	
-                	<div class="col-3">
-                		<h4>Subtotal</h4>
-						<h5></h5>
-                	</div>
-                </div>
-                
-               <hr>
-               
-                <div class="row">
-                		<h4>Total</h4>
-						<h5><%= v.getTotal() %></h5>
-                	</div>
-				<%
-					}
-				%>
+			<hr>
+
+			<div class="row mb-4">
+				<div class="col-md-6">
+					<p class="mb-1">
+						<strong>DNI:</strong>
+						<%=v.getDni()%></p>
+					<p class="mb-1">
+						<strong>Cliente:</strong>
+						<%=v.getNombres()%>
+						<%=v.getApellidos()%></p>
+					<p class="mb-1">
+						<strong>Teléfono:</strong>
+						<%=v.getTelefono()%></p>
+				</div>
+				<div class="col-md-6">
+					<p class="mb-1">
+						<strong>Dirección:</strong>
+						<%=v.getDireccion()%></p>
+					<p class="mb-1">
+						<strong>Correo:</strong>
+						<%=v.getCorreo()%></p>
+				</div>
+			</div>
+
+			<div class="table-responsive">
+				<table class="table table-bordered align-middle">
+					<thead class="table-light">
+						<tr class="text-center">
+							<th>Categoría</th>
+							<th>Producto</th>
+							<th>Precio Unitario (+IGV)</th>
+							<th>Cantidad</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="text-center">
+							<td><%=v.getCategoria()%></td>
+							<td><%=v.getProducto()%></td>
+							<td>S/ <%=String.format("%.2f", v.getPrecio_unitario())%></td>							
+							<td><%=v.getCantidad()%></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="d-flex justify-content-end mt-4">
+				<div class="border rounded-3 p-3 text-end" style="min-width: 250px;">
+					<h6 class="mb-1">TOTAL A PAGAR</h6>
+					<h4 class="fw-bold text-success">
+						S/
+						<%=String.format("%.2f", v.getTotal())%>
+					</h4>
+				</div>
+			</div>
+
+			<hr>
+
+			<div class="text-center text-muted small">Gracias por su
+				preferencia • Documento sin valor tributario</div>
+
+			<%
+			}
+			%>
 		</section>
+
 	</main>
 
-	<jsp:include page="./components/footer.jsp"/>
+	<jsp:include page="./components/footer.jsp" />
 
 </body>
 </html>

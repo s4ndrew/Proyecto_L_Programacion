@@ -42,7 +42,6 @@
 				stock = I.getStock();
 
 				accionFormulario = "actualizar";
-				//accionFormulario = "eliminar";
 				boton = "ACTUALIZAR";
 			}
 
@@ -167,7 +166,8 @@
 			if (!editando) {
 			%>
 			<div class="table-responsive mt-4">
-				<table id="tblBuscador" class="table table-hover rounded-4 overflow-hidden shadow-sm mt-3">
+				<table id="tblBuscador"
+					class="table table-hover rounded-4 overflow-hidden shadow-sm mt-3">
 					<thead class="table-secondary">
 						<tr class="text-center">
 							<th>N°</th>
@@ -195,26 +195,21 @@
 							<td><%=inv.getMarca()%></td>
 							<td><%=inv.getPrecio()%></td>
 							<td><%=inv.getStock()%></td>
-							<td>
-								<!-- EDITAR -->
-							    <a class="btn btn-warning btn-sm"
-							       href="InventarioController?accion=editar&id=<%= inv.getId_inventario() %>">
-							        <i class="bi bi-pencil-square fs-5"></i>
-							    </a>
-							
-							    <!-- ELIMINAR -->
-							    <form id="formEliminar<%= inv.getId_inventario() %>"
-							    	 action="InventarioController" method="post" style="display:inline;">
-							        <input type="hidden" name="accion" value="eliminar">
-							        <input type="hidden" name="id" value="<%= inv.getId_inventario() %>">
-							
-							    	<button type="button"
-								            class="btn btn-danger"
-								            onclick="confirmarEliminacion(<%= inv.getId_inventario() %>)">
-								        <i class="bi bi-trash-fill fs-5"></i>
-								    </button>
-							    </form>
-							</td>
+							<td><a class="btn btn-warning btn-sm"
+								href="InventarioController?accion=editar&id=<%=inv.getId_inventario()%>">
+									<i class="bi bi-pencil-square fs-5"></i>
+							</a>
+								<form id="formEliminar<%=inv.getId_inventario()%>"
+									action="InventarioController" method="post"
+									style="display: inline;">
+									<input type="hidden" name="accion" value="eliminar"> <input
+										type="hidden" name="id" value="<%=inv.getId_inventario()%>">
+
+									<button type="button" class="btn btn-danger"
+										onclick="confirmarEliminacion(<%=inv.getId_inventario()%>)">
+										<i class="bi bi-trash-fill fs-5"></i>
+									</button>
+								</form></td>
 						</tr>
 						<%
 						}
@@ -226,7 +221,6 @@
 			<%
 			}
 			%>
-
 		</section>
 	</main>
 

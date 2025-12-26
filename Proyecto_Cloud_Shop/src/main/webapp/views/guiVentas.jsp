@@ -24,7 +24,8 @@
 			<form action="${pageContext.request.contextPath}/VentasControllers"
 				method="POST" novalidate>
 
-				<input type="hidden" name="accion" value="registrar"> 
+				<input type="hidden" name="txtCantidad" id="txtCantidad">
+				<input type="hidden" name="accion" value="registrar">
 				<input type="hidden" name="txtIdInventario" id="txtIdInventario">
 
 				<div class="row g-4 mb-3">
@@ -71,15 +72,13 @@
 							class="form-control form-control-lg" placeholder="Total" readonly>
 					</div>
 				</div>
-				
+
 				<div class="text-start my-4">
 					<button class="btn btn-success btn-lg px-5 py-2" type="submit">
 						AGREGAR</button>
 				</div>
 			</form>
-			
-			
-			<!-- TABLA DE PRODUCTOS  -->
+
 			<div class="table-responsive">
 				<table id="tblBuscador"
 					class="table table-hover rounded-4 overflow-hidden shadow-sm mt-3">
@@ -108,9 +107,9 @@
 							<td><%=inv.getMarca()%></td>
 							<td><%=inv.getPrecio()%></td>
 							<td><%=inv.getStock()%></td>
-							<td><input type="number" min="0" value="0"
+							<td><input type="number" min="0" value="0" name="cantidad"
 								class="form-control form-control-sm cantidad-input"
-								style="width: 80px; margin: auto"></td>
+								style="width: 80px; margin: auto" disabled></td>
 							<td><input type="checkbox"
 								class="form-check-input seleccionar-checkbox"
 								data-id="<%=inv.getId_inventario()%>"
@@ -118,7 +117,7 @@
 								data-precio="<%=inv.getPrecio()%>"></td>
 						</tr>
 						<%
-							}
+						}
 						}
 						%>
 					</tbody>

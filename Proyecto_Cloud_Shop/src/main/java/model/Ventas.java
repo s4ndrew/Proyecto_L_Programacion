@@ -7,8 +7,44 @@ public class Ventas {
 	private int telefono;
 	private String direccion, correo;
 	private double total;
-	private int id_inventario; 
+	private int id_inventario;
+	private String categoria, producto;
+	private double precio_unitario;
+	private int cantidad;
 
+
+
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public String getProducto() {
+		return producto;
+	}
+
+	public void setProducto(String producto) {
+		this.producto = producto;
+	}
+
+	public double getPrecio_unitario() {
+		return precio_unitario;
+	}
+
+	public void setPrecio_unitario(double precio_unitario) {
+		this.precio_unitario = precio_unitario;
+	}
 
 	public int getDni() {
 		return dni;

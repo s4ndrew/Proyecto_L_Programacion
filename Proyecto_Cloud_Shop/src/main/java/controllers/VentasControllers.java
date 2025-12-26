@@ -70,12 +70,6 @@ public class VentasControllers extends HttpServlet {
 			break;
 		}
 	}
-
-	
-	//METODOS DEL CRUD
-	
-	
-	//LISTAR INVENTARIO
 	private void listarInventario(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 
@@ -87,25 +81,29 @@ public class VentasControllers extends HttpServlet {
 
 	
 	//REGISTRAR VENTA
-	private void registrarVenta(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException, ServletException {
-		
-		Ventas ven = new Ventas();
-		ven.setDni(Integer.parseInt(request.getParameter("txtDNI")));
-		ven.setNombres(request.getParameter("txtNombres"));
-		ven.setApellidos(request.getParameter("txtApellidos"));
-		ven.setTelefono(Integer.parseInt(request.getParameter("txtTelefono")));
-		ven.setDireccion(request.getParameter("txtDireccion"));
-		ven.setCorreo(request.getParameter("txtCorreo"));
-		ven.setTotal(Double.parseDouble(request.getParameter("txtTotal")));
-		ven.setId_inventario(Integer.parseInt(request.getParameter("txtIdInventario")));
-		
-	
-		int idVenta = ventasDAO.insertarVenta(ven);
-		
-		response.sendRedirect(request.getContextPath() + "/VentasControllers?accion=verDetalle&idVenta=" + idVenta);
+	private void registrarVenta(HttpServletRequest request, HttpServletResponse response)
+	        throws SQLException, IOException, ServletException {
+
+	    Ventas ven = new Ventas();
+
+	    ven.setDni(Integer.parseInt(request.getParameter("txtDNI")));
+	    ven.setNombres(request.getParameter("txtNombres"));
+	    ven.setApellidos(request.getParameter("txtApellidos"));
+	    ven.setTelefono(Integer.parseInt(request.getParameter("txtTelefono")));
+	    ven.setDireccion(request.getParameter("txtDireccion"));
+	    ven.setCorreo(request.getParameter("txtCorreo"));
+	    ven.setTotal(Double.parseDouble(request.getParameter("txtTotal")));
+	    ven.setId_inventario(Integer.parseInt(request.getParameter("txtIdInventario")));
+	    ven.setCantidad(Integer.parseInt(request.getParameter("txtCantidad")));
+
+	    int idVenta = ventasDAO.insertarVenta(ven);
+
+	    response.sendRedirect(
+	        request.getContextPath() +
+	        "/VentasControllers?accion=verDetalle&idVenta=" + idVenta
+	    );
 	}
-	
-	//VER DETALLE VENTA
+
     private void verDetalleVenta(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
 
