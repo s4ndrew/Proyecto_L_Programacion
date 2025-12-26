@@ -75,7 +75,7 @@
 
 				<div class="text-start my-4">
 					<button class="btn btn-success btn-lg px-5 py-2" type="submit">
-						AGREGAR</button>
+						GENERAR COMPROBANTE</button>
 				</div>
 			</form>
 

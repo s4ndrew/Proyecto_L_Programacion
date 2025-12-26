@@ -21,25 +21,25 @@
 			<%
 			Inventario I = (Inventario) request.getAttribute("producto");
 
-			int id = 0;
-			int codigo = 0;
+			String id = "";
+			String codigo = "";
 			String categoria = "";
 			String producto = "";
 			String marca = "";
-			double precio = 0.0;
-			int stock = 0;
+			String precio = "";
+			String stock = "";
 
 			String accionFormulario = "guardar";
 			String boton = "REGISTRAR";
-
+	
 			if (I != null) {
-				id = I.getId_inventario();
-				codigo = I.getCodigo();
+				id = (I.getId_inventario() != 0) ? String.valueOf(I.getId_inventario()) : "";
+			    codigo = (I.getCodigo() != 0) ? String.valueOf(I.getCodigo()) : "";
 				categoria = I.getCategoria();
 				producto = I.getProducto();
 				marca = I.getMarca();
-				precio = I.getPrecio();
-				stock = I.getStock();
+				precio = (I.getPrecio() != 0.0) ? String.valueOf(I.getPrecio()) : "";
+			    stock = (I.getStock() != 0) ? String.valueOf(I.getStock()) : "";
 
 				accionFormulario = "actualizar";
 				boton = "ACTUALIZAR";
@@ -57,16 +57,16 @@
 
 				<div class="row g-4 mb-3">
 					<div class="col-6">
-						<label class="form-label">Código</label> <input type="number"
-							name="txtCodigo" value="<%=codigo%>" class="form-control"
-							required>
+						<input type="number"
+							name="txtCodigo" value="<%=codigo%>" class="form-control form-control-lg"
+							required placeholder="Código">
 						<div class="invalid-feedback">El código es obligatorio.</div>
 					</div>
 
 					<div class="col-6">
-						<label class="form-label">Categoría</label> <select
-							class="form-select" name="cboCategoria" required>
-							<option value="">Seleccione</option>
+						 <select
+							class="form-select form-select-lg" name="cboCategoria" required>
+							<option value="">Seleccione Categoría</option>
 							<option value="Laptop"
 								<%="Laptop".equals(categoria) ? "selected" : ""%>>Laptops</option>
 							<option value="Desktop"
@@ -90,31 +90,30 @@
 
 				<div class="row g-4 mb-3">
 					<div class="col-6">
-						<label class="form-label">Producto</label> <input type="text"
-							name="txtProducto" value="<%=producto%>" class="form-control"
+						<input type="text"
+							name="txtProducto" value="<%=producto%>" class="form-control form-control-lg" placeholder="Producto"
 							required>
 						<div class="invalid-feedback">El producto es obligatorio.</div>
 					</div>
 
 					<div class="col-6">
-						<label class="form-label">Stock</label> <input type="number"
-							name="txtStock" value="<%=stock%>" class="form-control" required
-							min="0">
+						 <input type="number"
+							name="txtStock" value="<%=stock%>" class="form-control form-control-lg" placeholder="Stock" required>
 						<div class="invalid-feedback">Ingrese el stock.</div>
 					</div>
 				</div>
 
 				<div class="row g-4 mb-4">
 					<div class="col-6">
-						<label class="form-label">Marca</label> <input type="text"
-							name="txtMarca" value="<%=marca%>" class="form-control" required>
+						<input type="text"
+							name="txtMarca" value="<%=marca%>" class="form-control form-control-lg" min="0" placeholder="Marca" required>
 						<div class="invalid-feedback">La marca es obligatoria.</div>
 					</div>
 
 					<div class="col-6">
-						<label class="form-label">Precio</label> <input type="number"
+						<input type="number"
 							step="0.01" name="txtPrecio" value="<%=precio%>"
-							class="form-control" required min="0">
+							class="form-control form-control-lg" required min="0" placeholder="Precio">
 						<div class="invalid-feedback">Ingrese un precio válido.</div>
 					</div>
 				</div>
