@@ -12,4 +12,6 @@ public interface VentasDAO {
 	public ArrayList<Ventas> listarVentas() throws SQLException;
 	
 	public Ventas buscarPorId(int id) throws SQLException;
+	
+	public ArrayList<Ventas> listarReporteVentas()  throws SQLException;
 }

@@ -28,7 +28,7 @@
 				</div>
 				<div class="card-body"></div>
 				<div class="d-flex justify-content-center">
-					<a href="guiReporteVentas.jsp" class="btn btn-primary p-2 w-100"
+					<a href="${pageContext.request.contextPath}/ReporteControllers?accion=listarReporteVentas" class="btn btn-primary p-2 w-100"
 						role="button">REPORTE DE VENTAS</a>
 				</div>
 			</div>

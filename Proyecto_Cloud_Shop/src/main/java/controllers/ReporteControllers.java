@@ -6,12 +6,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Inventario;
+import model.Ventas;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
 import DAO.InventarioDAOimpl;
+import DAO.VentasDAOimpl;
 import interfaces.InventarioDAO;
 
 @WebServlet("/ReporteControllers")
@@ -20,6 +22,7 @@ public class ReporteControllers extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     interfaces.InventarioDAO dao = new InventarioDAOimpl();
+    interfaces.VentasDAO dao2 = new VentasDAOimpl();
     
     
     //PROCEES REEQUEST
@@ -34,6 +37,9 @@ public class ReporteControllers extends HttpServlet {
 			switch (accion) {
 				case "listarReporteStock":
 					listarReporteStock(request, response);
+					break;
+				case "listarReporteVentas":
+					listarReporteVentas(request, response);
 					break;
 			}
 	}
@@ -50,7 +56,13 @@ public class ReporteControllers extends HttpServlet {
         request.getRequestDispatcher("/views/guiReporteStock.jsp").forward(request, response);
     }
     
-    
+    // LISTAR REPORTE VENTAS
+    private void listarReporteVentas(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+		List<Ventas> listaReporteVentas = dao2.listarReporteVentas();
+		
+		request.setAttribute("listaReporteVentas", listaReporteVentas);
+		request.getRequestDispatcher("/views/guiReporteVentas.jsp").forward(request, response);
+	}
     
 	//GET Y POST
     @Override

@@ -112,4 +112,37 @@ public class VentasDAOimpl implements VentasDAO {
 
 		return v;
 	}
+
+	@Override
+	public ArrayList<Ventas> listarReporteVentas() throws SQLException {
+		ArrayList<Ventas> listaReporteVentas = new ArrayList<>();
+		
+		String sql = "SELECT v.*, i.categoria, i.producto, i.precio_unitario " + "FROM venta v "
+				+ "INNER JOIN inventario i ON v.id_inventario = i.id_inventario " + "ORDER BY v.id_venta DESC";;
+
+		Connection con = ConexionMySQL.obtenerConexion();
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		
+		while (rs.next()) {
+			Ventas v = new Ventas();
+			v = new Ventas();
+			v.setId_venta(rs.getInt("id_venta"));
+			v.setDni(rs.getInt("dni"));
+			v.setNombres(rs.getString("nombres"));
+			v.setApellidos(rs.getString("apellidos"));
+			v.setTelefono(rs.getInt("telefono"));
+			v.setDireccion(rs.getString("direccion"));
+			v.setCorreo(rs.getString("correo"));
+			v.setTotal(rs.getDouble("total"));
+			v.setId_inventario(rs.getInt("id_inventario"));
+			v.setProducto(rs.getString("producto"));
+			v.setCategoria(rs.getString("categoria"));
+			v.setPrecio_unitario(rs.getInt("precio_unitario"));
+			v.setCantidad(rs.getShort("cantidad"));
+			listaReporteVentas.add(v);
+		}
+		return listaReporteVentas;
+
+	}
 }

@@ -68,50 +68,21 @@
 							class="form-select" name="cboCategoria" required>
 							<option value="">Seleccione</option>
 							<option value="Laptop"
-								<%="Laptop".equals(categoria) ? "selected" : ""%>>Laptop</option>
+								<%="Laptop".equals(categoria) ? "selected" : ""%>>Laptops</option>
 							<option value="Desktop"
-								<%="Desktop".equals(categoria) ? "selected" : ""%>>Desktop</option>
+								<%="Desktop".equals(categoria) ? "selected" : ""%>>Celulares</option>
 							<option value="All in One"
-								<%="All in One".equals(categoria) ? "selected" : ""%>>All
-								in One</option>
+								<%="All in One".equals(categoria) ? "selected" : ""%>>Tablets</option>
 							<option value="Servidor"
-								<%="Servidor".equals(categoria) ? "selected" : ""%>>Servidor</option>
+								<%="Servidor".equals(categoria) ? "selected" : ""%>>Accesorios</option>
 							<option value="Monitor"
-								<%="Monitor".equals(categoria) ? "selected" : ""%>>Monitor</option>
+								<%="Monitor".equals(categoria) ? "selected" : ""%>>Componentes</option>
 							<option value="Impresora"
-								<%="Impresora".equals(categoria) ? "selected" : ""%>>Impresora</option>
+								<%="Impresora".equals(categoria) ? "selected" : ""%>>Monitores</option>
 							<option value="Scanner"
-								<%="Scanner".equals(categoria) ? "selected" : ""%>>Scanner</option>
+								<%="Scanner".equals(categoria) ? "selected" : ""%>>Impresoras</option>
 							<option value="Teclado"
-								<%="Teclado".equals(categoria) ? "selected" : ""%>>Teclado</option>
-							<option value="Mouse"
-								<%="Mouse".equals(categoria) ? "selected" : ""%>>Mouse</option>
-							<option value="Audífonos"
-								<%="Audífonos".equals(categoria) ? "selected" : ""%>>Audífonos</option>
-							<option value="Webcam"
-								<%="Webcam".equals(categoria) ? "selected" : ""%>>Webcam</option>
-							<option value="Almacenamiento"
-								<%="Almacenamiento".equals(categoria) ? "selected" : ""%>>Almacenamiento</option>
-							<option value="Disco Duro"
-								<%="Disco Duro".equals(categoria) ? "selected" : ""%>>Disco
-								Duro</option>
-							<option value="SSD"
-								<%="SSD".equals(categoria) ? "selected" : ""%>>SSD</option>
-							<option value="Memoria RAM"
-								<%="Memoria RAM".equals(categoria) ? "selected" : ""%>>Memoria
-								RAM</option>
-							<option value="Redes"
-								<%="Redes".equals(categoria) ? "selected" : ""%>>Redes</option>
-							<option value="Router"
-								<%="Router".equals(categoria) ? "selected" : ""%>>Router</option>
-							<option value="Switch"
-								<%="Switch".equals(categoria) ? "selected" : ""%>>Switch</option>
-							<option value="Software"
-								<%="Software".equals(categoria) ? "selected" : ""%>>Software</option>
-							<option value="Licencia"
-								<%="Licencia".equals(categoria) ? "selected" : ""%>>Licencia</option>
-							<option value="Accesorios"
-								<%="Accesorios".equals(categoria) ? "selected" : ""%>>Accesorios</option>
+								<%="Teclado".equals(categoria) ? "selected" : ""%>>Consolas</option>
 						</select>
 						<div class="invalid-feedback">Seleccione una categoría.</div>
 					</div>
@@ -170,7 +141,6 @@
 					class="table table-hover rounded-4 overflow-hidden shadow-sm mt-3">
 					<thead class="table-secondary">
 						<tr class="text-center">
-							<th>N°</th>
 							<th>Código</th>
 							<th>Categoría</th>
 							<th>Producto</th>
@@ -188,7 +158,6 @@
 							for (Inventario inv : lista) {
 						%>
 						<tr class="text-center">
-							<td><%=inv.getId_inventario()%></td>
 							<td><%=inv.getCodigo()%></td>
 							<td><%=inv.getCategoria()%></td>
 							<td><%=inv.getProducto()%></td>

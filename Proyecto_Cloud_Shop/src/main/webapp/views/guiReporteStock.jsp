@@ -15,11 +15,9 @@
                 <i class="bi bi-file-bar-graph-fill me-2"></i>Reporte Stock
             	</h3>
             	
-            	<div>
-            		<a href="guiReportes.jsp" class="btn btn-outline-secondary" role="button">
-            	<i class="bi bi-arrow-left-circle-fill "></i>
-            	Regresar
-						</a>
+				 <div>
+		            	<a href="${pageContext.request.contextPath}/views/guiReportes.jsp" class="btn btn-outline-secondary" role="button">
+		            	<i class="bi bi-arrow-left-circle-fill "></i>Regresar</a>
             	</div>
 			</div>
 
