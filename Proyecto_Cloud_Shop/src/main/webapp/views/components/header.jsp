@@ -38,10 +38,9 @@
 
 			</div>
 
-			<button class="btn btn-danger logout-btn ms-4"
-				onclick="window.location.href='guiLogin.jsp'">
-				<i class="bi bi-box-arrow-right"></i>
-			</button>
+		<a href="${pageContext.request.contextPath}/views/guiLogin.jsp" class="btn btn-danger logout-btn ms-4">
+		    <i class="bi bi-box-arrow-right"></i> 
+		</a>
 
 		</div>
 	</nav>

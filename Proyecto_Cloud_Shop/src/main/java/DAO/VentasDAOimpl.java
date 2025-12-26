@@ -14,8 +14,8 @@ public class VentasDAOimpl implements VentasDAO {
 
 	//REGISTRAR
 	@Override
-	public boolean insertarVenta(Ventas v) throws SQLException {
-		String sql = "INSERT INTO venta (dni, nombres, apellidos, telefono, direccion, correo, total, id_inventario) VALUES (?,?,?,?,?,?,?,?)";
+	public int insertarVenta(Ventas v) throws SQLException {
+	    String sql = "INSERT INTO venta (dni, nombres, apellidos, telefono, direccion, correo, total, id_inventario) VALUES (?,?,?,?,?,?,?,?)";
 
 	    Connection con = ConexionMySQL.obtenerConexion();
 	    PreparedStatement pstmt = con.prepareStatement(
@@ -31,8 +31,22 @@ public class VentasDAOimpl implements VentasDAO {
 	    pstmt.setDouble(7, v.getTotal());
 	    pstmt.setInt(8, v.getId_inventario());
 
-	    pstmt.executeUpdate();
-		return false;
+	    int filas = pstmt.executeUpdate();
+
+	    int idVenta = 0;
+
+	    if (filas > 0) {
+	        ResultSet rs = pstmt.getGeneratedKeys();
+	        if (rs.next()) {
+	            idVenta = rs.getInt(1);
+	        }
+	        rs.close();
+	    }
+
+	    pstmt.close();
+	    con.close();
+
+	    return idVenta;
 	}
 
 	//LISTAR INPUTS VENTAS

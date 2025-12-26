@@ -28,7 +28,6 @@
 				<table id="tblBuscador" class="table table-hover rounded-4 overflow-hidden shadow-sm mt-3">
 					<thead class="table-secondary">
 						<tr class="text-center">
-							<th>N°</th>
 							<th>Código</th>
 							<th>Categoría</th>
 							<th>Producto</th>
@@ -39,13 +38,12 @@
 					</thead>
 					<tbody>
 						<%
-						List<Inventario> lista = (List<Inventario>) request.getAttribute("listaProductos");
+						List<Inventario> lista = (List<Inventario>) request.getAttribute("listaReporteStock");
 
 						if (lista != null) {
 							for (Inventario inv : lista) {
 						%>
 						<tr class="text-center">
-							<td><%=inv.getId_inventario()%></td>
 							<td><%=inv.getCodigo()%></td>
 							<td><%=inv.getCategoria()%></td>
 							<td><%=inv.getProducto()%></td>
@@ -64,6 +62,5 @@
 	</main>
 	
 	<jsp:include page="./components/footer.jsp"></jsp:include>
-	<jsp:include page="./components/tabla-script.jsp"></jsp:include>
 </body>
 </html>

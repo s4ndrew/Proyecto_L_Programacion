@@ -7,15 +7,8 @@ public class Ventas {
 	private int telefono;
 	private String direccion, correo;
 	private double total;
-	private int id_inventario;
+	private int id_inventario; 
 
-	public int getId_venta() {
-		return id_venta;
-	}
-
-	public void setId_venta(int id_venta) {
-		this.id_venta = id_venta;
-	}
 
 	public int getDni() {
 		return dni;
@@ -71,6 +64,14 @@ public class Ventas {
 
 	public void setTotal(double total) {
 		this.total = total;
+	}
+
+	public int getId_venta() {
+		return id_venta;
+	}
+
+	public void setId_venta(int id_venta) {
+		this.id_venta = id_venta;
 	}
 
 	public int getId_inventario() {

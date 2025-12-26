@@ -71,11 +71,15 @@
 							class="form-control form-control-lg" placeholder="Total" readonly>
 					</div>
 				</div>
+				
 				<div class="text-start my-4">
 					<button class="btn btn-success btn-lg px-5 py-2" type="submit">
 						AGREGAR</button>
 				</div>
 			</form>
+			
+			
+			<!-- TABLA DE PRODUCTOS  -->
 			<div class="table-responsive">
 				<table id="tblBuscador"
 					class="table table-hover rounded-4 overflow-hidden shadow-sm mt-3">
@@ -110,22 +114,20 @@
 							<td><input type="checkbox"
 								class="form-check-input seleccionar-checkbox"
 								data-id="<%=inv.getId_inventario()%>"
+								data-producto="<%=inv.getProducto()%>"
 								data-precio="<%=inv.getPrecio()%>"></td>
 						</tr>
 						<%
-						}
+							}
 						}
 						%>
 					</tbody>
-
 				</table>
-
 			</div>
 
 		</section>
 	</main>
 
 	<jsp:include page="./components/footer.jsp"></jsp:include>
-	<jsp:include page="./components/tabla-script.jsp"></jsp:include>
 </body>
 </html>

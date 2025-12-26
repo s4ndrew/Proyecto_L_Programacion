@@ -7,7 +7,7 @@ import model.Ventas;
 
 public interface VentasDAO {
 	
-	public boolean insertarVenta(Ventas v) throws SQLException;
+	public int insertarVenta(Ventas v) throws SQLException;
 	
 	public ArrayList<Ventas> listarVentas() throws SQLException;
 	

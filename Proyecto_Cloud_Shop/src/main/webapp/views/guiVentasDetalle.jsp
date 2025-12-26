@@ -1,4 +1,7 @@
+
 <%@page import="model.Ventas"%>
+<%@ page import="java.util.List"%>
+<%@ page import="model.Inventario"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -12,8 +15,6 @@
 	<jsp:include page="./components/header.jsp"></jsp:include>
 
 	<%
-	//List<String> categorias = //(List<String>) request.getAttribute("categorias");
-	//List<Inventario> listaProductos = //(List<Inventario>) request.getAttribute("listaProductos");
 	%>
 
 	<main class="container d-flex justify-content-center">
@@ -30,39 +31,58 @@
 			    	if (v != null) {
 			    %>
 				
-				<h4>DNI</h4>
-				<h5><%= v.getDni() %></h5>
-				
-				<h4>Nombres</h4>
-				<h5><%= v.getNombres() %></h5>
-				
-				<h4>Apellidos</h4>
-				<h5><%= v.getApellidos() %></h5>
-				
-				<h4>Teléfono</h4>
-				<h5><%= v.getTelefono() %></h5>
-				
-				<h4>Dirección</h4>
-				<h5><%= v.getDireccion() %></h5>
-				
-				<h4>Correo</h4>
-				<h5><%= v.getCorreo() %></h5>
+				<div class="row">
+					<div class="col-12"> 
+						<h4>DNI</h4>
+						<h5><%= v.getDni() %></h5>
+						
+						<h4>Nombres</h4>
+						<h5><%= v.getNombres() %></h5>
+						
+						<h4>Apellidos</h4>
+						<h5><%= v.getApellidos() %></h5>
+						
+						<h4>Teléfono</h4>
+						<h5><%= v.getTelefono() %></h5>
+						
+						<h4>Dirección</h4>
+						<h5><%= v.getDireccion() %></h5>
+						
+						<h4>Correo</h4>
+						<h5><%= v.getCorreo() %></h5>
+					</div>
+				</div>
 				
 				<hr>
-				
-				<h4>Producto</h4>
-				<h5></h5>
-						
-				<h4>Precio</h4>
-				<h5></h5>
-						
-				<h4>Cantidad</h4>
-				<h5></h5>
-						
-				<h4>Subtotal</h4>
-				
-				<h4>Total</h4>
-				<h5><%= v.getTotal() %></h5>
+
+                <div class="row">
+                	<div class="col-3">
+                		<h4>Producto</h4>
+						<h5></h5>
+                	</div>
+                	
+                	<div class="col-3">
+                		<h4>Precio</h4>
+						<h5></h5>
+                	</div>
+                	
+                	<div class="col-3">
+                		<h4>Cantidad</h4>
+						<h5></h5>
+                	</div>
+                	
+                	<div class="col-3">
+                		<h4>Subtotal</h4>
+						<h5></h5>
+                	</div>
+                </div>
+                
+               <hr>
+               
+                <div class="row">
+                		<h4>Total</h4>
+						<h5><%= v.getTotal() %></h5>
+                	</div>
 				<%
 					}
 				%>

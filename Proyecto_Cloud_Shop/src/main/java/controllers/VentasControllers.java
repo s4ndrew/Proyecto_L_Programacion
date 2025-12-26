@@ -5,16 +5,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import DAO.InventarioDAO;
 import DAO.InventarioDAOimpl;
-import DAO.VentasDAO;
 import DAO.VentasDAOimpl;
 import model.Inventario;
 import model.Ventas;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
+
 import java.util.List;
 
 @WebServlet("/VentasControllers")
@@ -102,10 +100,9 @@ public class VentasControllers extends HttpServlet {
 		ven.setId_inventario(Integer.parseInt(request.getParameter("txtIdInventario")));
 		
 	
-		boolean idVenta = ventasDAO.insertarVenta(ven);
+		int idVenta = ventasDAO.insertarVenta(ven);
 		
-		response.sendRedirect(request.getContextPath() + "/VentasControllers?accion=verDetalle&idVenta=" + idVenta
-			);
+		response.sendRedirect(request.getContextPath() + "/VentasControllers?accion=verDetalle&idVenta=" + idVenta);
 	}
 	
 	//VER DETALLE VENTA
@@ -113,9 +110,9 @@ public class VentasControllers extends HttpServlet {
             throws SQLException, ServletException, IOException {
 
         int idVenta = Integer.parseInt(request.getParameter("idVenta"));
-
+        
         Ventas venta = ventasDAO.buscarPorId(idVenta);
-
+        
         request.setAttribute("venta", venta);
         request.getRequestDispatcher("/views/guiVentasDetalle.jsp").forward(request, response);
     }
