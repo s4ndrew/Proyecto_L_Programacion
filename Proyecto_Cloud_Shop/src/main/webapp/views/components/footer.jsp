@@ -3,7 +3,79 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="https://cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+	<script>
+	function validarLogin(event) {
+		event.preventDefault();
+		const usuario = document.getElementById("user").value.trim();
+		const contrasenia = document.getElementById("pass").value.trim();
+
+
+		
+		const users = [
+			{
+				
+				user: "GER_102", // Carolina', 'Fernandez', 'Gerente',
+				password: "gerente123",
+				nombre: "Carolina Fernandez",
+				rol: "Gerente"
+			},
+			
+			{
+				user: "ADM_607", //'MarÃ­a', 'Lopez', 'Administrador'
+				password: "admin123",
+				nombre: "MarÃ­a Lopez",
+				rol: "Administrador"
+			},
+			
+			{
+				user: "VEN_506", //'Jorge', 'Castillo', 'Vendedor'
+				password: "pass1234",
+				nombre: "Jorge Castillo",
+				rol: "Vendedor"
+			
+			},
+			{
+				user: "VEN_112", //'Diego', 'Alvarado', 'Vendedor'
+				password: "pass1234",
+				nombre: "Diego Alvarado",
+				rol: "Vendedor"
+			},
+			{
+				user: "VEN_445", //'Paola', 'Cruz', 'Vendedor',
+				password: "pass1234",
+				nombre: "Paola Cruz",
+				rol: "Vendedora"
+			}
+		]
+		
+		
+		for (let u of users) {
+			if (usuario === u.user && contrasenia === u.password) {
+			      Swal.fire({
+			        title: "Acceso correcto",
+			        text: "Bienvenido " + u.rol +" "+ u.nombre,
+			        icon: "success",
+			        confirmButtonText: "Continuar"
+			      }).then(() => {
+			        event.target.submit(); 
+			      });
+
+			    return true;
+			  }			
+		}
+		
+		
+		Swal.fire({
+			  title: "Error",
+			  text: "Datos incorrectos intentelo nuevamente",
+			  icon: "error"
+			});
+		  return false;
+	}
+	
+	</script> 
 	<script>
         (() => {
             'use strict'
@@ -24,7 +96,7 @@
         var mensaje = "${sessionScope.msj}";
         
         if (mensaje === "create") {
-            Swal.fire({ title: "Se registró correctamente", icon: "success" });
+            Swal.fire({ title: "Se registrÃ³ correctamente", icon: "success" });
         } else if (mensaje === "delete") {
             Swal.fire({ title: "Eliminado", text: "El usuario seleccionado ha sido eliminado", icon: "success" });
         } else if (mensaje === "edit") {
@@ -44,11 +116,11 @@
             });
         
             swalWithBootstrapButtons.fire({
-                title: "¿Estás seguro?",
-                text: "No podrás revertir esto!",
+                title: "Â¿EstÃ¡s seguro?",
+                text: "No podrÃ¡s revertir esto!",
                 icon: "warning",
                 showCancelButton: true,
-                confirmButtonText: "Sí, eliminar!",
+                confirmButtonText: "SÃ­, eliminar!",
                 cancelButtonText: "No, cancelar!",
                 reverseButtons: true
             }).then((result) => {

@@ -12,9 +12,9 @@
 			style="max-width: 430px; width: 100%;">
 
 			<form class="needs-validation" novalidate method="post"
-				action="${pageContext.request.contextPath}/UsuariosControllers">
+				action="${pageContext.request.contextPath}/UsuariosControllers" onsubmit="return validarLogin(event)">
 
-				<input type="hidden" name="accion" value="listar">
+				<input type="hidden" name="accion" value="listar"> 
 
 				<div class="d-flex justify-content-center align-items-center mb-3">
 					<i class="bi bi-person-fill fs-1 me-2" style="color: #042b54;"></i>
@@ -25,14 +25,14 @@
 					<div class="col-12">
 						<input type="text" name="usuario"
 							class="form-control form-control-lg" placeholder="Usuario"
-							required>
+							required id="user">
 						<div class="invalid-feedback">Ingrese usuario.</div>
 					</div>
 
 					<div class="col-12">
 						<input type="password" name="contrasena"
 							class="form-control form-control-lg" placeholder="Contraseña"
-							required>
+							required id="pass">
 						<div class="invalid-feedback">Ingrese contraseña.</div>
 					</div>
 				</div>

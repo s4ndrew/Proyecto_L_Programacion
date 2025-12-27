@@ -39,6 +39,8 @@ public class UsuariosControllers extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 	}
 	
 	
@@ -110,8 +112,9 @@ public class UsuariosControllers extends HttpServlet {
 	
 	//PROCEES REEQUEST
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException, ClassNotFoundException {
-		String accion = request.getParameter("accion");
+		String accion = request.getParameter("login");
 		
+
 	    if (accion == null || accion.isEmpty()) {
 	        accion = "listar";
 	    }
@@ -135,5 +138,7 @@ public class UsuariosControllers extends HttpServlet {
 				editarUser(request, response);
 				break;
 		}
+		
+
 	}
 }

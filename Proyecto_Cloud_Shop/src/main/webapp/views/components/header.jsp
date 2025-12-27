@@ -1,4 +1,5 @@
 <header>
+
 	<nav class="navbar navbar-expand-lg navbar-custom">
 		<div class="container-fluid">
 
@@ -14,10 +15,11 @@
 				alt="Cloud Shop" style="height: 45px;">
 			</a>
 
+
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+					
 
 				<ul class="navbar-nav ms-auto gap-4">
-
 					<li class="nav-item"><a class="nav-link active"
 						href="${pageContext.request.contextPath}/UsuariosControllers?accion=listar">
 							USUARIOS </a></li>
@@ -30,13 +32,17 @@
 						href="${pageContext.request.contextPath}/VentasControllers">VENTAS</a>
 					</li>
 
-					<li class="nav-item"><a class="nav-link"
-						href="${pageContext.request.contextPath}/views/guiReportes.jsp">
+					<li class="nav-item"><a class="nav-link" 
+						href="${pageContext.request.contextPath}/views/guiReportes.jsp" id="prueba">
 							REPORTE </a></li>
 
-				</ul>
 
+				</ul>
+				 
+				 
 			</div>
+			
+
 
 		<a href="${pageContext.request.contextPath}/views/guiLogin.jsp" class="btn btn-danger logout-btn ms-4">
 		    <i class="bi bi-box-arrow-right"></i> 
